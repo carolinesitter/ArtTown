@@ -1,11 +1,36 @@
 """Models for Artist by Zip Code app."""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
 #establish data classes and create data tables here 
+class User(db.Model):
+    """User model for app"""
 
+    __tablename__ = "users"
+
+    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    username = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(50), nullable=False)
+    instagram = db.Column(db.String(50))
+    twitter = db.Column(db.String(50))
+    tiktok = db.Column(db.String(50))
+    website = db.Column(db.String(50), unique=True)
+    zipcode = db.Column(db.Integer(5), nullable=False)
+
+    def __repr__(self):
+        """Show info about each user in user model object"""
+
+        return f"""<User Id = {self.user_id},
+                    First Name = {self.first_name},
+                    Last Name = {self.last_name},
+                    Email = {self.email},
+                    Username = {self.username}>"""
 
 
 
