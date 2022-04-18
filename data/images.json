@@ -1,0 +1,77 @@
+[
+    {
+        "image_title": "Color Two",
+        "image_link": "/img/color2.jpeg",
+        "date_uploaded": "2022-02-03"
+    },
+    {
+        "image_title": "Color Three",
+        "image_link": "/img/color3.jpeg",
+        "date_uploaded": "2022-02-03"
+    },
+    {
+        "image_title": "Dimension One",
+        "image_link": "/img/dimension1.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Dimension Two",
+        "image_link": "/img/dimension2.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Dimension Three",
+        "image_link": "/img/dimension3.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Dimension Four",
+        "image_link": "/img/dimension4.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Dimension Five",
+        "image_link": "/img/dimension5.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Dimension Six",
+        "image_link": "/img/dimension6.jpeg",
+        "date_uploaded": "2022-01-10"
+    },
+    {
+        "image_title": "Magic One",
+        "image_link": "/img/magic1.jpeg",
+        "date_uploaded": "2022-05-01"
+    },
+    {
+        "image_title": "Magic Two",
+        "image_link": "/img/magic2.jpeg",
+        "date_uploaded": "2022-05-01"
+    },
+    {
+        "image_title": "Turtle Two",
+        "image_link": "/img/turtle2.jpeg",
+        "date_uploaded": "2022-01-30"
+    },
+    {
+        "image_title": "Turtle Three",
+        "image_link": "/img/turtle3.jpeg",
+        "date_uploaded": "2022-01-30"
+    },
+    {
+        "image_title": "Monarch Three",
+        "image_link": "/img/monarch3.jpeg",
+        "date_uploaded": "2022-04-02"
+    },
+    {
+        "image_title": "Monarch Five",
+        "image_link": "/img/monarch5.jpg",
+        "date_uploaded": "2022-04-02"
+    },
+    {
+        "image_title": "Monarch Six",
+        "image_link": "/img/monarch6.jpg",
+        "date_uploaded": "2022-04-02"
+    }
+]
