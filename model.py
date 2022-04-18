@@ -36,7 +36,7 @@ class User(db.Model):
 class ArtistCollection(db.Model):
     """Artist collection model for app"""
 
-    __tablename__ = 'artist_collections'
+    __tablename__ = "artist_collections"
 
     artist_collection_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
@@ -49,8 +49,28 @@ class ArtistCollection(db.Model):
         return f"""<Artist Collection ID = {self.artist_collection_id},
                     User ID = {self.user_id},
                     Gallery Title = {self.gallery_title},
-                    Gallery Description = {self.gallery_description}"""
+                    Gallery Description = {self.gallery_description}>"""
 
+
+class Images(db.Model):
+    """Image model for app"""
+
+    __tablename__ = "images"
+
+    image_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    artist_collection_id = db.Column(db.Integer, db.ForeignKey("artist_collections.artist_collection_id"))
+    image_title = db.Column(db.String(50), nullable=False)
+    image_link = db.Column(db.String, nullable=False)
+    date_uploaded = db.Column(db.Datetime, nullable=False)
+
+    def __repr__(self):
+        """Show info about each image object"""
+
+        return f"""<Image ID = {self.image_id},
+                    Artist Collection ID = {self.artist_collection_id},
+                    Image Title = {self.image_title},
+                    Image Link = {self.image_link},
+                    Date Uploaded = {self.date_uploaded}>"""
 
 
 
