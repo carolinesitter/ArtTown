@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+    <h1>{username}</h1> 
+    <h2> {zipcode} </h2>
+    <p> These are my socials:</p>
+        <p>Instagram: {instagram}</p>
+        <p>Twitter: {twitter}</p>
+        <p>Tik Tok: {tiktok}</p>
+        <p>Website: {website}</p>
+
+    <form action="/create_new_post" method="POST">
+        <button id="create-post" type="submit">Create Post</button>
+    </form>
+
+    <form action="/search_by_zipcode">
+        <button id="search-by-zipcode" type="submit">Search By ZipCode</button>
+    </form>
+
+    <!-- <p> Here are {username}'s latest posts: </p>
+        <div>
+            render uploaded images here!
+        </div> -->
+
+
+
+
+{% endblock %}
