@@ -5,7 +5,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
-#establish data classes and create data tables here 
+
 class User(db.Model):
     """User model for app"""
 
@@ -107,6 +107,6 @@ def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=True):
 if __name__ == "__main__":
     from server import app
 
-    # Call connect_to_db(app, echo=False)
+    Call connect_to_db(app, echo=False)
 
     connect_to_db(app)
