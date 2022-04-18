@@ -1,0 +1,33 @@
+[
+    {
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "email": "alicejohnson@google.com",
+        "username": "alicedraws",
+        "password": "password",
+        "instagram": "@alice_johnson",
+        "twitter": "@alicexchains",
+        "zipcode": 78732
+    },
+    {
+        "first_name": "John",
+        "last_name": "Silverstone",
+        "email": "silverstoneartists@gmail.com",
+        "username": "silverstoneartists",
+        "password": "password",
+        "instagram": "@silver_stone_artists",
+        "website": "www.silverstoneartists.com",
+        "zipcode": 78733
+    },
+    {
+        "first_name": "Kat",
+        "last_name": "Woolverton",
+        "email": "woolvertoninquiries@gmail.com",
+        "username": "katscanvas",
+        "password": "password",
+        "instagram": "@canvaskat",
+        "twitter": "@katwoolverton",
+        "website": "www.katwoolverton.com",
+        "zipcode": 78733
+    }
+]
