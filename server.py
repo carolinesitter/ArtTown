@@ -82,7 +82,7 @@ def user_profile():
 def zipcode_input():
     """Show input box where artists can type in zip code"""
 
-    return render_template('zipcode-input.html')
+    return render_template('search-by-zip.html')
 
 @app.route("/search_by_zipcode")
 def search_by_zipcode():
@@ -104,7 +104,7 @@ def search_by_zipcode():
 def create_new_post():
     """Render template for artists to upload images to their profile"""
 
-    return render_template('create-profile.html')
+    return render_template('create-post.html')
 
 ###########
 
