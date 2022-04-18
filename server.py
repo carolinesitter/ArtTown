@@ -72,6 +72,37 @@ def user_profile():
 
     return render_template('user-profile.html')
 
+@app.route("/search_by_zipcode")
+def search_by_zipcode():
+    """Enter in zipcode, render random user profile"""
+
+    return render_template('rand-user-profile.html')
+
+@app.route("/create_new_post", methods=["POST"])
+def create_new_post():
+    """Allow artists to upload images into gallery on profile"""
+
+    return render_template('user-profile.html')
+
+# @app.route("/user_profile.html/<user_image>")
+# def show_user_image():
+#     """When you click on an image's link,
+#     render a page with the image and its info"""
+
+#     image = crud.get ....
+
+#     return render_template('user-image-details.html', image=image)
+
+# @app.route("/rand_user_profile/<sample_image>")
+# def show_rand_user_image():
+#     """When you click on a random user's image link,
+#     render a page with the image and its info"""
+
+#     rand_user_image = crud.get ....
+
+#     return render_template('rand-user-image.html',
+#                             rand_user_image = rand_user_image)
+
 
 @app.route("/rand_user_profile")
 def rand_user_profile():
