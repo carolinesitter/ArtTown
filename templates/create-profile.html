@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Create an Account {% endblock %}
+
+{% block content %}
+
+    <h1>Welcome to Arist By Zipcode!</h1>
+
+    <br>
+    </br>
+
+    <h2>Create an Account</h2>
+
+    <form action="/create_profile" method="post">
+        <label for="create_profile">First Name</label>
+        <input type="text" name="first_name" id="first-name">
+
+        <label for="create_profile">Last Name</label>
+        <input type="text" name="last_name" id="last-name">
+
+        <label for="create_profile">Username</label>
+        <input type="text" name="username" id="username">
+
+        <label for="create_profile">Password</label>
+        <input type="password" name="password" id="password">
+
+        <label for="create_profile">Verify Password</label>
+        <input type="password" name="verify_password" id="verify-password">
+
+        <label for="create_profile">ZipCode</label>
+        <input type="text" name="zipcode" id="zipcode">
+
+        <label for="create_profile">Email</label>
+        <input type="text" name="email" id="email">
+
+        <label for="create_profile">Instagram</label>
+        <input type="text" name="instagram" id="instagram">
+
+        <label for="create_profile">Tik Tok</label>
+        <input type="text" name="tik_tok" id="tik-tok">
+
+        <label for="create_profile">Twitter</label>
+        <input type="text" name="twitter" id="twitter">
+
+        <label for="create_profile">Website URL</label>
+        <input type="text" name="website_url" id="website-url">
+
+        <button id="create-profile-button" type="submit">Create Profile</button>
+    </form>
+
+
+{% endblock %}
