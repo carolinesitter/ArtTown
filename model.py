@@ -1,7 +1,8 @@
 """Models for Artist by Zip Code app."""
 
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
+
 
 db = SQLAlchemy()
 
@@ -21,7 +22,7 @@ class User(db.Model):
     twitter = db.Column(db.String(50))
     tiktok = db.Column(db.String(50))
     website = db.Column(db.String(50), unique=True)
-    zipcode = db.Column(db.Integer(5), nullable=False)
+    zipcode = db.Column(db.Integer, nullable=False)
 
 
     # relationship with ArtistCollection
@@ -43,7 +44,7 @@ class ArtistCollection(db.Model):
 
     __tablename__ = "artist_collections"
 
-    artist_collection_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    artist_collection_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     gallery_title = db.Column(db.String, nullable=False)
     gallery_description = db.Column(db.String, nullable=False)
@@ -70,11 +71,11 @@ class Image(db.Model):
 
     __tablename__ = "images"
 
-    image_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     artist_collection_id = db.Column(db.Integer, db.ForeignKey("artist_collections.artist_collection_id"))
     image_title = db.Column(db.String(50), nullable=False)
     image_link = db.Column(db.String, nullable=False)
-    date_uploaded = db.Column(db.Datetime, nullable=False)
+    date_uploaded = db.Column(db.DateTime, nullable=False)
 
 
     # relationship with ArtistCollection
@@ -107,6 +108,6 @@ def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=True):
 if __name__ == "__main__":
     from server import app
 
-    Call connect_to_db(app, echo=False)
+    #Call connect_to_db(app, echo=False)
 
     connect_to_db(app)
