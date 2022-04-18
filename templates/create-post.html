@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {%block title %} New Post {%endblock %}
 
-<h1>Create a New Post</h1>
+{% block content %}
 
-<form action="/create_new_post" method="POST">
-    <label for="post-title">Title</label>
-    <input type="text" name="post-title" id="post-title">
+    <h1>Create a New Post</h1>
 
-    <label for="post-description">Description</label>
-    <input type="text" name="post-description" id="post-description">
+    <form action="/create_new_post" method="POST">
+        <label for="post-title">Title</label>
+        <input type="text" name="post-title" id="post-title">
 
-    <!-- <button type="submit" id="image-upload-button">Upload Image</button> -->
-    <!-- may need AJAX or something to prompt the user to upload an image? -->
-    <!-- also will need an if statement to make sure that an image has been uploaded, otherwise redirect-->
-    <!-- this may be a potential block -->
+        <label for="post-description">Description</label>
+        <input type="text" name="post-description" id="post-description">
 
-    <button type="submit" id="submit-new-post">Create Post</button>
-</form>
+        <!-- <button type="submit" id="image-upload-button">Upload Image</button> -->
+        <!-- may need AJAX or something to prompt the user to upload an image? -->
+        <!-- also will need an if statement to make sure that an image has been uploaded, otherwise redirect-->
+        <!-- this may be a potential block -->
+
+        <button type="submit" id="submit-new-post">Create Post</button>
+    </form>
 
 
 {% endblock %}
