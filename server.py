@@ -58,10 +58,15 @@ def homepage():
     #     flash("Successfully logged in!")
 
     # return redirect("/user_profile")
-    
+
+@app.route("/create_profile")
+def create_profile():
+    """Create a new profile"""
+
+    return render_template('create-profile.html')
     
 
-@app.route("/user_profile")
+@app.route("/user_profile", methods=["POST"])
 def user_profile():
     """Show user_profile"""
 
