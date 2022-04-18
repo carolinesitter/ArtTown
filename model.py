@@ -23,6 +23,11 @@ class User(db.Model):
     website = db.Column(db.String(50), unique=True)
     zipcode = db.Column(db.Integer(5), nullable=False)
 
+
+    # relationship with ArtistCollection
+    artist_collection = db.relationship('ArtistCollection', back_populates='user')
+
+
     def __repr__(self):
         """Show info about each user object"""
 
@@ -43,6 +48,14 @@ class ArtistCollection(db.Model):
     gallery_title = db.Column(db.String, nullable=False)
     gallery_description = db.Column(db.String, nullable=False)
 
+
+    # relationship with User
+    user = db.relationship('User', back_populates='artist_collection')
+
+    # relationship with Image
+    image = db.relationship('Image', back_populates='artist_collection')
+
+
     def __repr__(self):
         """Show info about each artist collection object"""
 
@@ -52,7 +65,7 @@ class ArtistCollection(db.Model):
                     Gallery Description = {self.gallery_description}>"""
 
 
-class Images(db.Model):
+class Image(db.Model):
     """Image model for app"""
 
     __tablename__ = "images"
@@ -62,6 +75,11 @@ class Images(db.Model):
     image_title = db.Column(db.String(50), nullable=False)
     image_link = db.Column(db.String, nullable=False)
     date_uploaded = db.Column(db.Datetime, nullable=False)
+
+
+    # relationship with ArtistCollection
+    artist_collection = db.relationship('ArtistCollection', back_populates='image')
+
 
     def __repr__(self):
         """Show info about each image object"""
