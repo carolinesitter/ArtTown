@@ -24,13 +24,32 @@ class User(db.Model):
     zipcode = db.Column(db.Integer(5), nullable=False)
 
     def __repr__(self):
-        """Show info about each user in user model object"""
+        """Show info about each user object"""
 
         return f"""<User Id = {self.user_id},
                     First Name = {self.first_name},
                     Last Name = {self.last_name},
                     Email = {self.email},
                     Username = {self.username}>"""
+
+
+class ArtistCollection(db.Model):
+    """Artist collection model for app"""
+
+    __tablename__ = 'artist_collections'
+
+    artist_collection_id = db.Column(db.Integer, primary_key=True, auto_increment=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    gallery_title = db.Column(db.String, nullable=False)
+    gallery_description = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        """Show info about each artist collection object"""
+
+        return f"""<Artist Collection ID = {self.artist_collection_id},
+                    User ID = {self.user_id},
+                    Gallery Title = {self.gallery_title},
+                    Gallery Description = {self.gallery_description}"""
 
 
 
