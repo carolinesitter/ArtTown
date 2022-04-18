@@ -17,7 +17,9 @@ def homepage():
     
     return render_template('homepage.html')
 
-#CREATE USER PROFILE AND MAKE SURE ONLY ONE EXISTS PER EMAIL
+###########
+
+# CREATE USER PROFILE AND MAKE SURE ONLY ONE EXISTS PER EMAIL:
 
 # @app.route("/create_profile")
 # def create_profile():
@@ -41,7 +43,9 @@ def homepage():
 # add another create profile app route with POST 
 # -- to add and store info to db and sessions
 
-#CREATE USER LOG IN ROUTE
+###########
+
+# CREATE USER LOG IN ROUTE
 # @app.route("/login", methods=["POST"])
 # def user_login():
 #     """Log a User in"""
@@ -59,6 +63,8 @@ def homepage():
 
     # return redirect("/user_profile")
 
+###########
+
 @app.route("/create_profile")
 def create_profile():
     """Create a new profile"""
@@ -72,17 +78,51 @@ def user_profile():
 
     return render_template('user-profile.html')
 
+@app.route("/zipcode_input")
+def zipcode_input():
+    """Show input box where artists can type in zip code"""
+
+    return render_template('zipcode-input.html')
+
 @app.route("/search_by_zipcode")
 def search_by_zipcode():
     """Enter in zipcode, render random user profile"""
 
+    # get zip from inputs, check if it equals a zip from data.json
+
+    # zipcode = request.form.get("zipcode")
+    # rand_user_zip = crud.get_user_zip()
+    # if zipcode == rand_user_zip:
+    # return render_template('rand-user-profile.html', zipcode=zipcode)
+    # else:
+    # flash("Sorry! No results match the Zip Code you entered. Please try again!")
+    # redirect (search-by-zip)
+
     return render_template('rand-user-profile.html')
 
-@app.route("/create_new_post", methods=["POST"])
+@app.route("/create_new_post")
 def create_new_post():
-    """Allow artists to upload images into gallery on profile"""
+    """Render template for artists to upload images to their profile"""
 
-    return render_template('user-profile.html')
+    return render_template('create-profile.html')
+
+###########
+
+# ADD IMAGE TO PROFILE:
+
+# @app.route("/create_new_post", methods=["POST"])
+# def upload_new_post():
+#     """Allow artists to upload images onto profile,
+#     redirect to user profile once submitted"""
+
+#     # implement cloudinary, reference documentation
+#     # this may be where you will need AJAX?
+
+#     return redirect("user-profile.html")
+
+###########
+
+# SHOW USER IMAGE ON CLICK:
 
 # @app.route("/user_profile.html/<user_image>")
 # def show_user_image():
@@ -93,6 +133,10 @@ def create_new_post():
 
 #     return render_template('user-image-details.html', image=image)
 
+###########
+
+# SHOW RANDOM USER IMAGE ON CLICK:
+
 # @app.route("/rand_user_profile/<sample_image>")
 # def show_rand_user_image():
 #     """When you click on a random user's image link,
@@ -102,6 +146,8 @@ def create_new_post():
 
 #     return render_template('rand-user-image.html',
 #                             rand_user_image = rand_user_image)
+
+###########
 
 
 @app.route("/rand_user_profile")
