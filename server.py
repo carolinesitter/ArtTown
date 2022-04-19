@@ -21,13 +21,22 @@ def homepage():
 
 # CREATE USER PROFILE AND MAKE SURE ONLY ONE EXISTS PER EMAIL:
 
-@app.route("/create_profile", methods=["POST"])
+@app.route("/register_profile", methods=["POST"])
 def register_profile():
     """Check if account has already been created,
         if not, create new account and add user to db"""
     
     email = request.form.get("email")
     password = request.form.get("password")
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    username = request.form.get("username")
+    instagram = request.form.get("instagram")
+    twitter = request.form.get("twitter")
+    tiktok = request.form.get("tiktok")
+    website = request.form.get("website")
+    zipcode = request.form.get("zipcode")
+
     user = crud.get_user_by_email(email)
     
     if user:
@@ -68,11 +77,11 @@ def register_profile():
 
 ###########
 
-# @app.route("/create_profile", methods=["POST"])
-# def create_profile():
-#     """Create a new profile"""
+@app.route("/create_profile")
+def create_profile():
+    """Create a new profile"""
 
-#     return render_template('create-profile.html')
+    return render_template('create-profile.html')
     
 
 @app.route("/user_profile")

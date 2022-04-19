@@ -30,7 +30,7 @@ def create_user(first_name, last_name, username, email,
 def create_artist_collection(gallery_title, gallery_description):
     """Create and return a new art collection"""
 
-    art_collection = ArtCollection(
+    art_collection = ArtistCollection(
                     gallery_title=gallery_title,
                     gallery_description=gallery_description,
                     )
@@ -47,7 +47,7 @@ def create_image(image_title, image_link, date_uploaded):
                 date_uploaded=date_uploaded
                 )
 
-    return image
+    return new_image
 
 def get_art_collection_by_id(artist_collection_id):
     """Return artist collection by id"""
@@ -66,10 +66,12 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
+
 def get_user_art_collections(artist_collection_id):
     """Return a user by artist collection id"""
 
     return User.query.filter(User.artist_collection == artist_collection).first()
+
 
 def get_art_collection_images(image_id):
     """Return an art collection by image id"""
@@ -77,10 +79,28 @@ def get_art_collection_images(image_id):
     return ArtCollection.query.filter(ArtCollection.image_id == image_id).all()
 
 
+def get_user_by_first_name(first_name):
+    """Return a user by first name"""
+
+    return User.query.filter(User.first_name == first_name).first()
+
+
+def get_user_by_last_name(last_name):
+    """Return a user by last_name"""
+
+    return User.query.filter(User.last_name == last_name).first()
+
+
 def get_user_by_email(email):
     """Return a user by their email"""
 
     return User.query.filter(User.email == email).first()
+
+
+def get_user_by_password(password):
+    """Return a user by their password"""
+
+    return User.query.filter(User.password == password).first()
 
 
 def get_user_by_zipcode(zipcode):

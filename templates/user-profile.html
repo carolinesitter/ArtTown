@@ -3,13 +3,13 @@
 {% block title %} Profile {% endblock %}
 
 {% block content %}
-    <h1>{username}</h1> 
-    <h2> {zipcode} </h2>
+    <h1>{{username}}</h1> 
+    <h2> {{zipcode}} </h2>
     <p> These are my socials:</p>
-        <p>Instagram: {instagram}</p>
-        <p>Twitter: {twitter}</p>
-        <p>Tik Tok: {tiktok}</p>
-        <p>Website: {website}</p>
+        <p>Instagram: {{instagram}}</p>
+        <p>Twitter: {{twitter}}</p>
+        <p>Tik Tok: {{tiktok}}</p>
+        <p>Website: {{website}}</p>
 
     <form action="/create_new_post">
         <button id="create-post" type="submit">Create Post</button>

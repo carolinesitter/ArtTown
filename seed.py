@@ -66,7 +66,7 @@ with open('data/artist-collection.json') as f:
 
 artist_collection_in_db = []
 
-for collection in artist_collection_in_db:
+for collection in artist_collection_data:
     gallery_title = collection['gallery_title']
     gallery_description = collection['gallery_description']
 
@@ -84,15 +84,16 @@ with open('data/images.json') as f:
 
 images_in_db = []
 
-for image in images_in_db:
+for image in image_data:
     image_title = image['image_title']
     image_link = image['image_link']
 
-    date_uploaded = datetime.strptime(image['date_uploaded'], "%M-%d-%y")
+
+    date_uploaded = datetime.strptime(image['date_uploaded'], "%Y-%m-%d")
 
     db_image = crud.create_image(image_title, image_link, date_uploaded)
 
-    users_in_db.append(db_image)
+    images_in_db.append(db_image)
 
 model.db.session.add_all(images_in_db)
 
