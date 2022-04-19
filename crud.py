@@ -79,6 +79,44 @@ def get_user_by_zipcode(zipcode):
     return User.query.get(zipcode)
 
 
+def get_user_by_username(username):
+    """Return a user by username"""
+
+    return User.query.get(username)
+
+
+def get_user_by_instagram(instagram):
+    """Return a user by instagram"""
+
+    return User.query.get(instagram)
+
+
+def get_user_by_twitter(twitter):
+    """return a user by twitter"""
+
+    return User.query.get(twitter)
+
+
+def get_user_by_titkok(titkok):
+    """Return a user by tiktok"""
+
+    return User.query.get(tiktok)
+
+
+def get_user_by_twitter(twitter):
+    """Return a user by twitter"""
+
+    return User.query.get(twitter)
+
+
+def get_user_by_website(website):
+    """Return a user by website"""
+
+    return User.query.get(website)
+
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
