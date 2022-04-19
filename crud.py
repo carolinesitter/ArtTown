@@ -66,6 +66,16 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
+def get_user_art_collections(artist_collection_id):
+    """Return a user by artist collection id"""
+
+    return User.query.filter(User.artist_collection == artist_collection).first()
+
+def get_art_collection_images(image_id):
+    """Return an art collection by image id"""
+
+    return ArtCollection.query.filter(ArtCollection.image_id == image_id).all()
+
 
 def get_user_by_email(email):
     """Return a user by their email"""
@@ -76,43 +86,43 @@ def get_user_by_email(email):
 def get_user_by_zipcode(zipcode):
     """Return a user by zipcode"""
 
-    return User.query.get(zipcode)
+    return User.query.filter(User.zipcode == zipcode).first()
 
 
 def get_user_by_username(username):
     """Return a user by username"""
 
-    return User.query.get(username)
+    return User.query.filter(User.username == username).first()
 
 
 def get_user_by_instagram(instagram):
     """Return a user by instagram"""
 
-    return User.query.get(instagram)
+    return User.query.filter(User.instagram == instagram).first()
 
 
 def get_user_by_twitter(twitter):
     """return a user by twitter"""
 
-    return User.query.get(twitter)
+    return User.query.filter(User.twitter == twitter).first()
 
 
-def get_user_by_titkok(titkok):
+def get_user_by_titkok(tiktok):
     """Return a user by tiktok"""
 
-    return User.query.get(tiktok)
+    return User.query.filter(User.tiktok == tiktok).first()
 
 
 def get_user_by_twitter(twitter):
     """Return a user by twitter"""
 
-    return User.query.get(twitter)
+    return User.query.filter(User.twitter == twitter).first()
 
 
 def get_user_by_website(website):
     """Return a user by website"""
 
-    return User.query.get(website)
+    return User.query.filter(User.website == website).first()
 
 
 

@@ -85,24 +85,24 @@ def zipcode_input():
 
     return render_template('search-by-zip.html')
 
-@app.route("/search_by_zipcode")
+@app.route("/search_by_zipcode", methods=["POST"])
 def search_by_zipcode():
     """Enter in zipcode, render random user profile"""
 
     # get zip from inputs, check if it equals a zip from data.json
 
-    zipcode = request.form.get("zipcode")
+    zipcode = int(request.form.get("zipcode"))
     user_zip = crud.get_user_by_zipcode(zipcode)
-    fake_username = crud.get_user_by_username(username)
-    fake_zipcode = crud.get_user_by_zipcode(zipcode)
-    fake_instagram = crud.get_user_by_instagram(instagram)
-    fake_twitter = crud.get_user_by_twitter(twitter)
-    fake_tiktok = crud.get_user_by_tiktok(tikok)
-    fake_website = crud.get_user_by_website(website)
-                        
+    print(user_zip)
+    if user_zip != None:
+        fake_username = user_zip.username
+        fake_zipcode = user_zip.zipcode
+        fake_instagram = user_zip.instagram
+        fake_twitter = user_zip.twitter
+        fake_tiktok = user_zip.tiktok
+        fake_website = user_zip.website
+    
 
-
-    if zipcode == user_zip:
         return render_template('rand-user-profile.html',
                                 zipcode=zipcode,
                                 user_zip=user_zip,
@@ -114,7 +114,7 @@ def search_by_zipcode():
                                 fake_website=fake_website)
     else:
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
-        return redirect('/search-by-zip')
+        return redirect('/zipcode_input')
 
 
 

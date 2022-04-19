@@ -4,8 +4,8 @@
 {% block content %}
     <h1>Search For Artists in Your Zip Code!</h1>
 
-    <form action="/search_by_zipcode">
-        <label for="search-by-zip" method="get">Enter your zip code</label>
+    <form action="/search_by_zipcode" method="POST">
+        <label for="search-by-zip">Enter your zip code</label>
         <input type="text" name="zipcode" id="zipcode-input">
 
         <button type="submit" name="zipcode-search">Search</button>
