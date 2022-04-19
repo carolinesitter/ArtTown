@@ -8,33 +8,43 @@ from model import db, User, ArtistCollection, Image, connect_to_db
 # - create query statements 
 
 
-def create_user(email, password):
+def create_user(first_name, last_name, username, email,
+                password, instagram, twitter, tiktok, website, zipcode):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(first_name=first_name,
+                last_name=last_name,
+                username=username,
+                email=email,
+                password=password,
+                instagram=instagram,
+                twitter=twitter,
+                tiktok=tiktok,
+                website=website,
+                zipcode=zipcode
+                )
 
     return user
 
 
-def add_artist_collection(user, title, description):
+def create_artist_collection(gallery_title, gallery_description):
     """Create and return a new art collection"""
 
     art_collection = ArtCollection(
-                    user=user,
-                    title=title,
-                    description=description,
+                    gallery_title=gallery_title,
+                    gallery_description=gallery_description,
                     )
     
     return art_collection
 
 
-def add_image(art_collection, title, link):
+def create_image(image_title, image_link, date_uploaded):
     """Create and return a new image"""
 
     new_image = Image(
-                art_collection=art_collection,
-                title=title,
-                link=link
+                image_title=image_title,
+                image_link=image_link,
+                date_uploaded=date_uploaded
                 )
 
     return image
