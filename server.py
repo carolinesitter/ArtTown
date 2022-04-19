@@ -21,23 +21,24 @@ def homepage():
 
 # CREATE USER PROFILE AND MAKE SURE ONLY ONE EXISTS PER EMAIL:
 
-# @app.route("/create_profile")
-# def create_profile():
-#     """Check if account has already been created"""
+@app.route("/create_profile")
+def register_profile():
+    """Check if account has already been created"""
     
-#     email = request.form.get("email")
-#     password = request.form.get("password")
-#     user = crud.get_user_by_email(email)
+    email = request.form.get("email")
+    password = request.form.get("password")
+    user = crud.get_user_by_email(email)
     
-#     if user:
-#         flash("User already registered")
-#     else:
-#         user = crud.create_user(email, password)
-#         db.session.add(user)
-#         db.session.commit()
-#         flash("User created successfully; you may now log in")
-    
-#     return redirect("/user_profile")        
+    if user:
+        flash("User already registered")
+
+    else:
+        user = crud.create_user(email, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("User created successfully; you may now log in")
+
+    return redirect("/")        
     
 
 # add another create profile app route with POST 
@@ -48,7 +49,7 @@ def homepage():
 # CREATE USER LOG IN ROUTE
 # @app.route("/login", methods=["POST"])
 # def user_login():
-#     """Log a User in"""
+#     """Log a user in"""
 
 #     email = request.form.get("email")
 #     password = request.form.get("password")
@@ -91,8 +92,8 @@ def search_by_zipcode():
     # get zip from inputs, check if it equals a zip from data.json
 
     # zipcode = request.form.get("zipcode")
-    # rand_user_zip = crud.get_user_zip()
-    # if zipcode == rand_user_zip:
+    # user_zip = crud.get_user_by_zipcode()
+    # if zipcode == user_zip:
     # return render_template('rand-user-profile.html', zipcode=zipcode)
     # else:
     # flash("Sorry! No results match the Zip Code you entered. Please try again!")

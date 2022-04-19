@@ -63,6 +63,12 @@ def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 
 
+def get_user_by_zipcode(zipcode):
+    """Return a user by zipcode"""
+
+    return User.query.get(zipcode)
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
