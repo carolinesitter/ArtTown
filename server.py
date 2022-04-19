@@ -91,15 +91,17 @@ def search_by_zipcode():
 
     # get zip from inputs, check if it equals a zip from data.json
 
-    # zipcode = request.form.get("zipcode")
-    # user_zip = crud.get_user_by_zipcode()
-    # if zipcode == user_zip:
-    # return render_template('rand-user-profile.html', zipcode=zipcode)
-    # else:
-    # flash("Sorry! No results match the Zip Code you entered. Please try again!")
-    # redirect (search-by-zip)
+    zipcode = request.form.get("zipcode")
+    user_zip = crud.get_user_by_zipcode(zipcode)
+    if zipcode == user_zip:
+        return render_template('rand-user-profile.html',
+                                zipcode=zipcode,
+                                user_zip=user_zip)
+    else:
+        flash("Sorry! No results match the Zip Code you entered. Please try again!")
+        return redirect('/search-by-zip')
 
-    return render_template('rand-user-profile.html')
+
 
 @app.route("/create_new_post")
 def create_new_post():
@@ -155,7 +157,21 @@ def create_new_post():
 def rand_user_profile():
     """Show Random User Profile from Data"""
 
-    return render_template('rand-user-profile.html')
+    fake_username = crud.get_user_by_username(username)
+    fake_zipcode = crud.get_user_by_zipcode(zipcode)
+    fake_instagram = crud.get_user_by_instagram(instagram)
+    fake_twitter = crud.get_user_by_twitter(twitter)
+    fake_tiktok = crud.get_user_by_tiktok(tikok)
+    fake_website = crud.get_user_by_website(website)
+
+
+    return render_template('rand-user-profile.html',
+                            fake_username=fake_username,
+                            fake_zipcode=fake_zipcode,
+                            fake_instagram=fake_instagram,
+                            fake_twitter=fake_twitter,
+                            fake_tiktok=fake_tiktok,
+                            fake_website=fake_website)
 
 
 if __name__ == "__main__":

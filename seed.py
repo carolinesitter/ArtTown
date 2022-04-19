@@ -9,9 +9,9 @@ import crud
 import model
 import server
 
-os.system("dropdb artists")
+os.system("dropdb artists-by-zip")
 
-os.system('createdb artists')
+os.system('createdb artists-by-zip')
 
 model.connect_to_db(server.app)
 model.db.create_all() 
@@ -30,11 +30,26 @@ for user in user_data:
     last_name = user['last_name']
     username = user['username']
     email = user['email']
-    instagram = user['instagram']
-    tiktok = user['tiktok']
-    twitter = user['twitter']
-    website = user['website']
     zipcode = user['zipcode']
+    password = user['password']
+
+    if 'instagram' in user:
+        instagram = user['instagram']
+    else:
+        instagram = None
+    if 'tiktok' in user:
+        tiktok = user['tiktok']
+    else:
+        tiktok = None
+    if 'twitter' in user:
+        twitter = user['twitter']
+    else:
+        twitter = None
+    if 'website' in user:
+        website = user['website']
+    else:
+        website = None
+
 
     db_user = crud.create_user(first_name, last_name, username, email,
                                 password, instagram, twitter, tiktok,
