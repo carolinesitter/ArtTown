@@ -66,14 +66,14 @@ def register_profile():
 
 ###########
 
-@app.route("/create_profile")
+@app.route("/create_profile", methods=["POST"])
 def create_profile():
     """Create a new profile"""
 
     return render_template('create-profile.html')
     
 
-@app.route("/user_profile", methods=["POST"])
+@app.route("/user_profile")
 def user_profile():
     """Show user_profile"""
 
@@ -101,7 +101,7 @@ def search_by_zipcode():
         fake_twitter = user_zip.twitter
         fake_tiktok = user_zip.tiktok
         fake_website = user_zip.website
-    
+
 
         return render_template('rand-user-profile.html',
                                 zipcode=zipcode,
