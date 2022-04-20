@@ -58,22 +58,26 @@ def register_profile():
 ###########
 
 # CREATE USER LOG IN ROUTE
-# @app.route("/login", methods=["POST"])
-# def user_login():
-#     """Log a user in"""
+@app.route("/login", methods=["POST"])
+def user_login():
+    """Log a user in"""
 
-#     email = request.form.get("email")
-#     password = request.form.get("password")
-    # user = crud.get_user_by_email(email)
+    username = request.form.get("username")
+    email = request.form.get("email")
+    password = request.form.get("password")
 
-    # if not user or user.password != password:
-    #     flash("Invalid email or password. Please try again.")
-    #     return redirect("/")
-    # else:
-    #     session['user_email'] = user.email
-    #     flash("Successfully logged in!")
+    user = crud.get_user_by_email(email)
 
-    # return redirect("/user_profile")
+    if not user or user.password != password:
+        flash("Invalid email or password. Please try again.")
+        return redirect("/")
+    else:
+        session['user_email'] = user.email
+        session['username'] = user.username
+
+        flash("Successfully logged in!")
+
+    return redirect("/user_profile")
 
 ###########
 
@@ -88,7 +92,22 @@ def create_profile():
 def user_profile():
     """Show user_profile"""
 
-    return render_template('user-profile.html')
+    user = crud.get_user_by_email(email)
+
+    username = user.username
+    zipcode = user.zipcode
+    instagram = user.instagram
+    tiktok = user.tiktok
+    twitter = user.twitter
+    website = user.website
+
+    return render_template('user-profile.html',
+                            username=username,
+                            zipcode=zipcode,
+                            instagram=instagram,
+                            tiktok=tiktok,
+                            twitter=twitter,
+                            website=website)
 
 @app.route("/zipcode_input")
 def zipcode_input():
