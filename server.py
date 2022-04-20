@@ -58,11 +58,11 @@ def register_profile():
 ###########
 
 # CREATE USER LOG IN ROUTE
-@app.route("/login", methods=["POST"])
+@app.route("/log_in", methods=["POST"])
 def user_login():
     """Log a user in"""
 
-    username = request.form.get("username")
+    # username = request.form.get("username")
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -91,6 +91,8 @@ def create_profile():
 @app.route("/user_profile")
 def user_profile():
     """Show user_profile"""
+
+    email = session['user_email']
 
     user = crud.get_user_by_email(email)
 
@@ -131,6 +133,7 @@ def search_by_zipcode():
         fake_twitter = user_zip.twitter
         fake_tiktok = user_zip.tiktok
         fake_website = user_zip.website
+        
 
 
         return render_template('rand-user-profile.html',

@@ -27,24 +27,27 @@ def create_user(first_name, last_name, username, email,
     return user
 
 
-def create_artist_collection(gallery_title, gallery_description):
+def create_artist_collection(gallery_title, gallery_description, user):
     """Create and return a new art collection"""
 
     art_collection = ArtistCollection(
                     gallery_title=gallery_title,
                     gallery_description=gallery_description,
+                    user=user
                     )
     
     return art_collection
 
 
-def create_image(image_title, image_link, date_uploaded):
+def create_image(image_title, image_link, date_uploaded, artist_collection):
     """Create and return a new image"""
 
     new_image = Image(
                 image_title=image_title,
                 image_link=image_link,
-                date_uploaded=date_uploaded
+                date_uploaded=date_uploaded,
+                # artist collection object
+                artist_collection=artist_collection
                 )
 
     return new_image

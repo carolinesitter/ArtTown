@@ -59,6 +59,8 @@ for user in user_data:
 
     model.db.session.add_all(users_in_db)
 
+
+
 #load artist collection data from json file
 
 with open('data/artist-collection.json') as f:
@@ -66,11 +68,13 @@ with open('data/artist-collection.json') as f:
 
 artist_collection_in_db = []
 
+
 for collection in artist_collection_data:
     gallery_title = collection['gallery_title']
     gallery_description = collection['gallery_description']
+    user = choice(users_in_db)
 
-    db_collection = crud.create_artist_collection(gallery_title, gallery_description)
+    db_collection = crud.create_artist_collection(gallery_title, gallery_description, user)
 
     artist_collection_in_db.append(db_collection)
 
@@ -87,11 +91,12 @@ images_in_db = []
 for image in image_data:
     image_title = image['image_title']
     image_link = image['image_link']
+    artist_collection = choice(artist_collection_in_db)
 
 
     date_uploaded = datetime.strptime(image['date_uploaded'], "%Y-%m-%d")
 
-    db_image = crud.create_image(image_title, image_link, date_uploaded)
+    db_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
 
     images_in_db.append(db_image)
 
