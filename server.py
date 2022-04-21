@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, flash, session,
                 redirect)
 from model import connect_to_db, db
 import crud
+import os
 
 from jinja2 import StrictUndefined
 
@@ -202,28 +203,6 @@ def upload_new_post():
 #                             rand_user_image = rand_user_image)
 
 ###########
-
-
-# @app.route("/rand_user_profile")
-# def rand_user_profile():
-#     """Show Random User Profile from Data"""
-
-#     fake_username = crud.get_user_by_username(username)
-#     fake_zipcode = crud.get_user_by_zipcode(zipcode)
-#     fake_instagram = crud.get_user_by_instagram(instagram)
-#     fake_twitter = crud.get_user_by_twitter(twitter)
-#     fake_tiktok = crud.get_user_by_tiktok(tikok)
-#     fake_website = crud.get_user_by_website(website)
-
-
-#     return render_template('rand-user-profile.html',
-#                             fake_username=fake_username,
-#                             fake_zipcode=fake_zipcode,
-#                             fake_instagram=fake_instagram,
-#                             fake_twitter=fake_twitter,
-#                             fake_tiktok=fake_tiktok,
-#                             fake_website=fake_website)
-
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)
