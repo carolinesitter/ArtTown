@@ -10,7 +10,7 @@ import os
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
-app.secret_key = "dev"
+app.secret_key = os.environ['SECRET_KEY']
 app.jinja_env.undefined = StrictUndefined
 
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
@@ -222,7 +222,7 @@ def add_image_to_gallery():
 
         flash("Congratulations! You have uploaded an image to your gallery!")
         return redirect("user-profile.html")
-        
+
         #will need to set up a conditional in user_profile route to check for images and add to prof?
         # or will that be in jinja?
 

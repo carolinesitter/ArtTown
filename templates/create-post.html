@@ -5,7 +5,7 @@
 
     <h1>Create a New Post</h1>
 
-    <form action="/create_new_post" method="POST">
+    <form action="/create_art_collection" method="POST">
         <label for="gallery-title">Gallery Title</label>
         <input type="text" name="gallery-title" id="gallery-title">
 
@@ -13,20 +13,6 @@
         <input type="text" name="gallery-description" id="gallery-description">
 
         <button type="submit" id="artist-collection-button">Create Gallery</button>
-    </form>
-
-
-    <form action="/upload_image" method="POST" enctype="multipart/form-data">
-
-        <label for="image-title">Image Title</label>
-        <input type="text" name="image-title" id="image-title">
-
-        <input type="file" id="image-upload-button" name="filename">
-        <!-- may need AJAX or something to prompt the user to upload an image? -->
-        <!-- also will need an if statement to make sure that an image has been uploaded, otherwise redirect-->
-        <!-- this may be a potential block -->
-
-        <button type="submit" id="submit-new-post">Create Post</button>
     </form>
 
 
