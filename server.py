@@ -152,7 +152,7 @@ def search_by_zipcode():
 
 
 
-@app.route("/create_new_post")
+@app.route("/create_post_form")
 def create_new_post():
     """Render template for artists to upload images to their profile"""
 
@@ -162,15 +162,17 @@ def create_new_post():
 
 # ADD IMAGE TO PROFILE:
 
-# @app.route("/create_new_post", methods=["POST"])
-# def upload_new_post():
-#     """Allow artists to upload images onto profile,
-#     redirect to user profile once submitted"""
+@app.route("/create_new_post", methods=["POST"])
+def upload_new_post():
+    """Allow artists to upload images onto profile,
+    redirect to user profile once submitted"""
 
-#     # implement cloudinary, reference documentation
-#     # this may be where you will need AJAX?
+    # implement cloudinary, reference documentation
+    # this may be where you will need AJAX?
+    
+    # may need to implement cloudinary in user_profile route!
 
-#     return redirect("user-profile.html")
+    return redirect("user-profile.html")
 
 ###########
 
