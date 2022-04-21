@@ -3,6 +3,7 @@
 from flask import (Flask, render_template, request, flash, session,
                 redirect, url_for)
 from model import connect_to_db, db
+from datetime import datetime
 import crud
 import cloudinary.uploader
 import os
@@ -17,6 +18,12 @@ CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME = "dgvuwdtnb"
 
+###########
+
+# SHOW HOMEPAGE
+
+###########
+
 @app.route("/")
 def homepage():
     """View homepage"""
@@ -25,7 +32,9 @@ def homepage():
 
 ###########
 
-# CREATE USER PROFILE AND MAKE SURE ONLY ONE EXISTS PER EMAIL:
+# CREATE PROFILE AND REGISTER TO DATABASE
+
+###########
 
 @app.route("/register_profile", methods=["POST"])
 def register_profile():
@@ -56,14 +65,13 @@ def register_profile():
         flash("Congratulations! Your account has been created. You may now log in!")
 
     return redirect("/")        
-    
-
-# add another create profile app route with POST 
-# -- to add and store info to db and sessions
 
 ###########
 
-# CREATE USER LOG IN ROUTE
+# LOG IN ROUTE
+
+###########
+
 @app.route("/log_in", methods=["POST"])
 def user_login():
     """Log a user in"""
@@ -87,12 +95,21 @@ def user_login():
 
 ###########
 
+# CREATE PROFILE FORM 
+
+###########
+
 @app.route("/create_profile")
 def create_profile():
     """Create a new profile"""
 
     return render_template('create-profile.html')
-    
+
+###########
+
+# SHOW USER PROFILE
+
+###########
 
 @app.route("/user_profile")
 def user_profile():
@@ -101,6 +118,8 @@ def user_profile():
     email = session['user_email']
 
     user = crud.get_user_by_email(email)
+
+    # def crud funct to get all the artist collections by id 
 
     username = user.username
     zipcode = user.zipcode
@@ -117,11 +136,23 @@ def user_profile():
                             twitter=twitter,
                             website=website)
 
+###########
+
+# SEARCH BY ZIPCODE FORM 
+
+###########
+
 @app.route("/zipcode_input")
 def zipcode_input():
     """Show input box where artists can type in zip code"""
 
     return render_template('search-by-zip.html')
+
+###########
+
+# SHOW RANDOM PROFILE
+
+###########
 
 @app.route("/search_by_zipcode", methods=["POST"])
 def search_by_zipcode():
@@ -156,7 +187,11 @@ def search_by_zipcode():
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')
 
+###########
 
+# CREATE NEW POST FORM
+
+###########
 
 @app.route("/create_post_form")
 def create_new_post():
@@ -166,10 +201,14 @@ def create_new_post():
 
 ###########
 
+# CREATE ART COLLECTION
+
+###########
 
 @app.route("/create_art_collection", methods=["POST"])
 def create_art_collection():
     """Get art collection and user data from browser and add to db"""
+
 
     user = crud.get_user_by_id(user_id)
     gallery_title = request.form.get("gallery-title")
@@ -179,13 +218,19 @@ def create_art_collection():
         artist_gallery = create_artist_collection(gallery_title, gallery_description, user)
         db.session.add(artist_gallery)
         db.session.commit()
+
         flash("Congratulations! You have created your gallery. Now you can add photos!")
-        #do i need to render a template???
+        return render_template('upload-image.html', artist_gallery=artist_gallery)
 
     else:
         flash("Sorry, you must give your gallery a name and description. Please try again.")
-        return redirect("/create_post_form")
+        return render_template('create-post.html')
 
+###########
+
+# UPLOAD AN IMAGE CLOUDINARY HANDLE FUNCT
+
+###########
 
 @app.route("/upload_image", methods=["POST"])
 def process_upload_data():
@@ -201,17 +246,23 @@ def process_upload_data():
 
     return image_url
 
+###########
+
+# UPLOAD AN IMAGE FORM
+
+###########
 
 @app.route("/add_image_to_gallery", methods=["POST"])
 def add_image_to_gallery():
     """Get image information and then add it to the gallery"""
 
-    artist_collection = crud.get_art_collection_by_id(artist_collection_id)
+    #gallery_title = artist_collection.gallery_title
+    date_uploaded = now()
 
     image_title = request.form.get("image-title")
+    artist_collection = request.form.get("gallery-collection-id")
     image_link = image_url
-    #how do i get the date uploaded information???
-    #date_uploaded = request.form.get("date-uploaded")
+    artist_collection = crud.get_art_collection_by_id(artist_collection_id)
 
     if image_title != None and image_link != None and date_uploaded != None:
 
@@ -223,12 +274,16 @@ def add_image_to_gallery():
         flash("Congratulations! You have uploaded an image to your gallery!")
         return redirect("user-profile.html")
 
-        #will need to set up a conditional in user_profile route to check for images and add to prof?
-        # or will that be in jinja?
+    else:
+        flash("Sorry! You must add both your file and image title. Try again.")
+        return render_template('upload-image.html')
+
 
 ###########
 
 # SHOW USER IMAGE ON CLICK:
+
+###########
 
 # @app.route("/user_profile.html/<user_image>")
 # def show_user_image():
@@ -243,6 +298,8 @@ def add_image_to_gallery():
 
 # SHOW RANDOM USER IMAGE ON CLICK:
 
+###########
+
 # @app.route("/rand_user_profile/<sample_image>")
 # def show_rand_user_image():
 #     """When you click on a random user's image link,
@@ -252,6 +309,11 @@ def add_image_to_gallery():
 
 #     return render_template('rand-user-image.html',
 #                             rand_user_image = rand_user_image)
+
+
+###########
+
+# LOG OUT ROUTE
 
 ###########
 
