@@ -33,6 +33,7 @@ def create_artist_collection(gallery_title, gallery_description, user):
     art_collection = ArtistCollection(
                     gallery_title=gallery_title,
                     gallery_description=gallery_description,
+                    #user object
                     user=user
                     )
     

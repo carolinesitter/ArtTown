@@ -133,7 +133,7 @@ def search_by_zipcode():
         fake_twitter = user_zip.twitter
         fake_tiktok = user_zip.tiktok
         fake_website = user_zip.website
-        
+        fake_art = user_zip.artist_collection
 
 
         return render_template('rand-user-profile.html',
@@ -144,7 +144,8 @@ def search_by_zipcode():
                                 fake_instagram=fake_instagram,
                                 fake_twitter=fake_twitter,
                                 fake_tiktok=fake_tiktok,
-                                fake_website=fake_website)
+                                fake_website=fake_website,
+                                fake_art=fake_art)
     else:
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')

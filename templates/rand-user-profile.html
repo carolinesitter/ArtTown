@@ -23,10 +23,17 @@
         <p>Tik Tok: {{fake_tiktok}}</p>
         <p>Website: {{fake_website}}</p>
 
-    <!-- <p> Here are {{fake_username}}'s latest posts: </p>
+    <p> Here are {{fake_username}}'s latest posts: </p>
         <div>
-            render randomized preset images from /static/img/etc.
-        </div> -->
+            {% for art in fake_art %}
+            <p>{{art.gallery_title}}</p>
+            <p>{{art.gallery_description}}</p>
+                {% for image in art.image %}
+                <p>{{image.image_title}}</p>
+                <img src="{{image.image_link}}">
+                {% endfor %}
+            {% endfor %}
+        </div>
 
 
 {% endblock %}
