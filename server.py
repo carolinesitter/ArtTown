@@ -169,7 +169,7 @@ def upload_new_post():
 
     # implement cloudinary, reference documentation
     # this may be where you will need AJAX?
-    
+
     # may need to implement cloudinary in user_profile route!
 
     return redirect("user-profile.html")
