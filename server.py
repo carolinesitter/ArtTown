@@ -239,7 +239,7 @@ def create_art_collection():
 
 ###########
 
-# UPLOAD AN IMAGE CLOUDINARY HANDLE FUNCT
+# UPLOAD AN IMAGE WITH CLOUDINARY
 
 ###########
 
@@ -262,40 +262,14 @@ def process_upload_data():
                                         cloud_name=CLOUD_NAME)
     image_link = result['secure_url']
 
-    new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
+    if image_link != None and image_title != None:
 
-    return redirect("/user_profile")
-
-###########
-
-# UPLOAD AN IMAGE FORM
-
-###########
-
-@app.route("/add_image_to_gallery", methods=["POST"])
-def add_image_to_gallery():
-    """Get image information and then add it to the gallery object"""
-
-    #gallery_title = artist_collection.gallery_title
-    date_uploaded = now()
-
-    image_title = request.form.get("image-title")
-    artist_collection = request.form.get("gallery-collection-id")
-    image_link = image_url
-    #artist_collection = crud.get_art_collection_by_id(artist_collection_id)
-
-    if image_title != None and image_link != None and date_uploaded != None:
-
-        image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
-    
-        db.session.add(image)
+        new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
+        db.session.add(new_image)
         db.session.commit()
 
-        flash("Congratulations! You have uploaded an image to your gallery!")
-        return render_template('user-profile.html')
-
+        return redirect("/user_profile")
     else:
-        flash("Sorry! You must add both your file and image title. Try again.")
         return render_template('upload-image.html')
 
 
