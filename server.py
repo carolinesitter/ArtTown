@@ -76,7 +76,6 @@ def register_profile():
 def user_login():
     """Log a user in"""
 
-    # username = request.form.get("username")
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -133,11 +132,7 @@ def user_profile():
     if "user_email" in session:
 
         email = session['user_email']
-
         user = crud.get_user_by_email(email)
-
-
-        # def crud funct to get all the artist collections by id 
 
         username = user.username
         zipcode = user.zipcode
@@ -158,6 +153,7 @@ def user_profile():
 
     else:
         redirect("/")
+        
 ###########
 
 # SEARCH BY ZIPCODE FORM 
@@ -178,33 +174,29 @@ def zipcode_input():
 
 @app.route("/search_by_zipcode", methods=["POST"])
 def search_by_zipcode():
-    """Enter in zipcode, render random user profile"""
-
-    # get zip from inputs, check if it equals a zip from data.json
+    """Enter in zipcode, show a user profile with matching zip code"""
 
     zipcode = int(request.form.get("zipcode"))
     user_zip = crud.get_user_by_zipcode(zipcode)
-    #print(user_zip)
+    
     if user_zip != None:
-        fake_username = user_zip.username
-        fake_zipcode = user_zip.zipcode
-        fake_instagram = user_zip.instagram
-        fake_twitter = user_zip.twitter
-        fake_tiktok = user_zip.tiktok
-        fake_website = user_zip.website
-        fake_art = user_zip.artist_collection
+        username = user_zip.username
+        instagram = user_zip.instagram
+        twitter = user_zip.twitter
+        tiktok = user_zip.tiktok
+        website = user_zip.website
+        art_collection = user_zip.artist_collection
 
 
-        return render_template('rand-user-profile.html',
+        return render_template('user-profile.html',
                                 zipcode=zipcode,
                                 user_zip=user_zip,
-                                fake_username=fake_username,
-                                fake_zipcode=fake_zipcode,
-                                fake_instagram=fake_instagram,
-                                fake_twitter=fake_twitter,
-                                fake_tiktok=fake_tiktok,
-                                fake_website=fake_website,
-                                fake_art=fake_art)
+                                username=username,
+                                instagram=instagram,
+                                twitter=twitter,
+                                tiktok=tiktok,
+                                website=website,
+                                art_collection=art_collection)
     else:
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')
@@ -230,8 +222,6 @@ def create_new_post():
 @app.route("/create_art_collection", methods=["POST"])
 def create_art_collection():
     """Get art collection and user data from browser and add to db"""
-
-    #user = crud.get_user_by_id(user_id)
 
     email = session['user_email']
     user = crud.get_user_by_email(email)
