@@ -48,7 +48,7 @@ def register_profile():
     username = request.form.get("username")
     instagram = request.form.get("instagram")
     twitter = request.form.get("twitter")
-    tiktok = request.form.get("tiktok")
+    tiktok = request.form.get("tik-tok")
     website = request.form.get("website")
     zipcode = request.form.get("zipcode")
 
@@ -153,7 +153,7 @@ def user_profile():
 
     else:
         redirect("/")
-        
+
 ###########
 
 # SEARCH BY ZIPCODE FORM 
