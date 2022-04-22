@@ -93,6 +93,21 @@ def user_login():
 
     return redirect("/user_profile")
 
+
+###########
+
+# LOG OUT ROUTE
+
+###########
+
+@app.route("/log_out")
+def user_logout():
+    """Allow user to log out"""
+
+    session['user_email'] = None
+
+    return redirect("/")
+
 ###########
 
 # CREATE PROFILE FORM 
@@ -131,7 +146,6 @@ def user_profile():
         twitter = user.twitter
         website = user.website
         art_collection = user.artist_collection
-        print(art_collection)
 
         return render_template('user-profile.html',
                                 username=username,
@@ -304,12 +318,6 @@ def process_upload_data():
 #     return render_template('rand-user-image.html',
 #                             rand_user_image = rand_user_image)
 
-
-###########
-
-# LOG OUT ROUTE
-
-###########
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

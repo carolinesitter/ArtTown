@@ -22,6 +22,10 @@
         <button id="zipcode-input" type="submit">Search By ZipCode</button>
     </form>
 
+    <form action="/log_out">
+        <button id="log-out" type="submit">Log Out</button>
+    </form>
+
     <p> Here are {{username}}'s latest posts: </p>
         <div>
             {% for art in art_collection %}
