@@ -22,11 +22,16 @@
         <button id="zipcode-input" type="submit">Search By ZipCode</button>
     </form>
 
-    <!-- <p> Here are {{username}}'s latest posts: </p>
+    <p> Here are {{username}}'s latest posts: </p>
         <div>
-            insert loops from rand-user-prof template
-        </div> -->
+            {% for art in art_collection %}
+            <p>{{art.gallery_title}}</p>
+            <p>{{art.gallery_description}}</p>
+                {% for image in art.image %}
+                <p>{{image.image_title}}</p>
+                <img src="{{image.image_link}}">
+                {% endfor %}
+            {% endfor %}
+        </div>
 
-
-
-{% endblock %}
+{% endblock %} 
