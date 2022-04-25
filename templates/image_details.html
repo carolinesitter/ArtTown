@@ -12,7 +12,7 @@
     {% if session.get('user_email') %}
     <h1>Leave a comment!</h1>
 
-    <form action="/user_profile/{{image.image_id}}/comments" method="POST">
+    <form>
 
         <label for="comment">Comments:</label>
         <input type="text" name="comment" id="comment">
@@ -22,5 +22,11 @@
     </form>
 
     {% endif %}
+
+    <ul id="added-comments">
+        <li>Comments</li>
+    </ul>
+
+    <script>href="/static/js/user-interactions.js"</script>
 
 {% endblock %}

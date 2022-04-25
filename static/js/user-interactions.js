@@ -1,10 +1,31 @@
 
 // ADD A COMMENT FUNCTIONALITY
 
-document.querySelector('#comment').addEventListener('click', evt => {
+const addCommentButton = document.querySelector('#comment');
+// const imageId = 
+
+addCommentButton.addEventListener('submit', evt => {
     evt.preventDefault();
 
-    const commentInput = document.querySelector('#comment').value;
+    const commentInput = evt.target.value;
+    const commentsAdded = document.querySelector('#added-comments');
 
-    console.log(commentInput);
+    const formInputs = {
+        comment : commentInput,
+        new_comment : commentsAdded,
+    };
+
+    fetch(`/user_profile/${image_id}/comments`, {
+        method : 'POST',
+        body: JSON.stringify(formInputs),
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    }) 
+    .then(response => response.json())
+    .then(responseData => {
+        addCommentButton.addEventListener('click', () => {
+            commentsAdded.insertAdjacentHTML('beforeend', `<li>Comments</li>`)
+        })
+    });
 });

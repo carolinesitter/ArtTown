@@ -28,6 +28,8 @@ class User(db.Model):
     # relationship with ArtistCollection
     artist_collection = db.relationship('ArtistCollection', back_populates='user')
 
+    comments = db.relationship('Comment', back_populates='user')
+
 
     def __repr__(self):
         """Show info about each user object"""
@@ -81,6 +83,8 @@ class Image(db.Model):
     # relationship with ArtistCollection
     artist_collection = db.relationship('ArtistCollection', back_populates='image')
 
+    comments = db.relationship('Comment', back_populates='image')
+
 
     def __repr__(self):
         """Show info about each image object"""
@@ -91,6 +95,27 @@ class Image(db.Model):
                     Image Link = {self.image_link},
                     Date Uploaded = {self.date_uploaded}>"""
 
+
+class Comment(db.Model):
+    """Comments model for app"""
+
+    ___tablename__ = 'comments'
+
+    comment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    comment = db.Column(db.String(250), nullable=False)
+    image_id = db.Column(db.Integer, db.ForeignKey("images.image_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+
+    image = db.relationship('Image', back_populates='comments')
+    user = db.relationship('User', back_populates='comments')
+
+    def __repr__(self):
+
+        return f"""<Comment ID = {self.comment_id},
+                    Comment = {self.comment},
+                    Image ID = {self.image_id}>"""
+    
 
 
 

@@ -157,12 +157,12 @@ def user_profile():
 
 ###########
 
-# SHOW IMAGE DETAILS, ADD A COMMENT OR LIKES
+# SHOW IMAGE DETAILS
 
 ###########
 
 
-@app.route("/user_profile/<image_id>/comments", methods=["GET", "POST"])
+@app.route("/user_profile/<image_id>/comments", methods=["GET"])
 def show_image_info(image_id):
     """Show info about an image when link is clicked"""
 
@@ -170,13 +170,42 @@ def show_image_info(image_id):
     logged_in_email = session.get("user_email")
 
     if logged_in_email is None:
-        flash("Sorry! You need to be logged in before you can add a comment.")
+        flash("Sorry! You need to be logged in before you can add a comment!")
 
     else:
         user = crud.get_user_by_email(logged_in_email)
-        #image = crud.get_image_by_id(image_id)
+        return render_template('image_details.html', user=user, image=image)
 
-    return render_template('image_details.html', image=image)
+
+###########
+
+# ADD A COMMENT
+
+###########
+
+
+@app.route("/user_profile/<image_id>/comments", methods=["POST"])
+def add_new_comment():
+    """Allow users to add a comment"""
+
+    comment = request.json.get("comment")
+
+    image = crud.get_image_by_id(image_id)
+    print(comment)
+
+    if comment (not None):
+        pass
+    if image (not None):
+        pass
+    if "user_email" in session:
+        
+        user = crud.get_user_by_email(session.get("user_email"))
+        image.comments.append(crud.create_comment(comment, image_id, user_id, user))
+
+        return Jsonify({"status": "OK", "comment": comment})
+
+    else:
+        return Jsonify({"status": "FAILED"})
 
 
 ###########

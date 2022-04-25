@@ -53,6 +53,18 @@ def create_image(image_title, image_link, date_uploaded, artist_collection):
 
     return new_image
 
+
+def create_comment(comment, image_id, user_id, user):
+
+    new_comment = Comment(
+                    comment=comment,
+                    image_id=image_id,
+                    user_id=user_id,
+                    user=user
+    )
+
+    return new_comment
+
 def get_art_collection_by_id(artist_collection_id):
     """Return artist collection by id"""
 
