@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Image Details {% endblock %}
+
+{% block body %}
+<h1> {{ image.title }}</h1>
+<img src="{{image.image_link}}">
+
+<br>
+</br>
+
+{% if session.get('user_email') %}
+<h1>Leave a comment!</h1>
+
+<form action="/user_profile/{{image.image_id}}/comments" method="POST">
+
+    <label for="comment">Comments:</label>
+    <input type="text" name="comment" id="comment">
+
+    <button type="submit" id="add-comment-button">Post</button>
+
+</form>
+
+{% endif %}
+
+{% endblock %}

@@ -154,6 +154,30 @@ def user_profile():
     else:
         redirect("/")
 
+
+###########
+
+# SHOW IMAGE DETAILS, ADD A COMMENT OR LIKES
+
+###########
+
+
+@app.route("/user_profile/<image_id>")
+def show_image_info(image_id):
+    """Show info about an image when link is clicked"""
+
+    logged_in_email = session.get("user_email")
+
+    if logged_in_email is None:
+        flash("Sorry! You need to be logged in before you can add a comment!")
+
+    else:
+        user = crud.get_user_by_email(logged_in_email)
+        image = crud.get_image_by_id(image_id)
+
+    return render_template('image_details.html', image=image)
+
+
 ###########
 
 # SEARCH BY ZIPCODE FORM 
