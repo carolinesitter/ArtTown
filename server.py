@@ -162,18 +162,19 @@ def user_profile():
 ###########
 
 
-@app.route("/user_profile/<image_id>")
+@app.route("/user_profile/<image_id>/comments", methods=["GET", "POST"])
 def show_image_info(image_id):
     """Show info about an image when link is clicked"""
 
+    image = crud.get_image_by_id(image_id)
     logged_in_email = session.get("user_email")
 
     if logged_in_email is None:
-        flash("Sorry! You need to be logged in before you can add a comment!")
+        flash("Sorry! You need to be logged in before you can add a comment.")
 
     else:
         user = crud.get_user_by_email(logged_in_email)
-        image = crud.get_image_by_id(image_id)
+        #image = crud.get_image_by_id(image_id)
 
     return render_template('image_details.html', image=image)
 
