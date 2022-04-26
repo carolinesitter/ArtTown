@@ -16,6 +16,7 @@
 
         <label for="comment">Comments:</label>
         <input type="text" name="comment" id="comment">
+        <input type="text" hidden value="{{image.image_id}}" name="image-id" id="image-id">
 
         <button type="submit" id="add-comment-button">Post</button>
 
@@ -27,6 +28,5 @@
         <li>Comments</li>
     </ul>
 
-    <script>href="/static/js/user-interactions.js"</script>
 
 {% endblock %}
