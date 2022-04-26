@@ -64,6 +64,7 @@ def create_comment(comment, image_id, user_id):
 
     return new_comment
 
+
 def get_art_collection_by_id(artist_collection_id):
     """Return artist collection by id"""
 

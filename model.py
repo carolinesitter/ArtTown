@@ -25,10 +25,9 @@ class User(db.Model):
     zipcode = db.Column(db.Integer, nullable=False)
 
 
-    # relationship with ArtistCollection
     artist_collection = db.relationship('ArtistCollection', back_populates='user')
-
     comments = db.relationship('Comment', back_populates='user')
+    likes = db.relationship('Like', back_populates='user')
 
 
     def __repr__(self):
@@ -52,10 +51,7 @@ class ArtistCollection(db.Model):
     gallery_description = db.Column(db.String, nullable=False)
 
 
-    # relationship with User
     user = db.relationship('User', back_populates='artist_collection')
-
-    # relationship with Image
     image = db.relationship('Image', back_populates='artist_collection')
 
 
@@ -80,10 +76,9 @@ class Image(db.Model):
     date_uploaded = db.Column(db.DateTime, nullable=False)
 
 
-    # relationship with ArtistCollection
     artist_collection = db.relationship('ArtistCollection', back_populates='image')
-
     comments = db.relationship('Comment', back_populates='image')
+    likes = db.relationship('Like', back_populates='image')
 
 
     def __repr__(self):
@@ -111,12 +106,33 @@ class Comment(db.Model):
     user = db.relationship('User', back_populates='comments')
 
     def __repr__(self):
+        """Show info about each comment object"""
 
         return f"""<Comment ID = {self.comment_id},
                     Comment = {self.comment},
                     Image ID = {self.image_id}>"""
     
 
+class Like(db.Model):
+    """Likes model for app"""
+
+    __tablename__ = "likes"
+
+    like_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    like = db.Column(db.Integer)
+    image_id = db.Column(db.Integer, db.ForeignKey("images.image_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    image = db.relationship('Image', back_populates='likes')
+    user = db.relationship('User', back_populates='likes')
+
+    def __repr__(self):
+        """Show info about each like object"""
+
+        return f"""<Like ID = {self.like_id},
+                    Like = {self.like},
+                    Image ID = {self.image_id},
+                    User ID = {self.user_id}>"""
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=True):
