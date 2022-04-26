@@ -3,8 +3,8 @@
 const imageId = document.querySelector('#image-id').value;
 const addCommentButton = document.querySelector(`#add-comment-button-${imageId}`);
 
-console.log(imageId);
-console.log(addCommentButton);
+// console.log(imageId);
+// console.log(addCommentButton);
 
 addCommentButton.addEventListener('click', evt => {
     evt.preventDefault();
@@ -16,8 +16,8 @@ addCommentButton.addEventListener('click', evt => {
         new_comment : commentsAdded,
     };
 
-    console.log(commentsAdded);
-    console.log(formInputs);
+    // console.log(commentsAdded);
+    // console.log(formInputs);
 
     fetch(`/user_profile/${imageId}/comments`, {
         method : 'POST',
@@ -31,3 +31,7 @@ addCommentButton.addEventListener('click', evt => {
             document.querySelector('#added-comments').insertAdjacentHTML('beforeend', `<li>${responseData.comment}</li>`)
     });
 });
+
+
+// LIKE AN IMAGE FUNCTIONALITY 
+

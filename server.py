@@ -200,16 +200,32 @@ def add_new_comment(image_id):
 
         #crud_comment_test = crud.create_comment(comment, user_id, image_id)
         image.comments.append(crud.create_comment(comment, image_id, user_id))
-        print('\n' * 5)
-        print('\n' * 5)
-        print(image.comments)
-        print('\n' * 5)
-        print('\n' * 5)
+        # print('\n' * 5)
+        # print('\n' * 5)
+        # print(image.comments)
+        # print('\n' * 5)
+        # print('\n' * 5)
 
         return jsonify({"status": "OK", "comment": comment})
 
     else:
         return jsonify({"status": "FAILED"})
+
+
+###########
+
+# LIKE AN IMAGE 
+
+###########
+@app.route("/user_profile/<image_id>/comments", methods=["POST"])
+def like_an_image(image_id):
+    """Allows users to like an image"""
+
+    #like = request.json.get("new_like")
+    image = crud.get_image_by_id(image_id)
+
+    return None #For now...
+
 
 
 ###########
