@@ -1,7 +1,7 @@
 """Server for artist by zipcode app"""
 
 from flask import (Flask, render_template, request, flash, session,
-                redirect, url_for)
+                redirect, url_for, jsonify)
 from model import connect_to_db, db
 from datetime import datetime
 import crud
@@ -185,27 +185,31 @@ def show_image_info(image_id):
 
 
 @app.route("/user_profile/<image_id>/comments", methods=["POST"])
-def add_new_comment():
+def add_new_comment(image_id):
     """Allow users to add a comment"""
 
-    comment = request.json.get("comment")
+    comment = request.json.get("new_comment")
 
     image = crud.get_image_by_id(image_id)
-    print(comment)
 
-    if comment (not None):
-        pass
-    if image (not None):
-        pass
-    if "user_email" in session:
+    if (comment != None) and (image != None) and ("user_email" in session):
         
         user = crud.get_user_by_email(session.get("user_email"))
-        image.comments.append(crud.create_comment(comment, image_id, user_id, user))
+        user_id = user.user_id
+        image_id = image.image_id
 
-        return Jsonify({"status": "OK", "comment": comment})
+        #crud_comment_test = crud.create_comment(comment, user_id, image_id)
+        image.comments.append(crud.create_comment(comment, image_id, user_id))
+        print('\n' * 5)
+        print('\n' * 5)
+        print(image.comments)
+        print('\n' * 5)
+        print('\n' * 5)
+
+        return jsonify({"status": "OK", "comment": comment})
 
     else:
-        return Jsonify({"status": "FAILED"})
+        return jsonify({"status": "FAILED"})
 
 
 ###########

@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, ArtistCollection, Image, connect_to_db
+from model import db, User, ArtistCollection, Image, Comment, connect_to_db
 
 
 # insert functions and query statements in order to:
@@ -54,14 +54,13 @@ def create_image(image_title, image_link, date_uploaded, artist_collection):
     return new_image
 
 
-def create_comment(comment, image_id, user_id, user):
+def create_comment(comment, image_id, user_id):
 
     new_comment = Comment(
                     comment=comment,
                     image_id=image_id,
                     user_id=user_id,
-                    user=user
-    )
+                    )
 
     return new_comment
 
