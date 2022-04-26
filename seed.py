@@ -13,6 +13,9 @@ os.system("dropdb artists-by-zip")
 
 os.system('createdb artists-by-zip')
 
+#automatically reads in the sql file into the database
+#os.system('psql artists-by-zip < sampledata.sql')
+
 model.connect_to_db(server.app)
 model.db.create_all() 
 
