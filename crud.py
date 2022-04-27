@@ -95,10 +95,10 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-# def get_comment_by_comment_id(comment_id):
-#     """Return a comment by id"""
+def get_comment_by_id(comment_id):
+    """Return a comment by id"""
 
-#     return Comment.query.get(comment_id)
+    return Comment.query.get(comment_id)
 
 
 def get_comment_by_image_id(image_id):

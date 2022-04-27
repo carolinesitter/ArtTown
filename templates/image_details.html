@@ -28,7 +28,9 @@
     {% endif %}
 
     <ul id="added-comments">
-        <li>{{ comments }}</li>
+        {%for comment in comments%}
+            <li>{{ comment.comment }}</li>
+        {%endfor %}
     </ul>
 
 

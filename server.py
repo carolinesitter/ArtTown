@@ -43,12 +43,13 @@ def register_profile():
     
     email = request.form.get("email")
     password = request.form.get("password")
+    #verify_password = request.form.get("verify_password")
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
     username = request.form.get("username")
     instagram = request.form.get("instagram")
     twitter = request.form.get("twitter")
-    tiktok = request.form.get("tik-tok")
+    tiktok = request.form.get("tik_tok")
     website = request.form.get("website")
     zipcode = request.form.get("zipcode")
 
@@ -56,6 +57,9 @@ def register_profile():
     
     if user:
         flash("User already registered. Please log in.")
+    
+    # elif password != verify_password:
+    #     flash("Sorry! Your passwords do not match. Please try again.")
 
     else:
         user = crud.create_user(first_name, last_name, username, email,
@@ -172,8 +176,12 @@ def show_image_info(image_id):
     #get likes and comments
 
     like_count = len(image.likes)
-    #comments = image.comments
+    
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
+
+
+    #how do i show the username associated with the comment?
+    #username = crud.get_comment_by_username(username =)
 
     if logged_in_email is None:
         flash("Sorry! You need to be logged in before you can add a comment!")
@@ -234,7 +242,7 @@ def like_an_image(image_id):
 
     image = crud.get_image_by_id(image_id)
 
-    # verify that a user hasn't already liked a post
+    # verify that a user hasn't already liked a post ?
 
 
     if image and "user_email" in session:
@@ -376,37 +384,6 @@ def process_upload_data():
     else:
         return render_template('upload-image.html')
 
-
-###########
-
-# SHOW USER IMAGE ON CLICK:
-
-###########
-
-# @app.route("/user_profile.html/<user_image>")
-# def show_user_image():
-#     """When you click on an image's link,
-#     render a page with the image and its info"""
-
-#     image = crud.get ....
-
-#     return render_template('user-image-details.html', image=image)
-
-###########
-
-# SHOW RANDOM USER IMAGE ON CLICK:
-
-###########
-
-# @app.route("/rand_user_profile/<sample_image>")
-# def show_rand_user_image():
-#     """When you click on a random user's image link,
-#     render a page with the image and its info"""
-
-#     rand_user_image = crud.get ....
-
-#     return render_template('rand-user-image.html',
-#                             rand_user_image = rand_user_image)
 
 
 if __name__ == "__main__":
