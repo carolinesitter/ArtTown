@@ -75,6 +75,8 @@ def create_like(like, image_id, user_id):
 
     return new_like
 
+
+
 def get_art_collection_by_id(artist_collection_id):
     """Return artist collection by id"""
 

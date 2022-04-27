@@ -192,6 +192,7 @@ def add_new_comment(image_id):
 
     image = crud.get_image_by_id(image_id)
 
+
     if (comment != None) and (image != None) and ("user_email" in session):
         
         user = crud.get_user_by_email(session.get("user_email"))
@@ -200,6 +201,9 @@ def add_new_comment(image_id):
 
         #crud_comment_test = crud.create_comment(comment, user_id, image_id)
         image.comments.append(crud.create_comment(comment, image_id, user_id))
+
+        db.session.add(comment) 
+        db.session.commit()
         # print('\n' * 5)
         # print('\n' * 5)
         # print(image.comments)
@@ -217,14 +221,51 @@ def add_new_comment(image_id):
 # LIKE AN IMAGE 
 
 ###########
-@app.route("/user_profile/<image_id>/comments", methods=["POST"])
+
+
+@app.route("/user_profile/<image_id>/likes", methods=["POST"])
 def like_an_image(image_id):
     """Allows users to like an image"""
 
-    #like = request.json.get("new_like")
+    # like = request.json.get("new_like")
     image = crud.get_image_by_id(image_id)
+    # like = image.likes
+    # print('\n' * 5)
+    # print('\n' * 5)
 
-    return None #For now...
+    # print(like)
+    # print(image)
+
+    # print('\n' * 5)
+    # print('\n' * 5)
+
+    
+    # print('\n' * 5)
+    # print(len(image.likes))
+
+    if image and "user_email" in session:
+        
+        user = crud.get_user_by_email(session.get("user_email"))
+        user_id = user.user_id
+        # image_id = image.image_id
+
+        #crud_like_test = crud.create_like(like, user_id, image_id)
+        image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
+        
+        db.session.add(image) 
+        db.session.commit()
+
+
+        # print('\n' * 5)
+        # print('\n' * 5)
+        # print(image.likes)
+        # print('\n' * 5)
+        # print('\n' * 5)
+
+        return jsonify({"status": "OK", "like_count": len(image.likes)})
+
+    else:
+        return jsonify({"status": "FAILED"})
 
 
 
