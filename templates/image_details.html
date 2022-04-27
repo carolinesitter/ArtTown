@@ -15,7 +15,7 @@
     <form>
 
         <button id="like-button-{{image.image_id}}">Like</button>
-        <p id="like-count"> 0 </p>
+        <p id="like-count"> {{ like_count }} </p>
 
         <label for="comment">Comments:</label>
         <input type="text" name="comment" id="comment">
@@ -28,7 +28,7 @@
     {% endif %}
 
     <ul id="added-comments">
-        <li>Comments</li>
+        <li>{{ comments }}</li>
     </ul>
 
 

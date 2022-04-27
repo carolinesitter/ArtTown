@@ -95,6 +95,18 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
+# def get_comment_by_comment_id(comment_id):
+#     """Return a comment by id"""
+
+#     return Comment.query.get(comment_id)
+
+
+def get_comment_by_image_id(image_id):
+    """Return a comment by image id"""
+
+    return Comment.query.filter(Comment.image_id == image_id).all()
+
+
 def get_user_art_collections(artist_collection_id):
     """Return a user by artist collection id"""
 

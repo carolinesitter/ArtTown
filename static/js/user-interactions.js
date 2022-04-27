@@ -39,24 +39,30 @@ const likeButton = document.querySelector(`#like-button-${imageId}`);
 // console.log(likeButton);
 const likeCount = document.querySelector('#like-count');
 
+const url = `/api/user_profile/${imageId}/likes`;
+
 likeButton.addEventListener('click', evt =>{
     evt.preventDefault();
 
-    const likeCounter = {
-        "new_like" : likeCount.value,
-    };
+    // const likeCounter = {
+    //     "new_like" : document.querySelector('#like-count').firstChild
+    // };
 
-    // console.log(likeCounter);
+    // const options = {
+    //     method : "POST",
+    //     body: JSON.stringify({'image_id' : imageId}),
+    //     headers : {
+    //         'Content-Type': 'application/json',
+    //     }
+    // };
 
-    fetch(`/user_profile/${imageId}/likes`, {
-        method : 'POST',
-        body: JSON.stringify(likeCounter),
-        headers : {
-            'Content-Type': 'application/json',
-        },
-    }) 
+    fetch(url) 
     .then(response => response.json())
-    .then(responseData => { console.log(responseData);
+    .then(responseData => { 
+        if (parseInt(likeCount.innerHTML) < parseInt(responseData["like_count"])){
             likeCount.innerHTML = responseData["like_count"];
+        }
     });
+
+    likeButton.disabled = true;
 });
