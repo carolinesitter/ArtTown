@@ -242,10 +242,21 @@ def like_an_image(image_id):
     # verify that a user hasn't already liked a post ?
 
 
+    # user = crud.get_user_by_email(session.get("user_email"))
+    # user_id = user.user_id
+    # like = crud.get_likes_info(image_id, user_id)
+
+    # if like != None:
+    #     flash("Don't Worry! You have already liked this image!")
+
+
     if image and "user_email" in session:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
+
+        # image_id = image.image_id
+        #like = crud.get_likes_info(image_id, user_id)
 
         image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
         

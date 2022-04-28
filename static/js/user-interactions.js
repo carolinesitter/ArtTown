@@ -28,7 +28,8 @@ addCommentButton.addEventListener('click', evt => {
     }) 
     .then(response => response.json())
     .then(responseData => {
-            document.querySelector('#added-comments').insertAdjacentHTML('beforeend', `<li>${responseData.username} : ${responseData.comment}</li>`)
+            document.querySelector('#added-comments').insertAdjacentHTML('beforeend',
+                                `<li>${responseData.username} : ${responseData.comment}</li>`)
     });
 });
 
@@ -66,3 +67,9 @@ likeButton.addEventListener('click', evt =>{
 
     likeButton.disabled = true;
 });
+
+
+
+// if (likeButton.disabled == true){
+
+// };
