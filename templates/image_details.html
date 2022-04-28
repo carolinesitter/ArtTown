@@ -29,7 +29,8 @@
 
     <ul id="added-comments">
         {%for comment in comments%}
-            <li>{{comment.user.username}} : {{ comment.comment }}</li>
+            
+        <li>{{comment.user.username}} : {{ comment.comment }}</li>
         {%endfor %}
     </ul>
 

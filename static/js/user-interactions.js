@@ -1,14 +1,19 @@
 
 // ADD A COMMENT FUNCTIONALITY
-const imageId = document.querySelector('#image-id').value;
+
+// Assign variables to symbolize the image id and comment button
+let imageId = document.querySelector('#image-id');
+
+if (imageId) {
+    imageId = imageId.value;
+}
+
 const addCommentButton = document.querySelector(`#add-comment-button-${imageId}`);
 
-// console.log(imageId);
-// console.log(addCommentButton);
-
+// Check if a user has added a comment 
 addCommentButton.addEventListener('click', evt => {
     evt.preventDefault();
-    //console.log('hello');
+
     const commentInput = evt.target.value;
     const commentsAdded = document.querySelector('#comment').value;
 
@@ -16,9 +21,7 @@ addCommentButton.addEventListener('click', evt => {
         new_comment : commentsAdded,
     };
 
-    // console.log(commentsAdded);
-    // console.log(formInputs);
-
+    // Get the values from our server and add updated values to the DOM
     fetch(`/user_profile/${imageId}/comments`, {
         method : 'POST',
         body: JSON.stringify(formInputs),
@@ -36,28 +39,40 @@ addCommentButton.addEventListener('click', evt => {
 
 // LIKE AN IMAGE FUNCTIONALITY 
 
+// Assign variables to symbolize the like button and like count
 const likeButton = document.querySelector(`#like-button-${imageId}`);
 const likeCount = document.querySelector('#like-count');
 
-
+// If a user likes, or unlikes an image, update the like count 
 likeButton.addEventListener('click', evt =>{
     evt.preventDefault();
 
+    console.log('triggered event')
+
+    // If a user likes an image, add 1 to "like_count" 
     if (likeButton.innerHTML === 'Like'){
+        console.log('entered if')
         const url = `/api/user_profile/${imageId}/likes`;
         likeButton.innerHTML = 'Unlike';
+
+        fetch(url) 
+        .then(response => response.json())
+        .then(responseData => { 
+                likeCount.innerHTML = responseData["like_count"];
+        });
+
+    // If a user unlikes an image, remove 1 from "like_count"
     }else {
-        const url = 'new route';
+        console.log('entered else')
+        const url = `/api/user_profile/${imageId}/remove_likes`;
         likeButton.innerHTML = 'Like';
-    }
 
-
-    fetch(url) 
-    .then(response => response.json())
-    .then(responseData => { 
-        if (parseInt(likeCount.innerHTML) < parseInt(responseData["like_count"])){
+        fetch(url) 
+        .then(response => response.json())
+        .then(responseData => { 
             likeCount.innerHTML = responseData["like_count"];
-        }
-    });
+        });
+    };
+
 });
 

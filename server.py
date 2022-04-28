@@ -28,6 +28,7 @@ CLOUD_NAME = "dgvuwdtnb"
 def homepage():
     """View homepage"""
     
+    # This is the homepage
     return render_template('homepage.html')
 
 ###########
@@ -40,7 +41,8 @@ def homepage():
 def register_profile():
     """Check if account has already been created,
         if not, create new account and add user to db"""
-    
+
+    # Get the values from our form input when a user registers an account
     email = request.form.get("email")
     password = request.form.get("password")
     #verify_password = request.form.get("verify_password")
@@ -53,11 +55,14 @@ def register_profile():
     website = request.form.get("website")
     zipcode = request.form.get("zipcode")
 
+    # Use crud function to query the database for the user
     user = crud.get_user_by_email(email)
     
+    #Check if the user already exists, if not, create a new account
     if user:
         flash("User already registered. Please log in.")
     
+    # Ensure that the password and verification are the same 
     # elif password != verify_password:
     #     flash("Sorry! Your passwords do not match. Please try again.")
 
@@ -68,6 +73,7 @@ def register_profile():
         db.session.commit()
         flash("Congratulations! Your account has been created. You may now log in!")
 
+    # Send the user back to the homepage
     return redirect("/")        
 
 ###########
@@ -80,11 +86,15 @@ def register_profile():
 def user_login():
     """Log a user in"""
 
+    # Get the email and password from the log in form 
     email = request.form.get("email")
     password = request.form.get("password")
 
+    # Get our user by querying for their email
     user = crud.get_user_by_email(email)
 
+    # If the email/password != the values saved in the database,
+    # tell the user to try again. Otherwise, log them in
     if not user or user.password != password:
         flash("Invalid email or password. Please try again.")
         return redirect("/")
@@ -106,8 +116,10 @@ def user_login():
 def user_logout():
     """Allow user to log out"""
 
+    # When the user logs out, forget their email in sessions
     session['user_email'] = None
 
+    # Show user back to the homepage
     return redirect("/")
 
 ###########
@@ -120,6 +132,7 @@ def user_logout():
 def create_profile():
     """Create a new profile"""
 
+    # Show a new user the form to create an account
     return render_template('create-profile.html')
 
 ###########
@@ -132,11 +145,16 @@ def create_profile():
 def user_profile():
     """Show user_profile"""
 
+    # If a user is logged in, show their profile
     if "user_email" in session:
 
+        # Get the user's email from the session
         email = session['user_email']
+
+        # Use this email to define our user variable
         user = crud.get_user_by_email(email)
 
+        # Get the user's information by querying the user object 
         username = user.username
         zipcode = user.zipcode
         instagram = user.instagram
@@ -145,6 +163,7 @@ def user_profile():
         website = user.website
         art_collection = user.artist_collection
 
+        # Show the user their profile 
         return render_template('user-profile.html',
                                 username=username,
                                 zipcode=zipcode,
@@ -154,6 +173,7 @@ def user_profile():
                                 website=website,
                                 art_collection=art_collection)
 
+    # If they are not logged in, send the user to the homepage
     else:
         redirect("/")
 
@@ -171,8 +191,8 @@ def show_image_info(image_id):
     user = crud.get_user_by_email(session.get("user_email"))
     user_id = user.user_id
     logged_in_email = session.get("user_email")
-    like = crud.get_likes_info(image_id, user_id)
-    like_count = len(image.likes)
+
+    like_count = len(crud.get_likes_by_image_id(image_id))
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
     if logged_in_email is None:
@@ -184,8 +204,8 @@ def show_image_info(image_id):
                                 user=user, 
                                 image=image, 
                                 like_count=like_count,
-                                comments=comments,
-                                like=like)
+                                comments=comments
+                                )
 
 ###########
 
@@ -234,15 +254,22 @@ def like_an_image(image_id):
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
 
-        image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
+        like = crud.create_like(image_id, user_id)
+
         
-        db.session.add(image) 
+        db.session.add(like) 
         db.session.commit()
 
-        return jsonify({"status": "OK", "like_count": len(image.likes)})
+        return jsonify({"status": "OK", "like_count": len(crud.get_likes_by_image_id(image_id))})
 
     else:
         return jsonify({"status": "FAILED"})
+
+###########
+
+# UN-LIKE AN IMAGE 
+
+###########
 
 @app.route("/api/user_profile/<image_id>/remove_likes")
 def unlike_an_image(image_id):
@@ -255,13 +282,12 @@ def unlike_an_image(image_id):
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
 
-        #image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
+        delete_like = crud.delete_like_by_image_and_user_id(image_id, user_id)
         
-        
-        #db.session.add(image) 
+        db.session.delete(delete_like)
         db.session.commit()
 
-        return jsonify({"status": "OK", "like_count": len(image.likes)})
+        return jsonify({"status": "OK", "like_count": len(crud.get_likes_by_image_id(image_id))})
 
     else:
         return jsonify({"status": "FAILED"})
@@ -290,7 +316,12 @@ def search_by_zipcode():
 
     zipcode = int(request.form.get("zipcode"))
     user_zip = crud.get_user_by_zipcode(zipcode)
-    
+
+    print('\n * 5')
+    print(zipcode)
+    print(user_zip)
+    print('\n * 5')
+
     if user_zip != None:
         username = user_zip.username
         instagram = user_zip.instagram

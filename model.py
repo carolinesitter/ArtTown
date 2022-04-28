@@ -119,7 +119,7 @@ class Like(db.Model):
     __tablename__ = "likes"
 
     like_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    like = db.Column(db.Integer)
+    like = db.Column(db.Integer) # remove this eventually!! 
     image_id = db.Column(db.Integer, db.ForeignKey("images.image_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 

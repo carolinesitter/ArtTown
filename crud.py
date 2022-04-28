@@ -65,10 +65,9 @@ def create_comment(comment, image_id, user_id):
     return new_comment
 
 
-def create_like(like, image_id, user_id):
+def create_like(image_id, user_id):
 
     new_like = Like(
-                    like=like,
                     image_id=image_id,
                     user_id=user_id,
                     )
@@ -76,6 +75,10 @@ def create_like(like, image_id, user_id):
     return new_like
 
 
+def get_likes_by_image_id(image_id):
+    """Return all likes by image id"""
+
+    return Like.query.filter(Like.image_id == image_id).all()
 
 def get_art_collection_by_id(artist_collection_id):
     """Return artist collection by id"""
@@ -107,7 +110,7 @@ def get_comment_by_image_id(image_id):
     return Comment.query.filter(Comment.image_id == image_id).all()
 
 
-def get_likes_info(image_id, user_id):
+def delete_like_by_image_and_user_id(image_id, user_id):
     """Return likes that have been made with a particular image and user id"""
 
     return Like.query.filter((Like.image_id == image_id) & (Like.user_id == user_id)).first()
