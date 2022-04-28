@@ -244,6 +244,28 @@ def like_an_image(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
+@app.route("/api/user_profile/<image_id>/remove_likes")
+def unlike_an_image(image_id):
+    """Allows users to unlike an image"""
+
+    image = crud.get_image_by_id(image_id)
+
+    if image and "user_email" in session:
+        
+        user = crud.get_user_by_email(session.get("user_email"))
+        user_id = user.user_id
+
+        #image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
+        
+        
+        #db.session.add(image) 
+        db.session.commit()
+
+        return jsonify({"status": "OK", "like_count": len(image.likes)})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
 ###########
 
 # SEARCH BY ZIPCODE FORM 

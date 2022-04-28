@@ -37,25 +37,20 @@ addCommentButton.addEventListener('click', evt => {
 // LIKE AN IMAGE FUNCTIONALITY 
 
 const likeButton = document.querySelector(`#like-button-${imageId}`);
-// console.log(likeButton);
 const likeCount = document.querySelector('#like-count');
 
-const url = `/api/user_profile/${imageId}/likes`;
 
 likeButton.addEventListener('click', evt =>{
     evt.preventDefault();
 
-    // const likeCounter = {
-    //     "new_like" : document.querySelector('#like-count').firstChild
-    // };
+    if (likeButton.innerHTML === 'Like'){
+        const url = `/api/user_profile/${imageId}/likes`;
+        likeButton.innerHTML = 'Unlike';
+    }else {
+        const url = 'new route';
+        likeButton.innerHTML = 'Like';
+    }
 
-    // const options = {
-    //     method : "POST",
-    //     body: JSON.stringify({'image_id' : imageId}),
-    //     headers : {
-    //         'Content-Type': 'application/json',
-    //     }
-    // };
 
     fetch(url) 
     .then(response => response.json())
@@ -64,21 +59,5 @@ likeButton.addEventListener('click', evt =>{
             likeCount.innerHTML = responseData["like_count"];
         }
     });
-
-    likeButton.disabled = true;
 });
-
-// remove like if button is clicked again 
-likeButton.addEventListener('click', evt =>{
-    evt.preventDefault();
-
-    fetch(url) 
-    .then(response => response.json())
-    .then(responseData => { 
-        if (parseInt(likeCount.innerHTML) < parseInt(responseData["like_count"])){
-            likeCount.innerHTML = responseData["like_count" - 1];
-        }
-    });
-
-    likeButton.disabled = true;
 
