@@ -112,6 +112,12 @@ def get_user_art_collections(artist_collection_id):
 
     return User.query.filter(User.artist_collection == artist_collection).first()
 
+# #get username by comment id - unsure how to query for username with current relationships in model.py?
+# def get_username_by_comment(comment_id, image_id):
+#     """Return a username by the comment id and image id"""
+
+#     return Comment.query.filter(User.)
+
 
 def get_art_collection_images(image_id):
     """Return an art collection by image id"""

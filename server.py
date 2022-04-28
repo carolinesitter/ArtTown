@@ -176,12 +176,12 @@ def show_image_info(image_id):
     #get likes and comments
 
     like_count = len(image.likes)
-    
+
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
-
     #how do i show the username associated with the comment?
-    #username = crud.get_comment_by_username(username =)
+
+    #username = comments.user.username
 
     if logged_in_email is None:
         flash("Sorry! You need to be logged in before you can add a comment!")
