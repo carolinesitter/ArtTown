@@ -96,7 +96,6 @@ def user_login():
 
     return redirect("/user_profile")
 
-
 ###########
 
 # LOG OUT ROUTE
@@ -158,29 +157,22 @@ def user_profile():
     else:
         redirect("/")
 
-
 ###########
 
 # SHOW IMAGE DETAILS
 
 ###########
 
-
 @app.route("/user_profile/<image_id>/comments", methods=["GET"])
 def show_image_info(image_id):
     """Show info about an image when link is clicked"""
 
     image = crud.get_image_by_id(image_id)
-    
     user = crud.get_user_by_email(session.get("user_email"))
     user_id = user.user_id
-    
     logged_in_email = session.get("user_email")
-
     like = crud.get_likes_info(image_id, user_id)
-
     like_count = len(image.likes)
-
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
     if logged_in_email is None:
@@ -195,22 +187,18 @@ def show_image_info(image_id):
                                 comments=comments,
                                 like=like)
 
-
 ###########
 
 # ADD A COMMENT
 
 ###########
 
-
 @app.route("/user_profile/<image_id>/comments", methods=["POST"])
 def add_new_comment(image_id):
     """Allow users to add a comment"""
 
     comment = request.json.get("new_comment")
-
     image = crud.get_image_by_id(image_id)
-
 
     if (comment != None) and (image != None) and ("user_email" in session):
         
@@ -229,20 +217,17 @@ def add_new_comment(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
-
 ###########
 
 # LIKE AN IMAGE 
 
 ###########
 
-
 @app.route("/api/user_profile/<image_id>/likes")
 def like_an_image(image_id):
     """Allows users to like an image"""
 
     image = crud.get_image_by_id(image_id)
-
 
     if image and "user_email" in session:
         
@@ -258,8 +243,6 @@ def like_an_image(image_id):
 
     else:
         return jsonify({"status": "FAILED"})
-
-
 
 ###########
 
@@ -382,7 +365,6 @@ def process_upload_data():
         return redirect("/user_profile")
     else:
         return render_template('upload-image.html')
-
 
 
 if __name__ == "__main__":
