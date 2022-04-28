@@ -171,9 +171,13 @@ def show_image_info(image_id):
     """Show info about an image when link is clicked"""
 
     image = crud.get_image_by_id(image_id)
+    
+    user = crud.get_user_by_email(session.get("user_email"))
+    user_id = user.user_id
+    
     logged_in_email = session.get("user_email")
 
-    #get likes and comments
+    like = crud.get_likes_info(image_id, user_id)
 
     like_count = len(image.likes)
 
@@ -188,7 +192,8 @@ def show_image_info(image_id):
                                 user=user, 
                                 image=image, 
                                 like_count=like_count,
-                                comments=comments)
+                                comments=comments,
+                                like=like)
 
 
 ###########
@@ -214,7 +219,6 @@ def add_new_comment(image_id):
         image_id = image.image_id
         username = user.username
 
-        #crud_comment_test = crud.create_comment(comment, user_id, image_id)
         image.comments.append(crud.create_comment(comment, image_id, user_id))
 
         db.session.add(image) 
@@ -239,24 +243,11 @@ def like_an_image(image_id):
 
     image = crud.get_image_by_id(image_id)
 
-    # verify that a user hasn't already liked a post ?
-
-
-    # user = crud.get_user_by_email(session.get("user_email"))
-    # user_id = user.user_id
-    # like = crud.get_likes_info(image_id, user_id)
-
-    # if like != None:
-    #     flash("Don't Worry! You have already liked this image!")
-
 
     if image and "user_email" in session:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
-
-        # image_id = image.image_id
-        #like = crud.get_likes_info(image_id, user_id)
 
         image.likes.append(crud.create_like(len(image.likes) + 1, image_id, user_id))
         

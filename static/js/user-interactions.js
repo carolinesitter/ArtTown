@@ -69,7 +69,3 @@ likeButton.addEventListener('click', evt =>{
 });
 
 
-
-// if (likeButton.disabled == true){
-
-// };
