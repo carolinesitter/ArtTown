@@ -68,4 +68,17 @@ likeButton.addEventListener('click', evt =>{
     likeButton.disabled = true;
 });
 
+// remove like if button is clicked again 
+likeButton.addEventListener('click', evt =>{
+    evt.preventDefault();
+
+    fetch(url) 
+    .then(response => response.json())
+    .then(responseData => { 
+        if (parseInt(likeCount.innerHTML) < parseInt(responseData["like_count"])){
+            likeCount.innerHTML = responseData["like_count" - 1];
+        }
+    });
+
+    likeButton.disabled = true;
 

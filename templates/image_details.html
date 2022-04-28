@@ -14,13 +14,14 @@
 
     <form>
 
-        {% if like == 'false' %}
+        <!-- {% if like == 'false' %} -->
         <button id="like-button-{{image.image_id}}">Like</button>
-        {% endif %}
+        <!-- {% endif %} -->
 
-        {% if like == 'true' %}
+        <!-- {% if like == 'true' %}
         <button disabled id="like-button-{{image.image_id}}">Like</button>
-        {% endif %}
+        {% endif %} -->
+
         <p id="like-count"> {{ like_count }} </p>
 
         <label for="comment">Comments:</label>
