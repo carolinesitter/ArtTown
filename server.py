@@ -212,6 +212,7 @@ def add_new_comment(image_id):
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
         image_id = image.image_id
+        username = user.username
 
         #crud_comment_test = crud.create_comment(comment, user_id, image_id)
         image.comments.append(crud.create_comment(comment, image_id, user_id))
@@ -219,7 +220,7 @@ def add_new_comment(image_id):
         db.session.add(image) 
         db.session.commit()
 
-        return jsonify({"status": "OK", "comment": comment})
+        return jsonify({"status": "OK", "username": username,"comment": comment})
 
     else:
         return jsonify({"status": "FAILED"})
