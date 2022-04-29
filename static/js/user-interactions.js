@@ -28,6 +28,8 @@ addCommentButton.addEventListener('submit', evt => {
             // Assign a new variable that will create a div element in our HTML 
             // and set the variable to hold username and comment info
             const newCommentDiv = document.createElement('div');
+            newCommentDiv.setAttribute("data-comment-id", `${responseData.comment_id}`);
+            newCommentDiv.setAttribute("class", "Comment");
             newCommentDiv.innerHTML = `${responseData.username} : ${responseData.comment}`;
 
             // Create a delete button and set its attributes to delete the 
@@ -35,15 +37,31 @@ addCommentButton.addEventListener('submit', evt => {
             const deleteButton = document.createElement('button');
             deleteButton.setAttribute("class", "Delete");
             deleteButton.setAttribute("type","button");
-            deleteButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
+            //deleteButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
             deleteButton.innerHTML = "Delete";
 
             // When the delete button is clicked, delete the comment
             deleteButton.addEventListener('click', deleteComment);
 
-            // Ensure that the comment button is added to each div 
+            // Create an edit button and set its attributes to edit
+            // the comment on the browser
+
+            const editButton = document.createElement('button');
+            editButton.setAttribute("class", "Edit");
+            editButton.setAttribute("type", "button");
+            //editButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
+            editButton.innerHTML = "Edit";
+
+            // When the edit button is clicked, show the comment info
+            editButton.addEventListener('click', editComment);
+
+            // Ensure that the delete button is added to each div 
             // where the user who left the comment is in session
             newCommentDiv.appendChild(deleteButton);
+
+            // Ensure that the edit button is added to each div where
+            // the user is in session
+            // newCommentDiv.appendChild(editButton);
 
             // Add the value of the new div to the user comments section 
             document.querySelector('#user-comments').insertAdjacentElement('beforeend', newCommentDiv)
@@ -64,7 +82,7 @@ function deleteComment (evt) {
     fetch(`/api/user_profile/${imageId}/delete_comment`, {
         method : 'POST',
         body: JSON.stringify({
-            comment_id : evt.target.dataset.commentId,
+            comment_id : evt.target.parentElement.dataset.commentId,
             }),
         headers : {
             'Content-Type': 'application/json',
@@ -80,13 +98,62 @@ function deleteComment (evt) {
 }
 
 // For each delete button on the page, if it is clicked, delete the comment
-for (button of document.querySelectorAll(`.Delete`)) {
-    button.addEventListener('click', deleteComment);
+for (button of document.querySelectorAll(`.Comment`)) {
+    button.querySelector('.Delete').addEventListener('click', deleteComment);
+    button.querySelector('.Hidden').addEventListener('click', unhideEdit);
+    button.querySelector('.Save').addEventListener('click', saveCommentEdit);
 };
 
+// EDIT COMMENT FUNCTIONALITY
+
+function unhideEdit (evt) {
+    evt.preventDefault();
+    console.log()
+    // Show the hidden div
+    evt.target.parentElement.querySelector('div').removeAttribute("hidden");
+}
+
+function saveCommentEdit(evt) {
+    evt.preventDefault();
+
+    
+    // Create new variables with the new comment value and comment id
+    //const editedComment = document.querySelector('') // unsure how to identify this
+
+    // Get the parent element of the target element of the button
+    // search for the input element 
+
+    // console.log(evt.target.parentElement.parentElement.dataset.commentId)
+    // console.log(evt.target.parentElement.querySelector('input').value)
+
+    fetch(`/api/user_profile/${imageId}/edit_comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+            //edited_comment : evt.target.dataset.;
+            comment_id : evt.target.parentElement.parentElement.dataset.commentId,
+            comment_text : evt.target.parentElement.querySelector('input').value,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json()) 
+    .then (responseData => {
+            if (responseData["status"] === "OK"){
+                evt.target.parentElement.querySelector('input').value = responseData["comment"];
+                evt.target.parentElement.parentElement.querySelector('p').innerHTML = responseData["comment"];
+                evt.target.parentElement.setAttribute("hidden", "");
+            }
+            console.log(responseData);
+    });    
+    
+}
 
 
-// LIKE AN IMAGE FUNCTIONALITY 
+
+
+
+// // LIKE AN IMAGE FUNCTIONALITY 
 
 // Assign variables to symbolize the like button and like count
 const likeButton = document.querySelector('#like-button');
@@ -117,7 +184,6 @@ likeButton.addEventListener('click', evt =>{
         .then(responseData => { 
             likeCount.innerHTML = responseData["like_count"];
         });
-    };
+    }
 
-});
-
+})

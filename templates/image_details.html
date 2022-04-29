@@ -28,8 +28,15 @@
         {% for comment in comments %}
 
             {% if session.get('username') == comment.user.username %}
-                <div>{{comment.user.username}} : {{ comment.comment }}
-                    <button class="Delete" type="button" data-comment-id="{{comment.comment_id}}">Delete</button>
+                <div class="Comment" data-comment-id="{{comment.comment_id}}">
+                    {{comment.user.username}} : <p>{{ comment.comment }}</p>
+                    <button class="Hidden" type="button" >Edit</button>
+                    <div hidden>
+                        <input value = "{{comment.comment}}" >
+                        <button class="Save" type="button">Save</button>
+                        <button class="Cancel" type="button">Cancel</button>
+                    </div>
+                    <button class="Delete" type="button">Delete</button>
                 </div>
             {% endif %}
         {% endfor %}

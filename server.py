@@ -306,13 +306,7 @@ def delete_comment(image_id):
     # Check if the image exists and if the user is in session
     if image and "user_email" in session:
 
-        #Get the user information
-        # user = crud.get_user_by_email(session.get("user_email"))
-        # user_id = user.user_id
-        # username = user.username
-
         # Query for the comment we would like to delete
-        #delete_comment = crud.delete_comment_by_image_and_user_id(image_id, user_id)
         comment = crud.get_comment_by_id(request.json.get("comment_id"))
 
         # Delete the comment from our database
@@ -321,6 +315,39 @@ def delete_comment(image_id):
 
         # Return jsonified comment info to user-interactions.js
         return jsonify({"status": "OK"})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
+
+@app.route("/api/user_profile/<image_id>/edit_comments", methods=["POST"])
+def edit_comment(image_id):
+    """Allow users to add a comment"""
+
+
+    # print("HI" * 20)
+    comment_id = request.json.get("comment_id")
+    comment_text = request.json.get("comment_text")
+    # print(comment_id)
+    # Get the comment and image from our database
+    #comment = get_comment_by_image_and_user_id(image_id, user_id)
+    # image = crud.get_image_by_id(image_id)
+
+    comment = crud.get_comment_by_id(comment_id)
+    print("*"* 20)
+    print(comment)
+
+    if (comment != None) and ("user_email" in session):
+
+        # username = user.username
+
+        # image.comments.append(edited_comment)
+        comment.comment = comment_text
+
+        # db.session.add(comment_text) 
+        db.session.commit()
+
+        return jsonify({"status": "OK", "comment": comment_text})
 
     else:
         return jsonify({"status": "FAILED"})

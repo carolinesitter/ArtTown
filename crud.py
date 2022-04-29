@@ -61,6 +61,9 @@ def create_comment(comment, image_id, user_id):
 
     return new_comment
 
+
+#def update_comment(comment,)
+
 # Create a new like
 def create_like(image_id, user_id):
 
@@ -114,7 +117,7 @@ def delete_like_by_image_and_user_id(image_id, user_id):
     return Like.query.filter((Like.image_id == image_id) & (Like.user_id == user_id)).first()
 
 # Get a comment made by a particular user for a particular image
-def delete_comment_by_image_and_user_id(image_id, user_id):
+def get_comment_by_image_and_user_id(image_id, user_id):
     """Return comments made with a particular image and user id"""
 
     return Comment.query.filter((Comment.image_id == image_id) & (Comment.user_id == user_id)).first()
