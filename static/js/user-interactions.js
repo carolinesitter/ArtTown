@@ -32,9 +32,43 @@ addCommentButton.addEventListener('click', evt => {
     .then(response => response.json())
     .then(responseData => {
             document.querySelector('#added-comments').insertAdjacentHTML('beforeend',
-                                `<li>${responseData.username} : ${responseData.comment}</li>`)
+                                `<div>${responseData.username} : ${responseData.comment}</div>`)
     });
 });
+
+// DELETE A COMMENT FUNCTIONALITY
+
+// Assign a variable to symbolize the delete comment button
+const deleteCommentButton = document.querySelector(`#delete-comment-button-${imageId}`);
+
+deleteCommentButton.addEventListener('click', evt => {
+    evt.preventDefault();
+
+    const url = `/api/user_profile/${imageId}/delete_comment`;
+
+    //const commentInput = evt.target.value;
+    const commentsAdded = document.querySelector('#comment').value;
+
+    const formInputs = {
+        new_comment : commentsAdded,
+        };
+
+    // Get the updated comment values from the server and add changes to the DOM
+    fetch(url, {
+        method : 'POST',
+        body: JSON.stringify(formInputs),
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(responseData => {
+            document.querySelector('#added-comments').insertAdjacentHTML('beforeend',
+                                `<div>${responseData.username} : ${responseData.comment}</div>`)
+    });
+});
+
+
 
 
 // LIKE AN IMAGE FUNCTIONALITY 
@@ -47,11 +81,8 @@ const likeCount = document.querySelector('#like-count');
 likeButton.addEventListener('click', evt =>{
     evt.preventDefault();
 
-    console.log('triggered event')
-
     // If a user likes an image, add 1 to "like_count" 
     if (likeButton.innerHTML === 'Like'){
-        console.log('entered if')
         const url = `/api/user_profile/${imageId}/likes`;
         likeButton.innerHTML = 'Unlike';
 
@@ -63,7 +94,6 @@ likeButton.addEventListener('click', evt =>{
 
     // If a user unlikes an image, remove 1 from "like_count"
     }else {
-        console.log('entered else')
         const url = `/api/user_profile/${imageId}/remove_likes`;
         likeButton.innerHTML = 'Like';
 

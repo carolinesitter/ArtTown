@@ -292,6 +292,35 @@ def unlike_an_image(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
+
+@app.route("/api/user_profile/<image_id>/delete_comment", methods=["POST"])
+def delete_comment(image_id):
+    """Allow users to delete their own comments"""
+
+    # Get the image by id from database
+    image = crud.get_image_by_id(image_id)
+
+    # Check if the image exists and if the user is in session
+    if image and "user_email" in session:
+
+        #Get the user information
+        user = crud.get_user_by_email(session.get("user_email"))
+        user_id = user.user_id
+        username = user.username
+
+        # Query for the comment we would like to delete
+        delete_comment = crud.delete_comment_by_image_and_user_id(image_id, user_id)
+
+        # Delete the comment from our database
+        db.session.delete(delete_comment)
+        db.session.commit()
+
+        # Return jsonified comment info to user-interactions.js
+        return jsonify({"status": "OK", "username": username,"comment": crud.get_comment_by_image_id(image_id)})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
 ###########
 
 # SEARCH BY ZIPCODE FORM 
