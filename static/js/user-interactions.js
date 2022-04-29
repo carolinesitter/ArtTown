@@ -4,12 +4,6 @@
 // Assign variables to symbolize the image id and comment button
 let imageId = document.querySelector('#image').dataset.id;
 
-console.log(imageId);
-
-// if (imageId) {
-//     imageId = imageId.value;
-// }
-
 const addCommentButton = document.querySelector(`#add-comment-form`);
 
 // Check if a user has added a comment 
@@ -17,10 +11,6 @@ addCommentButton.addEventListener('submit', evt => {
     evt.preventDefault();
 
     const commentInput = evt.target.querySelector("input").value;
-    // const commentsAdded = document.querySelector('#comment').value;
-
-
-    // const formInputs =;
 
     // Get the values from our server and add updated values to the DOM
     fetch(`/user_profile/${imageId}/comments`, {
@@ -35,19 +25,27 @@ addCommentButton.addEventListener('submit', evt => {
     .then(response => response.json())
     .then(responseData => {
 
+            // Assign a new variable that will create a div element in our HTML 
+            // and set the variable to hold username and comment info
             const newCommentDiv = document.createElement('div');
             newCommentDiv.innerHTML = `${responseData.username} : ${responseData.comment}`;
 
+            // Create a delete button and set its attributes to delete the 
+            // comment on the browser
             const deleteButton = document.createElement('button');
             deleteButton.setAttribute("class", "Delete");
             deleteButton.setAttribute("type","button");
             deleteButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
             deleteButton.innerHTML = "Delete";
 
+            // When the delete button is clicked, delete the comment
             deleteButton.addEventListener('click', deleteComment);
-            newCommentDiv.appendChild(deleteButton)
-            // <button type="button" id="delete-comment-button-${imageId}">Delete</button>`;
 
+            // Ensure that the comment button is added to each div 
+            // where the user who left the comment is in session
+            newCommentDiv.appendChild(deleteButton);
+
+            // Add the value of the new div to the user comments section 
             document.querySelector('#user-comments').insertAdjacentElement('beforeend', newCommentDiv)
                             
     });
@@ -61,10 +59,6 @@ addCommentButton.addEventListener('submit', evt => {
 function deleteComment (evt) {
     evt.preventDefault();
 
-
-    // const commentsAdded = evt.target.dataset.comment-id;
-
-    // const formInputs = ;
 
     // Get the updated comment values from the server and add changes to the DOM
     fetch(`/api/user_profile/${imageId}/delete_comment`, {
@@ -82,18 +76,13 @@ function deleteComment (evt) {
                 evt.target.parentElement.remove()
                 console.log("OK");
             }
-
-
-
-            // document.querySelector('#user-comments').insertAdjacentHTML('beforeend',
-            //                     `<div>${responseData.username} : ${responseData.comment}</div>
-            //                     <button type="button" id="delete-comment-button-${imageId}">Delete</button>`)
     });
 }
 
+// For each delete button on the page, if it is clicked, delete the comment
 for (button of document.querySelectorAll(`.Delete`)) {
     button.addEventListener('click', deleteComment);
-}
+};
 
 
 
