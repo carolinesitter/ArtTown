@@ -31,8 +31,9 @@ addCommentButton.addEventListener('click', evt => {
     }) 
     .then(response => response.json())
     .then(responseData => {
-            document.querySelector('#added-comments').insertAdjacentHTML('beforeend',
-                                `<div>${responseData.username} : ${responseData.comment}</div>`)
+            document.querySelector('#user-comments').insertAdjacentHTML('beforeend',
+                                `<div>${responseData.username} : ${responseData.comment}</div>
+                                <button type="button" id="delete-comment-button-${imageId}">Delete</button>`)
     });
 });
 
@@ -63,8 +64,9 @@ deleteCommentButton.addEventListener('click', evt => {
     })
     .then(response => response.json())
     .then(responseData => {
-            document.querySelector('#added-comments').insertAdjacentHTML('beforeend',
-                                `<div>${responseData.username} : ${responseData.comment}</div>`)
+            document.querySelector('#user-comments').insertAdjacentHTML('beforeend',
+                                `<div>${responseData.username} : ${responseData.comment}</div>
+                                <button type="button" id="delete-comment-button-${imageId}">Delete</button>`)
     });
 });
 

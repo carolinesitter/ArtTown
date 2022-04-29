@@ -28,12 +28,22 @@
     {% endif %}
 
     <div id="added-comments">
+
+        <div id="user-comments">
         {% for comment in comments %}
+
             {% if session.get('username') == comment.user.username %}
                 <div>{{comment.user.username}} : {{ comment.comment }}</div>
                 <button type="button" id="delete-comment-button-{{image.image_id}}">Delete</button>
             {% endif %}
-            <div>{{comment.user.username}} : {{ comment.comment }}</div>
+        {% endfor %}
+        </div>
+
+        {% for comment in comments %}
+
+            {% if session.get('username') != comment.user.username %}
+                <div>{{comment.user.username}} : {{ comment.comment }}</div>
+            {% endif %}
         {% endfor %}
     </div>
 
