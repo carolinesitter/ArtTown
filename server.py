@@ -220,6 +220,8 @@ def add_new_comment(image_id):
     comment = request.json.get("new_comment")
     image = crud.get_image_by_id(image_id)
 
+
+    print(comment)
     if (comment != None) and (image != None) and ("user_email" in session):
         
         user = crud.get_user_by_email(session.get("user_email"))
@@ -227,12 +229,13 @@ def add_new_comment(image_id):
         image_id = image.image_id
         username = user.username
 
-        image.comments.append(crud.create_comment(comment, image_id, user_id))
+        new_comment = crud.create_comment(comment, image_id, user_id)
+        image.comments.append(new_comment)
 
         db.session.add(image) 
         db.session.commit()
 
-        return jsonify({"status": "OK", "username": username,"comment": comment})
+        return jsonify({"status": "OK", "username": username,"comment": comment, "comment_id" : new_comment.comment_id})
 
     else:
         return jsonify({"status": "FAILED"})
@@ -304,19 +307,20 @@ def delete_comment(image_id):
     if image and "user_email" in session:
 
         #Get the user information
-        user = crud.get_user_by_email(session.get("user_email"))
-        user_id = user.user_id
-        username = user.username
+        # user = crud.get_user_by_email(session.get("user_email"))
+        # user_id = user.user_id
+        # username = user.username
 
         # Query for the comment we would like to delete
-        delete_comment = crud.delete_comment_by_image_and_user_id(image_id, user_id)
+        #delete_comment = crud.delete_comment_by_image_and_user_id(image_id, user_id)
+        comment = crud.get_comment_by_id(request.json.get("comment_id"))
 
         # Delete the comment from our database
-        db.session.delete(delete_comment)
+        db.session.delete(comment)
         db.session.commit()
 
         # Return jsonified comment info to user-interactions.js
-        return jsonify({"status": "OK", "username": username,"comment": crud.get_comment_by_image_id(image_id)})
+        return jsonify({"status": "OK"})
 
     else:
         return jsonify({"status": "FAILED"})

@@ -4,25 +4,20 @@
 
 {% block content %}
     <h1> {{image.image_title}}</h1>
-    <img src="{{image.image_link}}">
+    <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
 
-    <br>
-    </br>
 
     {% if session.get('user_email') %}
     <h1>Leave a comment!</h1>
 
-    <form>
+    <button id="like-button">Like</button>
+    <p id="like-count"> {{ like_count }} </p>
 
-        <button id="like-button-{{image.image_id}}">Like</button>
-        <p id="like-count"> {{ like_count }} </p>
-
+    <form id="add-comment-form">
         <label for="comment">Comments:</label>
-        <input type="text" name="comment" id="comment">
-        <input type="text" hidden value="{{image.image_id}}" name="image-id" id="image-id">
-
-        <button type="submit" id="add-comment-button-{{image.image_id}}">Post</button>
-
+        <input type="text" name="comment" >
+        <!--<input type="text" hidden value="" name="image-id" id="image-id">-->
+        <button type="submit" >Post</button>
     </form>
 
     {% endif %}
@@ -33,8 +28,9 @@
         {% for comment in comments %}
 
             {% if session.get('username') == comment.user.username %}
-                <div>{{comment.user.username}} : {{ comment.comment }}</div>
-                <button type="button" id="delete-comment-button-{{image.image_id}}">Delete</button>
+                <div>{{comment.user.username}} : {{ comment.comment }}
+                    <button class="Delete" type="button" data-comment-id="{{comment.comment_id}}">Delete</button>
+                </div>
             {% endif %}
         {% endfor %}
         </div>
