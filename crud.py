@@ -1,7 +1,6 @@
-"""CRUD operations."""
+"""Basic query operations."""
 
 from model import db, User, ArtistCollection, Image, Comment, Like, connect_to_db
-
 
 
 # Create a new user
@@ -60,9 +59,6 @@ def create_comment(comment, image_id, user_id):
                     )
 
     return new_comment
-
-
-#def update_comment(comment,)
 
 # Create a new like
 def create_like(image_id, user_id):
