@@ -18,11 +18,6 @@ CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME = "dgvuwdtnb"
 
-###########
-
-# SHOW HOMEPAGE
-
-###########
 
 @app.route("/")
 def homepage():
@@ -31,21 +26,16 @@ def homepage():
     # This is the homepage
     return render_template('homepage.html')
 
-###########
-
-# CREATE PROFILE AND REGISTER TO DATABASE
-
-###########
 
 @app.route("/register_profile", methods=["POST"])
 def register_profile():
     """Check if account has already been created,
         if not, create new account and add user to db"""
 
-    # Get the values from our form input when a user registers an account
+    # Get the information when a user registers an account
     email = request.form.get("email")
     password = request.form.get("password")
-    #verify_password = request.form.get("verify_password")
+    verify_password = request.form.get("verify_password")
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
     username = request.form.get("username")
@@ -61,10 +51,12 @@ def register_profile():
     #Check if the user already exists, if not, create a new account
     if user:
         flash("User already registered. Please log in.")
+        return redirect("/")
     
     # Ensure that the password and verification are the same 
-    # elif password != verify_password:
-    #     flash("Sorry! Your passwords do not match. Please try again.")
+    elif password != verify_password:
+        flash("Sorry! Your passwords do not match. Please try again.")
+        redirect("/register_profile")
 
     else:
         user = crud.create_user(first_name, last_name, username, email,
@@ -76,11 +68,6 @@ def register_profile():
     # Send the user back to the homepage
     return redirect("/")        
 
-###########
-
-# LOG IN ROUTE
-
-###########
 
 @app.route("/log_in", methods=["POST"])
 def user_login():
@@ -106,15 +93,10 @@ def user_login():
 
     return redirect("/user_profile")
 
-###########
-
-# LOG OUT ROUTE
-
-###########
 
 @app.route("/log_out")
 def user_logout():
-    """Allow user to log out"""
+    """Log a user out"""
 
     # When the user logs out, forget their email in sessions
     session['user_email'] = None
@@ -122,11 +104,6 @@ def user_logout():
     # Show user back to the homepage
     return redirect("/")
 
-###########
-
-# CREATE PROFILE FORM 
-
-###########
 
 @app.route("/create_profile")
 def create_profile():
@@ -135,15 +112,10 @@ def create_profile():
     # Show a new user the form to create an account
     return render_template('create-profile.html')
 
-###########
-
-# SHOW USER PROFILE
-
-###########
 
 @app.route("/user_profile")
 def user_profile():
-    """Show user_profile"""
+    """Show the user's profile"""
 
     # If a user is logged in, show their profile
     if "user_email" in session:
@@ -177,24 +149,22 @@ def user_profile():
     else:
         redirect("/")
 
-###########
-
-# SHOW IMAGE DETAILS
-
-###########
 
 @app.route("/user_profile/<image_id>/comments", methods=["GET"])
 def show_image_info(image_id):
-    """Show info about an image when link is clicked"""
+    """Show info about an image"""
 
+    # Get the image and user information
     image = crud.get_image_by_id(image_id)
     user = crud.get_user_by_email(session.get("user_email"))
     user_id = user.user_id
     logged_in_email = session.get("user_email")
 
+    # Get the likes and comments for a particular image
     like_count = len(crud.get_likes_by_image_id(image_id))
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
+    # Check that the user is logged in, if so, show them the image details
     if logged_in_email is None:
         flash("Sorry! You need to be logged in before you can add a comment!")
 
@@ -207,21 +177,16 @@ def show_image_info(image_id):
                                 comments=comments
                                 )
 
-###########
-
-# ADD A COMMENT
-
-###########
 
 @app.route("/user_profile/<image_id>/comments", methods=["POST"])
 def add_new_comment(image_id):
     """Allow users to add a comment"""
 
+    # Get the image and comment information from the database
     comment = request.json.get("new_comment")
     image = crud.get_image_by_id(image_id)
 
-
-    print(comment)
+    # Add a new comment to the image (and the database)
     if (comment != None) and (image != None) and ("user_email" in session):
         
         user = crud.get_user_by_email(session.get("user_email"))
@@ -240,18 +205,15 @@ def add_new_comment(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
-###########
-
-# LIKE AN IMAGE 
-
-###########
 
 @app.route("/api/user_profile/<image_id>/likes")
 def like_an_image(image_id):
     """Allows users to like an image"""
 
+    # Get the image information from the database
     image = crud.get_image_by_id(image_id)
 
+    # Like an image and add that like to the database
     if image and "user_email" in session:
         
         user = crud.get_user_by_email(session.get("user_email"))
@@ -268,28 +230,28 @@ def like_an_image(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
-###########
-
-# UN-LIKE AN IMAGE 
-
-###########
 
 @app.route("/api/user_profile/<image_id>/remove_likes")
 def unlike_an_image(image_id):
     """Allows users to unlike an image"""
 
+    # Get the image information from the database
     image = crud.get_image_by_id(image_id)
 
+    # Remove the like from the image and the database
     if image and "user_email" in session:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
 
+        # Query for the like in the database
         delete_like = crud.delete_like_by_image_and_user_id(image_id, user_id)
         
+        # Delete the like from the database
         db.session.delete(delete_like)
         db.session.commit()
 
+        # Return a jsonified like count info to user-interactions.js
         return jsonify({"status": "OK", "like_count": len(crud.get_likes_by_image_id(image_id))})
 
     else:
@@ -303,13 +265,13 @@ def delete_comment(image_id):
     # Get the image by id from database
     image = crud.get_image_by_id(image_id)
 
-    # Check if the image exists and if the user is in session
+    # Delete the comment from the database
     if image and "user_email" in session:
 
-        # Query for the comment we would like to delete
+        # Query for the comment in the database
         comment = crud.get_comment_by_id(request.json.get("comment_id"))
 
-        # Delete the comment from our database
+        # Delete the comment from the database
         db.session.delete(comment)
         db.session.commit()
 
@@ -324,27 +286,16 @@ def delete_comment(image_id):
 def edit_comment(image_id):
     """Allow users to add a comment"""
 
-
-    # print("HI" * 20)
+    # Get the comment information
     comment_id = request.json.get("comment_id")
     comment_text = request.json.get("comment_text")
-    # print(comment_id)
-    # Get the comment and image from our database
-    #comment = get_comment_by_image_and_user_id(image_id, user_id)
-    # image = crud.get_image_by_id(image_id)
-
     comment = crud.get_comment_by_id(comment_id)
-    print("*"* 20)
-    print(comment)
 
+    # Override the previous comment in the database with the new comment
     if (comment != None) and ("user_email" in session):
 
-        # username = user.username
-
-        # image.comments.append(edited_comment)
         comment.comment = comment_text
 
-        # db.session.add(comment_text) 
         db.session.commit()
 
         return jsonify({"status": "OK", "comment": comment_text})
@@ -352,36 +303,26 @@ def edit_comment(image_id):
     else:
         return jsonify({"status": "FAILED"})
 
-###########
-
-# SEARCH BY ZIPCODE FORM 
-
-###########
 
 @app.route("/zipcode_input")
 def zipcode_input():
     """Show input box where artists can type in zip code"""
 
+    # Show the zipcode search page
     return render_template('search-by-zip.html')
 
-###########
-
-# SHOW RANDOM PROFILE
-
-###########
 
 @app.route("/search_by_zipcode", methods=["POST"])
 def search_by_zipcode():
     """Enter in zipcode, show a user profile with matching zip code"""
 
+    # Get the zip code searched on the browser
     zipcode = int(request.form.get("zipcode"))
+
+    # Get the zip code associated with each user's account
     user_zip = crud.get_user_by_zipcode(zipcode)
 
-    print('\n * 5')
-    print(zipcode)
-    print(user_zip)
-    print('\n * 5')
-
+    # Show the user profile with a matching zip code 
     if user_zip != None:
         username = user_zip.username
         instagram = user_zip.instagram
@@ -404,34 +345,28 @@ def search_by_zipcode():
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')
 
-###########
-
-# CREATE NEW POST FORM
-
-###########
 
 @app.route("/create_post_form")
 def create_new_post():
     """Render template for artists to upload images to their profile"""
 
+    # Show the page to create a new post
     return render_template('create-post.html')
 
-###########
-
-# CREATE ART COLLECTION
-
-###########
 
 @app.route("/create_art_collection", methods=["POST"])
 def create_art_collection():
     """Get art collection and user data from browser and add to db"""
 
+    # Get the user information
     email = session['user_email']
     user = crud.get_user_by_email(email)
 
+    # Get the digital art gallery information
     gallery_title = request.form.get("gallery-title")
     gallery_description = request.form.get("gallery-description")
 
+    # Create the new art gallery post
     if gallery_title != None and gallery_description != None:
         artist_gallery = crud.create_artist_collection(gallery_title, gallery_description, user)
         db.session.add(artist_gallery)
@@ -444,31 +379,29 @@ def create_art_collection():
         flash("Sorry, you must give your gallery a name and description. Please try again.")
         return render_template('create-post.html')
 
-###########
-
-# UPLOAD AN IMAGE WITH CLOUDINARY
-
-###########
 
 @app.route("/upload_image", methods=["POST"])
 def process_upload_data():
     """Process form data and return the url generated by Cloudinary"""
 
+    # Get the user and art post information
     email = session['user_email']
     user = crud.get_user_by_email(email)
     artist_collection = crud.get_art_collection_by_id(int(request.form.get('gallery-collection')))
     image_title = request.form.get('image-title')
     date_uploaded = datetime.now()
     
-
+    # Get the filename from the uploaded image
     filename = request.files['filename']
 
+    # Get the result and image link from the Cloudinary API
     result = cloudinary.uploader.upload(filename,
                                         api_key=CLOUDINARY_KEY,
                                         api_secret=CLOUDINARY_SECRET,
                                         cloud_name=CLOUD_NAME)
     image_link = result['secure_url']
 
+    # Create the new image and add it to the user profile (and database)
     if image_link != None and image_title != None:
 
         new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
