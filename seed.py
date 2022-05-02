@@ -25,7 +25,6 @@ with open('data/user-data.json') as f:
     user_data = json.loads(f.read())
 
 #create users, store them in list
-
 users_in_db = []
 
 for user in user_data:
@@ -36,6 +35,8 @@ for user in user_data:
     zipcode = user['zipcode']
     password = user['password']
 
+    # Check if the user inputted their socials,
+    # if not, return None as they are optional inputs
     if 'instagram' in user:
         instagram = user['instagram']
     else:
@@ -53,7 +54,7 @@ for user in user_data:
     else:
         website = None
 
-
+    # Create our new user from the JSON files and add to db
     db_user = crud.create_user(first_name, last_name, username, email,
                                 password, instagram, twitter, tiktok,
                                 website, zipcode)
@@ -65,13 +66,13 @@ for user in user_data:
 
 
 #load artist collection data from json file
-
 with open('data/artist-collection.json') as f:
     artist_collection_data = json.loads(f.read())
 
+# Create an empty list that will hold the artist collections
 artist_collection_in_db = []
 
-
+# Create an artist collection and store it to the database
 for collection in artist_collection_data:
     gallery_title = collection['gallery_title']
     gallery_description = collection['gallery_description']
@@ -85,12 +86,12 @@ for collection in artist_collection_data:
 
 
 #load image data from json file
-
 with open('data/images.json') as f:
     image_data = json.loads(f.read())
 
 images_in_db = []
 
+# Create an image and add it to the database
 for image in image_data:
     image_title = image['image_title']
     image_link = image['image_link']
