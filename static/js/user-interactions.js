@@ -169,7 +169,7 @@ function saveCommentEdit(evt) {
     const commentButtonInfo = evt.target.id;
     const commentButtonArray = commentButtonInfo.split('-');
     const commentButtonId = commentButtonArray[2];
-    console.log('ENTERED SAVECOMMENTEDIT: ', commentButtonId);
+    //console.log('ENTERED SAVECOMMENTEDIT: ', commentButtonId);
 
     fetch(`/api/user_profile/${imageId}/edit_comments`, {
         method: 'POST',
@@ -195,10 +195,13 @@ function saveCommentEdit(evt) {
 
 // Allow the user to cancel making changes to their comment
 function cancelCommentEdit (evt) {
-    evt.preventDefault();
+
+    const cancelButtonInfo = evt.target.id;
+    const cancelButtonArray = cancelButtonInfo.split('-');
+    const cancelButtonId = cancelButtonArray[2];
 
     // Hide the edit box by setting the parent div to hidden
-    evt.target.parentElement.setAttribute("hidden", "");
+    document.querySelector(`#hidden-comment-${cancelButtonId}`).setAttribute("hidden", "");
 }
 
 
