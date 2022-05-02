@@ -147,13 +147,13 @@ for (button of document.querySelectorAll(`.Comment`)) {
 // Unhide the edit div in image_details
 function unhideEdit (evt) {
 
-    console.log('evt target id: ', evt.target.id) //button
+    //console.log('evt target id: ', evt.target.id) //button
 
     const buttonInfo = evt.target.id;
     const buttonIdArray = buttonInfo.split('-');
     const buttonId = buttonIdArray[2];
 
-    console.log(document.querySelector(`#hidden-comment-${buttonId}`));
+    //console.log(document.querySelector(`#hidden-comment-${buttonId}`));
     if (buttonId) {
     document.querySelector(`#hidden-comment-${buttonId}`).removeAttribute("hidden");
     //console.log(document.querySelector(`#hidden-comment-${buttonId}`));
@@ -196,6 +196,7 @@ function saveCommentEdit(evt) {
 // Allow the user to cancel making changes to their comment
 function cancelCommentEdit (evt) {
 
+    // Extract the cancel button's id from the event object
     const cancelButtonInfo = evt.target.id;
     const cancelButtonArray = cancelButtonInfo.split('-');
     const cancelButtonId = cancelButtonArray[2];
