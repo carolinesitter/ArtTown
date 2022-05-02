@@ -246,21 +246,3 @@ function likeAnImage (evt){
 // When the like button is clicked/unclicked, call the function to like
 // or unlike an image
 likeButton.addEventListener('click', likeAnImage);
-
-
-// CREATE PROFILE FUNCTIONALITY
-
-const createProfileButton = document.querySelector('#create-profile-button');
-
-// Check that the user has entered the same password twice when creating an account
-// if they don't match, send an alert to the user
-function createPasswordAlert (evt) {
-    const passwordInput = document.querySelector('#password').value;
-    const passwordVerificaton = document.querySelector('#verify-password').value;
-
-    if (passwordInput != passwordVerificaton) {
-        alert("Sorry! Your passwords do not match. Please try again.")
-    }
-};
-// When the create profile button is clicked, check that the passwords match
-createProfileButton.addEventListener('submit', createPasswordAlert);
