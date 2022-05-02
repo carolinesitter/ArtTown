@@ -30,14 +30,49 @@ addCommentButton.addEventListener('submit', evt => {
             const newCommentDiv = document.createElement('div');
             newCommentDiv.setAttribute("data-comment-id", `${responseData.comment_id}`);
             newCommentDiv.setAttribute("class", "Comment");
-            newCommentDiv.innerHTML = `${responseData.username} : ${responseData.comment}`;
+            newCommentDiv.innerHTML = `${responseData.username}`;
+            
+            const commentParagraph = document.createElement('p');
+            commentParagraph.setAttribute("id", `para-comment-${responseData.comment_id}`);
+            commentParagraph.innerHTML = `${responseData.comment}`;
+
+            newCommentDiv.appendChild(commentParagraph);
+
+            // Create a div for edited comments
+            const editCommentDiv = document.createElement('div');
+            editCommentDiv.setAttribute("id", `hidden-comment-${responseData.comment_id}`);
+            editCommentDiv.setAttribute("hidden", true);
+
+            const input = document.createElement('input');
+            input.setAttribute("value", `${responseData.comment}`);
+
+            editCommentDiv.appendChild(input);
+            
+            const saveButton = document.createElement('button');
+            saveButton.setAttribute("class", "Save");
+            saveButton.setAttribute("type", "button");
+            saveButton.setAttribute("id", `save-id-${responseData.comment_id}`);
+            saveButton.innerHTML = 'Save';
+
+            editCommentDiv.appendChild(saveButton);
+
+            saveButton.addEventListener('click', saveCommentEdit);
+
+            const cancelButton = document.createElement('button');
+            cancelButton.setAttribute("class", "Cancel");
+            cancelButton.setAttribute("type", "button");
+            cancelButton.setAttribute("id", `cancel-id-${responseData.comment_id}`);
+            cancelButton.innerHTML = 'Cancel';
+
+            editCommentDiv.appendChild(cancelButton);
+
+            cancelButton.addEventListener('click', cancelCommentEdit);
 
             // Create a delete button and set its attributes to delete the 
             // comment on the browser
             const deleteButton = document.createElement('button');
             deleteButton.setAttribute("class", "Delete");
             deleteButton.setAttribute("type","button");
-            //deleteButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
             deleteButton.innerHTML = "Delete";
 
             // When the delete button is clicked, delete the comment
@@ -45,29 +80,33 @@ addCommentButton.addEventListener('submit', evt => {
 
             // Create an edit button and set its attributes to edit
             // the comment on the browser
-
             const editButton = document.createElement('button');
-            editButton.setAttribute("class", "Edit");
+            editButton.setAttribute("class", "Hidden");
             editButton.setAttribute("type", "button");
-            //editButton.setAttribute("data-comment-id", `${responseData.comment_id}`);
+            editButton.setAttribute("id", `button-id-${responseData.comment_id}`);
             editButton.innerHTML = "Edit";
 
-            // When the edit button is clicked, show the comment info
-            editButton.addEventListener('click', editComment);
+            // When the edit button is clicked, edit the comment
+            editButton.addEventListener('click', unhideEdit);
+
+            // Ensure that the delete button is rendered for each 
+            // comment that the logged in user made
+            newCommentDiv.appendChild(editButton);
+
+            newCommentDiv.appendChild(editCommentDiv);
 
             // Ensure that the delete button is added to each div 
             // where the user who left the comment is in session
             newCommentDiv.appendChild(deleteButton);
 
-            // Ensure that the edit button is added to each div where
-            // the user is in session
-            // newCommentDiv.appendChild(editButton);
 
             // Add the value of the new div to the user comments section 
             document.querySelector('#user-comments').insertAdjacentElement('beforeend', newCommentDiv)
                             
     });
 });
+
+//addCommentButton.addEventListener('submit', createComment);
 
 // DELETE A COMMENT FUNCTIONALITY
 
@@ -105,17 +144,32 @@ for (button of document.querySelectorAll(`.Comment`)) {
     button.querySelector('.Cancel').addEventListener('click', cancelCommentEdit);
 };
 
-// Unhide the edit box
+// Unhide the edit div in image_details
 function unhideEdit (evt) {
-    evt.preventDefault();
-    console.log()
-    // Show the hidden div
-    evt.target.parentElement.querySelector('div').removeAttribute("hidden");
+
+    console.log('evt target id: ', evt.target.id) //button
+
+    const buttonInfo = evt.target.id;
+    const buttonIdArray = buttonInfo.split('-');
+    const buttonId = buttonIdArray[2];
+
+    console.log(document.querySelector(`#hidden-comment-${buttonId}`));
+    if (buttonId) {
+    document.querySelector(`#hidden-comment-${buttonId}`).removeAttribute("hidden");
+    //console.log(document.querySelector(`#hidden-comment-${buttonId}`));
+    };
 }
 
 // Save the edited comment and update the web page 
 function saveCommentEdit(evt) {
     evt.preventDefault();
+
+    console.log('EVT TARGET:' ,  evt.target);
+
+    const commentButtonInfo = evt.target.id;
+    const commentButtonArray = commentButtonInfo.split('-');
+    const commentButtonId = commentButtonArray[2];
+    console.log('ENTERED SAVECOMMENTEDIT: ', commentButtonId);
 
     fetch(`/api/user_profile/${imageId}/edit_comments`, {
         method: 'POST',
@@ -131,7 +185,7 @@ function saveCommentEdit(evt) {
     .then (responseData => {
             if (responseData["status"] === "OK"){
                 evt.target.parentElement.querySelector('input').value = responseData["comment"];
-                evt.target.parentElement.parentElement.querySelector('p').innerHTML = responseData["comment"];
+                document.querySelector(`#para-comment-${commentButtonId}`).innerHTML = responseData["comment"];
                 evt.target.parentElement.setAttribute("hidden", "");
             }
             console.log(responseData);

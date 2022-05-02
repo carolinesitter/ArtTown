@@ -29,12 +29,12 @@
 
             {% if session.get('username') == comment.user.username %}
                 <div class="Comment" data-comment-id="{{comment.comment_id}}">
-                    {{comment.user.username}} : <p>{{ comment.comment }}</p>
-                    <button class="Hidden" type="button" >Edit</button>
-                    <div hidden>
+                    {{comment.user.username}} : <p id="para-comment-{{comment.comment_id}}">{{ comment.comment }}</p>
+                    <button id="button-id-{{comment.comment_id}}" class="Hidden" type="button">Edit</button>
+                    <div id="hidden-comment-{{comment.comment_id}}" hidden>
                         <input value = "{{comment.comment}}" >
-                        <button class="Save" type="button">Save</button>
-                        <button class="Cancel" type="button">Cancel</button>
+                        <button id="save-id-{{comment.comment_id}}" class="Save" type="button">Save</button>
+                        <button id="cancel-id-{{comment.comment_id}}" class="Cancel" type="button">Cancel</button>
                     </div>
                     <button class="Delete" type="button">Delete</button>
                 </div>
