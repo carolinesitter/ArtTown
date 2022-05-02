@@ -97,15 +97,15 @@ function deleteComment (evt) {
     });
 }
 
-// For each delete button on the page, if it is clicked, delete the comment
+// For each comment the user makes, give them the option to edit or delete
 for (button of document.querySelectorAll(`.Comment`)) {
     button.querySelector('.Delete').addEventListener('click', deleteComment);
     button.querySelector('.Hidden').addEventListener('click', unhideEdit);
     button.querySelector('.Save').addEventListener('click', saveCommentEdit);
+    button.querySelector('.Cancel').addEventListener('click', cancelCommentEdit);
 };
 
-// EDIT COMMENT FUNCTIONALITY
-
+// Unhide the edit box
 function unhideEdit (evt) {
     evt.preventDefault();
     console.log()
@@ -113,23 +113,13 @@ function unhideEdit (evt) {
     evt.target.parentElement.querySelector('div').removeAttribute("hidden");
 }
 
+// Save the edited comment and update the web page 
 function saveCommentEdit(evt) {
     evt.preventDefault();
-
-    
-    // Create new variables with the new comment value and comment id
-    //const editedComment = document.querySelector('') // unsure how to identify this
-
-    // Get the parent element of the target element of the button
-    // search for the input element 
-
-    // console.log(evt.target.parentElement.parentElement.dataset.commentId)
-    // console.log(evt.target.parentElement.querySelector('input').value)
 
     fetch(`/api/user_profile/${imageId}/edit_comments`, {
         method: 'POST',
         body: JSON.stringify({
-            //edited_comment : evt.target.dataset.;
             comment_id : evt.target.parentElement.parentElement.dataset.commentId,
             comment_text : evt.target.parentElement.querySelector('input').value,
         }),
@@ -147,6 +137,14 @@ function saveCommentEdit(evt) {
             console.log(responseData);
     });    
     
+}
+
+// Allow the user to cancel making changes to their comment
+function cancelCommentEdit (evt) {
+    evt.preventDefault();
+
+    // Hide the edit box by setting the parent div to hidden
+    evt.target.parentElement.setAttribute("hidden", "");
 }
 
 
