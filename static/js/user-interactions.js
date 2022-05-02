@@ -1,16 +1,13 @@
-
-// ADD A COMMENT FUNCTIONALITY
-
 // Assign variables to symbolize the image id and comment button
 let imageId = document.querySelector('#image').dataset.id;
-
 const addCommentButton = document.querySelector(`#add-comment-form`);
 
-// Check if a user has added a comment 
-addCommentButton.addEventListener('submit', evt => {
+// Allow the user to create a new comment
+function createComment (evt) {
     evt.preventDefault();
 
-    const commentInput = evt.target.querySelector("input").value;
+    // Get the comment the user created on the browser
+    const commentInput = evt.target.querySelector('input').value;
 
     // Get the values from our server and add updated values to the DOM
     fetch(`/user_profile/${imageId}/comments`, {
@@ -25,17 +22,19 @@ addCommentButton.addEventListener('submit', evt => {
     .then(response => response.json())
     .then(responseData => {
 
-            // Assign a new variable that will create a div element in our HTML 
-            // and set the variable to hold username and comment info
+            // Assign a new variable that will create a div element in our HTML
+            // for our new comments
             const newCommentDiv = document.createElement('div');
             newCommentDiv.setAttribute("data-comment-id", `${responseData.comment_id}`);
             newCommentDiv.setAttribute("class", "Comment");
             newCommentDiv.innerHTML = `${responseData.username}`;
             
+            // Create the paragraph div in our HTML that holds the new comment
             const commentParagraph = document.createElement('p');
             commentParagraph.setAttribute("id", `para-comment-${responseData.comment_id}`);
             commentParagraph.innerHTML = `${responseData.comment}`;
 
+            // Append the paragraph to the new comment div
             newCommentDiv.appendChild(commentParagraph);
 
             // Create a div for edited comments
@@ -43,29 +42,38 @@ addCommentButton.addEventListener('submit', evt => {
             editCommentDiv.setAttribute("id", `hidden-comment-${responseData.comment_id}`);
             editCommentDiv.setAttribute("hidden", true);
 
+            // Create a div to take the input value for the edited comment
             const input = document.createElement('input');
             input.setAttribute("value", `${responseData.comment}`);
 
+            // Append the input to the edited comments div
             editCommentDiv.appendChild(input);
             
+            // Create a save button in our HTML
             const saveButton = document.createElement('button');
             saveButton.setAttribute("class", "Save");
             saveButton.setAttribute("type", "button");
             saveButton.setAttribute("id", `save-id-${responseData.comment_id}`);
             saveButton.innerHTML = 'Save';
 
+            // Add the save button to the edited comments div
             editCommentDiv.appendChild(saveButton);
 
+            // When clicked, ensure that the edited comment is saved
             saveButton.addEventListener('click', saveCommentEdit);
 
+            // Create a cancel edits button in our HTML
             const cancelButton = document.createElement('button');
             cancelButton.setAttribute("class", "Cancel");
             cancelButton.setAttribute("type", "button");
             cancelButton.setAttribute("id", `cancel-id-${responseData.comment_id}`);
             cancelButton.innerHTML = 'Cancel';
 
+            // Append the cancel button to our edit comments div
             editCommentDiv.appendChild(cancelButton);
 
+            // When clicked, ensure that the option to edit a comment disappears,
+            // and that the original comment itself is not changed in any way
             cancelButton.addEventListener('click', cancelCommentEdit);
 
             // Create a delete button and set its attributes to delete the 
@@ -89,10 +97,11 @@ addCommentButton.addEventListener('submit', evt => {
             // When the edit button is clicked, edit the comment
             editButton.addEventListener('click', unhideEdit);
 
-            // Ensure that the delete button is rendered for each 
+            // Ensure that the edit button is rendered for each 
             // comment that the logged in user made
             newCommentDiv.appendChild(editButton);
 
+            // Add the edited comment div as a sub-div to the new comment div
             newCommentDiv.appendChild(editCommentDiv);
 
             // Ensure that the delete button is added to each div 
@@ -104,15 +113,12 @@ addCommentButton.addEventListener('submit', evt => {
             document.querySelector('#user-comments').insertAdjacentElement('beforeend', newCommentDiv)
                             
     });
-});
-
-//addCommentButton.addEventListener('submit', createComment);
-
-// DELETE A COMMENT FUNCTIONALITY
-
-// Assign a variable to symbolize the delete comment button
+};
+// When the post button is clicked, create a comment
+addCommentButton.addEventListener('submit', createComment);
 
 
+// Allow the user to delete their comment
 function deleteComment (evt) {
     evt.preventDefault();
 
@@ -144,33 +150,32 @@ for (button of document.querySelectorAll(`.Comment`)) {
     button.querySelector('.Cancel').addEventListener('click', cancelCommentEdit);
 };
 
-// Unhide the edit div in image_details
+// If the user decides to edit a comment, allow them to edit
+// by opening up the comment div
 function unhideEdit (evt) {
 
-    //console.log('evt target id: ', evt.target.id) //button
-
+    // Get the edit button id by splitting the event id object
     const buttonInfo = evt.target.id;
     const buttonIdArray = buttonInfo.split('-');
     const buttonId = buttonIdArray[2];
 
-    //console.log(document.querySelector(`#hidden-comment-${buttonId}`));
+    // Remove the hidden attribute in the comment div so that users can
+    // interact with their comment
     if (buttonId) {
     document.querySelector(`#hidden-comment-${buttonId}`).removeAttribute("hidden");
-    //console.log(document.querySelector(`#hidden-comment-${buttonId}`));
     };
 }
 
-// Save the edited comment and update the web page 
+// Save the user's edited comment and update the web page accordingly
 function saveCommentEdit(evt) {
     evt.preventDefault();
 
-    console.log('EVT TARGET:' ,  evt.target);
-
+    // Get the save button id by splitting the target event id object
     const commentButtonInfo = evt.target.id;
     const commentButtonArray = commentButtonInfo.split('-');
     const commentButtonId = commentButtonArray[2];
-    //console.log('ENTERED SAVECOMMENTEDIT: ', commentButtonId);
 
+    // Pass the updated comment information to the server and update the database
     fetch(`/api/user_profile/${imageId}/edit_comments`, {
         method: 'POST',
         body: JSON.stringify({
@@ -205,18 +210,12 @@ function cancelCommentEdit (evt) {
     document.querySelector(`#hidden-comment-${cancelButtonId}`).setAttribute("hidden", "");
 }
 
-
-
-
-
-// // LIKE AN IMAGE FUNCTIONALITY 
-
 // Assign variables to symbolize the like button and like count
 const likeButton = document.querySelector('#like-button');
 const likeCount = document.querySelector('#like-count');
 
 // If a user likes, or unlikes an image, update the like count 
-likeButton.addEventListener('click', evt =>{
+function likeAnImage (evt){
     evt.preventDefault();
 
     // If a user likes an image, add 1 to "like_count" 
@@ -230,7 +229,7 @@ likeButton.addEventListener('click', evt =>{
                 likeCount.innerHTML = responseData["like_count"];
         });
 
-    // If a user unlikes an image, remove 1 from "like_count"
+    // If a user unlikes an image, subtract 1 from "like_count"
     }else {
         const url = `/api/user_profile/${imageId}/remove_likes`;
         likeButton.innerHTML = 'Like';
@@ -242,4 +241,8 @@ likeButton.addEventListener('click', evt =>{
         });
     }
 
-})
+};
+
+// When the like button is clicked/unclicked, call the function to like
+// or unlike an image
+likeButton.addEventListener('click', likeAnImage);
