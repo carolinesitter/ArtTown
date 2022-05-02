@@ -262,5 +262,5 @@ function createPasswordAlert (evt) {
         alert("Sorry! Your passwords do not match. Please try again.")
     }
 };
-// When the create profile button is clicked, check the passwords
+// When the create profile button is clicked, check that the passwords match
 createProfileButton.addEventListener('submit', createPasswordAlert);
