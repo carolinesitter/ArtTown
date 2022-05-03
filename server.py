@@ -149,7 +149,7 @@ def user_profile():
         redirect("/")
 
 
-@app.route("/user_profile/<image_id>/comments", methods=["GET"])
+@app.route("/user_profile/<image_id>", methods=["GET"])
 def show_image_info(image_id):
     """Show info about an image"""
 
