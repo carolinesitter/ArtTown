@@ -2,3 +2,6 @@ env
 *.pyc
 secrets.sh
 sampledata.sql
+crud.cpython-39.pyc
+model.cpython-39.pyc
+server.cpython-39.pyc

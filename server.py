@@ -1,7 +1,7 @@
 """Server for artist by zipcode app"""
 
 from flask import (Flask, render_template, request, flash, session,
-                redirect, url_for, jsonify)
+                redirect, url_for, jsonify, g)
 from model import connect_to_db, db
 from datetime import datetime
 import crud
@@ -17,6 +17,11 @@ app.jinja_env.undefined = StrictUndefined
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME = "dgvuwdtnb"
+
+JS_TESTING_MODE = False
+@app.before_request
+def add_tests():
+    g.jasmine_tests = JS_TESTING_MODE
 
 
 @app.route("/")
@@ -412,6 +417,12 @@ def process_upload_data():
 
 
 if __name__ == "__main__":
+
+    import sys
+    # If the user types in the test code, run the jasmine tests
+    if sys.argv[-1] == "jstest":
+        JS_TESTING_MODE = True
+
     # DebugToolbarExtension(app)
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
