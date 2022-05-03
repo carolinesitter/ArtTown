@@ -146,6 +146,42 @@ def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=True):
     print("Connected to the db!")
 
 
+def example_data():
+    """Create example data for the test database"""
+
+    # Create a test user
+    test_user = User(first_name="Jane", 
+                    last_name="Doe",
+                    email="jane@example.com" 
+                    username="janedoe", 
+                    password="password",
+                    instagram="@janedoe",
+                    twitter="@janetwitter",
+                    tiktok="@janetok",
+                    website="www.janedoe.com",
+                    zipcode="00000"
+                    )
+    
+    # Create a test art collection
+    test_art_collection = ArtistCollection(gallery_title="Gallery Title",
+                                            gallery_description="Gallery Description")
+    
+    # Create a test image
+    test_image = Image(image_title="Image Title",
+                        image_link="static/img/color2.jpeg",
+                        date_uploaded="2022-5-2")
+    
+    # Create a test comment
+    test_comment = Comment(comment="Great job!")
+
+    # Create a test like
+    test_like = Like(like="1")
+
+    # Add the test data to the test database
+    db.session.add_all(test_user, test_art_collection, test_image, test_comment, test_like)
+    db.session.commit()
+
+
 if __name__ == "__main__":
     from server import app
 
