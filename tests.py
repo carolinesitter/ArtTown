@@ -81,8 +81,20 @@ class CreateProfileTests(unittest.TestCase):
         # Assert that the user is redirected to the homepage
         self.assertIn(b"Log In", result.data)
 
-    
-    def test_signinfail_wrong_password(self):
+    def test_sign_in_fail_wrong_email(self):
+        """Test for a sign in error if a user enters the wrong email"""
+
+        # Attempt to log in test user with the wrong email
+        result = self.client.post("/log_in",
+                                    data={"email": "jane@wrongemail.com",
+                                            "password": "password"},
+                                    follow_redirects = True)
+
+        # Check that the user is redirected to the homepage
+        self.assertIn(b"Log In", result.data)
+
+
+    def test_sign_in_fail_wrong_password(self):
         """Test for a sign in error if a user enters the wrong password"""
 
         # Attempt to log in test user with the wrong password
