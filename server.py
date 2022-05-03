@@ -177,14 +177,19 @@ def show_image_info(image_id):
                                 )
 
 
-@app.route("/user_profile/<image_id>/comments", methods=["POST"])
+@app.route("/api/user_profile/<image_id>/comments", methods=["POST"])
 def add_new_comment(image_id):
     """Allow users to add a comment"""
 
     # Get the image and comment information from the database
     comment = request.json.get("new_comment")
     image = crud.get_image_by_id(image_id)
-
+    print("\n"*5)
+    print("*" *5)
+    print("Comment: ", comment)
+    print("Image: ", image)
+    print("*"*5)
+    print("\n"*5)
     # Add a new comment to the image (and the database)
     if (comment != None) and (image != None) and ("user_email" in session):
         
@@ -237,16 +242,15 @@ def unlike_an_image(image_id):
     # Get the image information from the database
     image = crud.get_image_by_id(image_id)
 
+
     # Remove the like from the image and the database
     if image and "user_email" in session:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
 
-        # Query for the like in the database
         delete_like = crud.delete_like_by_image_and_user_id(image_id, user_id)
-        
-        # Delete the like from the database
+
         db.session.delete(delete_like)
         db.session.commit()
 

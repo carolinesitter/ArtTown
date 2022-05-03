@@ -10,7 +10,7 @@ function createComment (evt) {
     const commentInput = evt.target.querySelector('input').value;
 
     // Get the values from our server and add updated values to the DOM
-    fetch(`/user_profile/${imageId}/comments`, {
+    fetch(`/api/user_profile/${imageId}/comments`, {
         method : 'POST',
         body: JSON.stringify( {
             new_comment : commentInput,

@@ -174,10 +174,10 @@ def example_data():
                         date_uploaded="2022-5-2")
     
     # Create a test comment
-    test_comment = Comment(comment="Great job!")
+    test_comment = Comment(comment="Great job!", image_id=1, user_id=1)
 
     # Create a test like
-    test_like = Like(like="1")
+    test_like = Like(image_id=1, user_id=1)
 
     # Add the test data to the test database
     db.session.add_all([test_user, test_art_collection, test_image, test_comment, test_like])

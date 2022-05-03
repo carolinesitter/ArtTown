@@ -184,9 +184,38 @@ class CreateProfileTests(unittest.TestCase):
         result = self.client.get("/api/user_profile/1/likes")
 
         # Test that the like count increases
-        self.assertIn(b"1", result.data)
+        self.assertIn(b"2", result.data)
 
-    
+    def test_like_count_decrease(self):
+        """Test that the user can unlike an image"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+        
+        # Test that we are getting the like count data
+        result = self.client.get("/api/user_profile/1/remove_likes")
+
+        # Test that the like count decreases
+        self.assertIn(b"0", result.data)
+
+    def test_add_comment(self):
+        """Test that a user can leave a comment on an image"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+        
+        # Check that the comment is added to the database
+        result = self.client.post("/api/user_profile/1/comments",
+                                    json={"new_comment": "Nice work"})
+
+        # Check that the comment is showing up on the web page
+        self.assertIn(b"Nice work", result.data)
 
 if __name__ == "__main__":
     unittest.main()
