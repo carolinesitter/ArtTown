@@ -54,7 +54,7 @@ class CreateProfileTests(unittest.TestCase):
 
 
     def test_register_fail_user_already_exists(self):
-        """Test that a sign up error if a user already exists"""
+        """Test for a sign up error if a user already exists"""
 
         # Attempt to register an account as an already existing user
         result = self.client.post("/register_profile", data=dict(
