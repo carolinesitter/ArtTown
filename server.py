@@ -90,8 +90,7 @@ def user_login():
         session['username'] = user.username
 
         flash("Successfully logged in!")
-
-    return redirect("/user_profile")
+        return redirect("/user_profile")
 
 
 @app.route("/log_out")
