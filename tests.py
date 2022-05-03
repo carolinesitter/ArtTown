@@ -61,25 +61,25 @@ class CreateProfileTests(unittest.TestCase):
         self.assertTrue(test_user.username == "bobross")
 
 
-    # def test_register_fail_user_already_exists(self):
-    #     """Test for a sign up error if a user already exists"""
+    def test_register_fail_user_already_exists(self):
+        """Test for a sign up error if a user already exists"""
 
-    #     # Attempt to register an account as an already existing user
-    #     result = self.client.post("/register_profile", 
-    #                                 data={"first_name":"Jane",
-    #                                     "last_name":"Doe",
-    #                                     "email":"doe@example.com",
-    #                                     "username":"janedoe",
-    #                                     "password":"password",
-    #                                     "instagram":"@janedoe",
-    #                                     "twitter":"@janetwitter",
-    #                                     "tiktok":"@janetok",
-    #                                     "website":"www.janedoe.com",
-    #                                     "zipcode":"00000"}, 
-    #                                 follow_redirects = True)
+        # Attempt to register an account as an already existing user
+        result = self.client.post("/register_profile", 
+                                    data={"first_name":"Jane",
+                                        "last_name":"Doe",
+                                        "email":"doe@example.com",
+                                        "username":"janedoe",
+                                        "password":"password",
+                                        "instagram":"@janedoe",
+                                        "twitter":"@janetwitter",
+                                        "tiktok":"@janetok",
+                                        "website":"www.janedoe.com",
+                                        "zipcode":"00000"}, 
+                                    follow_redirects = True)
 
-    #     # If a user already exists in the database, this should flash
-    #     self.assertIn(b"User already registered. Please log in.", result.data)
+        # Assert that the user is redirected to the homepage
+        self.assertIn(b"Log In", result.data)
 
     
     # def test_signinfail_wrong_email(self):
