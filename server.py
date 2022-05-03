@@ -184,12 +184,7 @@ def add_new_comment(image_id):
     # Get the image and comment information from the database
     comment = request.json.get("new_comment")
     image = crud.get_image_by_id(image_id)
-    print("\n"*5)
-    print("*" *5)
-    print("Comment: ", comment)
-    print("Image: ", image)
-    print("*"*5)
-    print("\n"*5)
+
     # Add a new comment to the image (and the database)
     if (comment != None) and (image != None) and ("user_email" in session):
         
