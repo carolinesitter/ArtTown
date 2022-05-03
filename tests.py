@@ -155,5 +155,20 @@ class CreateProfileTests(unittest.TestCase):
         self.assertIn(b"Image Details", result.data)
 
 
+    def test_show_like_button(self):
+        """Test that a user is shown a like button on the image details page"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+
+        # Test that we are shown the image details page
+        result = self.client.get("/user_profile/1")
+
+        # Check that the user is shown the like button
+        self.assertIn(b"Like", result.data)
+
 if __name__ == "__main__":
     unittest.main()
