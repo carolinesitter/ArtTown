@@ -135,7 +135,7 @@ class Like(db.Model):
                     User ID = {self.user_id}>"""
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=False):
     """Connect the database to our Flask app"""
 
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri

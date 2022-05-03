@@ -170,5 +170,23 @@ class CreateProfileTests(unittest.TestCase):
         # Check that the user is shown the like button
         self.assertIn(b"Like", result.data)
 
+    
+    def test_like_count_increase(self):
+        """Test that the user can like an image"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+        
+        # Test that we are getting the like count data
+        result = self.client.get("/api/user_profile/1/likes")
+
+        # Test that the like count increases
+        self.assertIn(b"1", result.data)
+
+    
+
 if __name__ == "__main__":
     unittest.main()
