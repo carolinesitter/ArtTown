@@ -86,8 +86,8 @@ class CreateProfileTests(unittest.TestCase):
 
         # Attempt to log in test user with the wrong email
         result = self.client.post("/log_in",
-                                    data={"email": "jane@wrongemail.com",
-                                            "password": "password"},
+                                    data={"email":"jane@wrongemail.com",
+                                            "password":"password"},
                                     follow_redirects = True)
 
         # Check that the user is redirected to the homepage
@@ -99,14 +99,25 @@ class CreateProfileTests(unittest.TestCase):
 
         # Attempt to log in test user with the wrong password
         result = self.client.post("/log_in",
-                                    data={"email": "jane@example.com",
-                                            "password": "wrongpassword"},
+                                    data={"email":"jane@example.com",
+                                            "password":"wrongpassword"},
                                     follow_redirects = True)
 
         # Check that the user is redirected to the homepage
         self.assertIn(b"Log In", result.data)
     
 
+    def test_log_in_success(self):
+        """Test that a user can log in sucessfully"""
+
+        # Log in our test user with the correct information
+        result = self.client.post("/log_in",
+                                    data={"email":"jane@example.com",
+                                            "password":"password"},
+                                    follow_redirects = True)
+
+        # Check that the user is redirected to their profile page
+        self.assertIn(b"Profile", result.data)
 
 
 
