@@ -154,7 +154,7 @@ def example_data():
     # Create a test user
     test_user = User(first_name="Jane", 
                     last_name="Doe",
-                    email="jane@example.com" 
+                    email="jane@example.com",
                     username="janedoe", 
                     password="password",
                     instagram="@janedoe",
@@ -180,7 +180,7 @@ def example_data():
     test_like = Like(like="1")
 
     # Add the test data to the test database
-    db.session.add_all(test_user, test_art_collection, test_image, test_comment, test_like)
+    db.session.add_all([test_user, test_art_collection, test_image, test_comment, test_like])
     db.session.commit()
 
 
