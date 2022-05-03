@@ -234,5 +234,23 @@ class CreateProfileTests(unittest.TestCase):
         # Check that the comment is deleted from the web page
         self.assertNotIn(1, result.data)
 
+    
+    def test_edit_comment(self):
+        """Test that a user can edit their comment"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+        
+        # Check that the comment exists in the database and edit it
+        result = self.client.post("/api/user_profile/1/edit_comments", 
+                                    json={"comment_text": "Nice job",
+                                            "comment_id":1})
+        
+        # Check that the edited comment is what displays on the web page
+        self.assertIn(b"Nice job", result.data)
+
 if __name__ == "__main__":
     unittest.main()
