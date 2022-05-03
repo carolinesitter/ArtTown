@@ -139,6 +139,21 @@ class CreateProfileTests(unittest.TestCase):
         self.assertIn(b"Profile", result.data)
 
 
+    def test_show_image_details_page(self):
+        """Test that a user can view the image details on a user profile"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+
+        # Test that the image details will be properly rendered
+        result = self.client.get("/user_profile/1")
+
+        # Check that the user is shown the image details page
+        self.assertIn(b"Image Details", result.data)
+
 
 if __name__ == "__main__":
     unittest.main()
