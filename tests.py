@@ -217,5 +217,22 @@ class CreateProfileTests(unittest.TestCase):
         # Check that the comment is showing up on the web page
         self.assertIn(b"Nice work", result.data)
 
+    
+    def test_delete_comment(self):
+        """Test that a user can delete their comment on an image"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+
+        # Check that the comment exists in the database and delete it
+        result = self.client.post("/api/user_profile/1/delete_comment", 
+                                    json={"comment_id":1})
+
+        # Check that the comment is deleted from the web page
+        self.assertNotIn(1, result.data)
+
 if __name__ == "__main__":
     unittest.main()
