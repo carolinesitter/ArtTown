@@ -120,6 +120,24 @@ class CreateProfileTests(unittest.TestCase):
         self.assertIn(b"Profile", result.data)
 
 
+    def test_search_by_zipcode(self):
+        """Test that a user can access the search by zipcode form"""
+
+        # Log in our test user
+        self.client.post("/log_in",
+                        data={"email":"jane@example.com",
+                                "password":"password"},
+                        follow_redirects = True)
+        
+        # Test that the zipcode information will search for a user by their zipcode
+        result = self.client.post("/search_by_zipcode",
+                                    data={"zipcode": "00000"},
+                                    follow_redirects = True)
+
+        # Check that the user is redirected to a profile page
+        # with the matching zipcode input
+        self.assertIn(b"Profile", result.data)
+
 
 if __name__ == "__main__":
     unittest.main()
