@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from datetime import datetime
@@ -5,14 +6,13 @@ from datetime import datetime
 from server import app
 from model import db, connect_to_db, User, ArtistCollection, Image, Like, Comment, example_data
 
-# import os
-# from selenium import webdriver
-# from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.common.by import By
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
-# chrome_options = Options()
-# chrome_options.add_argument("--headless")
-# chrome_options.add_argument("--no-sandbox")
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
 
 class CreateProfileTests(unittest.TestCase):
     """Flask tests that use the database""" 
@@ -31,9 +31,6 @@ class CreateProfileTests(unittest.TestCase):
         db.create_all()
         example_data()
 
-        # # Create our webdriver, set our options
-        # self.browser = webdriver.Chrome("chromedriver", options=chrome_options)
-
 
     def tearDown(self):
         """Drop the database at the end of every test"""
@@ -41,18 +38,6 @@ class CreateProfileTests(unittest.TestCase):
         # Drop the database at the end of every test
         db.session.close()
         db.drop_all()
-
-        # # Close the webdriver
-        # self.browser.quit()
-
-    # def test_homepage_title():
-    #     """Test that the title of the homepage is 'Welcome"""
-
-    #     # Make a get request to our local host
-    #     self.browser.get("http://localhost:5000/")
-
-    #     # Check that the title is "Welcome"
-    #     self.assertEqual(self.browser.title, "Welcome")
 
 
     def test_create_profile_registers_new_user(self):
@@ -277,6 +262,27 @@ class CreateProfileTests(unittest.TestCase):
         
         # Check that the edited comment is what displays on the web page
         self.assertIn(b"Nice job", result.data)
+
+class TestHomePage(unittest.TestCase):
+
+    def setUp(self):
+        """Stuff to set up our tests"""
+        # Set up our webdriver
+        self.browser = webdriver.Chrome("chromedriver", options=chrome_options)
+
+    def tearDown(self):
+        """Stuff to tear down our tests"""
+
+        # Close our webdriver after each test
+        self.browser.quit()
+
+    def test_homepage_title(self):
+        """Test that the title of the homepage is 'Welcome''"""
+
+        # Get the homepage of the app 
+        self.browser.get("http://localhost:5000/")
+        # Check that the title of the homepage is "Welcome"
+        self.assertEqual(self.browser.title, "Welcome")
 
 if __name__ == "__main__":
     unittest.main()
