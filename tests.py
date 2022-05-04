@@ -14,6 +14,11 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 
+# # Set the path to the chromedriver file
+# service = Service(executable_path="/Macintosh HD/Users/carolinesitter/Downloads/chromedriver")
+# # Set up the driver variable to hold the webdriver path
+# driver = webdriver.Chrome(service=service)
+
 class CreateProfileTests(unittest.TestCase):
     """Flask tests that use the database""" 
 
