@@ -31,6 +31,16 @@ class TestHomePage(unittest.TestCase):
         # Check that the title of the homepage is "Welcome"
         self.assertEqual(self.browser.title, "Welcome")
 
+    def test_create_homepage_title(self):
+        """Test that the title of the create a profile page is 'Create
+            an Account'"""
+        
+        # Get the create profile page within the app 
+        self.browser.get("http://localhost:5000/create_profile")
+
+        # Check that the title of the create profile page is "Create an Account"
+        self.assertEqual(self.browser.title, "Create an Account")
+
 
 if __name__ == "__main__":
     unittest.main()
