@@ -267,6 +267,7 @@ class TestHomePage(unittest.TestCase):
 
     def setUp(self):
         """Stuff to set up our tests"""
+
         # Set up our webdriver
         self.browser = webdriver.Chrome("chromedriver", options=chrome_options)
 
@@ -281,6 +282,7 @@ class TestHomePage(unittest.TestCase):
 
         # Get the homepage of the app 
         self.browser.get("http://localhost:5000/")
+
         # Check that the title of the homepage is "Welcome"
         self.assertEqual(self.browser.title, "Welcome")
 
