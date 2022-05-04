@@ -5,6 +5,15 @@ from datetime import datetime
 from server import app
 from model import db, connect_to_db, User, ArtistCollection, Image, Like, Comment, example_data
 
+# import os
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.common.by import By
+
+# chrome_options = Options()
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--no-sandbox")
+
 class CreateProfileTests(unittest.TestCase):
     """Flask tests that use the database""" 
 
@@ -22,12 +31,29 @@ class CreateProfileTests(unittest.TestCase):
         db.create_all()
         example_data()
 
+        # # Create our webdriver, set our options
+        # self.browser = webdriver.Chrome("chromedriver", options=chrome_options)
+
+
     def tearDown(self):
         """Drop the database at the end of every test"""
     
         # Drop the database at the end of every test
         db.session.close()
         db.drop_all()
+
+        # # Close the webdriver
+        # self.browser.quit()
+
+    # def test_homepage_title():
+    #     """Test that the title of the homepage is 'Welcome"""
+
+    #     # Make a get request to our local host
+    #     self.browser.get("http://localhost:5000/")
+
+    #     # Check that the title is "Welcome"
+    #     self.assertEqual(self.browser.title, "Welcome")
+
 
     def test_create_profile_registers_new_user(self):
         """ Test that creating a profile will register a new user"""
