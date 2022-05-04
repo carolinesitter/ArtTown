@@ -6,18 +6,6 @@ from datetime import datetime
 from server import app
 from model import db, connect_to_db, User, ArtistCollection, Image, Like, Comment, example_data
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-
-# # Set the path to the chromedriver file
-# service = Service(executable_path="/Macintosh HD/Users/carolinesitter/Downloads/chromedriver")
-# # Set up the driver variable to hold the webdriver path
-# driver = webdriver.Chrome(service=service)
 
 class CreateProfileTests(unittest.TestCase):
     """Flask tests that use the database""" 
@@ -268,28 +256,6 @@ class CreateProfileTests(unittest.TestCase):
         # Check that the edited comment is what displays on the web page
         self.assertIn(b"Nice job", result.data)
 
-class TestHomePage(unittest.TestCase):
-
-    def setUp(self):
-        """Stuff to set up our tests"""
-
-        # Set up our webdriver
-        self.browser = webdriver.Chrome("chromedriver", options=chrome_options)
-
-    def tearDown(self):
-        """Stuff to tear down our tests"""
-
-        # Close our webdriver after each test
-        self.browser.quit()
-
-    def test_homepage_title(self):
-        """Test that the title of the homepage is 'Welcome''"""
-
-        # Get the homepage of the app 
-        self.browser.get("http://localhost:5000/")
-
-        # Check that the title of the homepage is "Welcome"
-        self.assertEqual(self.browser.title, "Welcome")
 
 if __name__ == "__main__":
     unittest.main()
