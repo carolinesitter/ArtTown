@@ -324,7 +324,10 @@ def search_by_zipcode():
     zipcode = int(request.form.get("zipcode"))
 
     # Get the zip code associated with each user's account
-    user_zip = crud.get_user_by_zipcode(zipcode)
+    users_with_zip = crud.get_user_by_zipcode(zipcode)
+
+    # From the users with a matching zipcode, choose one at random
+    user_zip = choice(users_with_zip)
 
     # Show the user profile with a matching zip code 
     if user_zip != None:

@@ -140,7 +140,7 @@ def get_user_by_email(email):
 def get_user_by_zipcode(zipcode):
     """Return a user by zipcode"""
 
-    return User.query.filter(User.zipcode == zipcode).first()
+    return User.query.filter(User.zipcode == zipcode).all()
 
 # Get all of our users
 def get_all_users():
