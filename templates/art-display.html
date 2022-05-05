@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Art Show {% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Art Show</h1>
+    <p>Here is a piece we think you might like!</p>
+
+    <p>{{first_name}} {{last_name}}</p>
+    <a href="/user_profile/{{random_user.user_id}}">
+        {{username}}
+    </a>
+
+    <div>
+        <p>{{art_collection.gallery_title}}</p>
+        <p>{{art_collection.gallery_description}}</p>
+            {% for image in art_collection.image %}
+            <p>{{image.image_title}}</p>
+            <img src="{{image.image_link}}">
+            {% endfor %}
+    </div>
+
+
+
+
+{% endblock %}
