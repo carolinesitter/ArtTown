@@ -148,6 +148,12 @@ def get_all_users():
 
     return User.query.all()
 
+# Get all users not logged in
+def get_all_not_logged_in_users(user_logged_in):
+    """Get all users that aren't logged in"""
+
+    return User.query.filter(User.email != user_logged_in).all()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

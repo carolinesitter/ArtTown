@@ -398,8 +398,8 @@ def load_art_show():
     # Get the user that is currently logged in
     user_logged_in = session.get("user_email")
 
-    # Query for a random user from our database and assign them to a variable
-    random_user = choice(crud.get_all_users())
+    # Query for a random user not logged in from the database
+    random_user = choice(crud.get_all_not_logged_in_users(user_logged_in))
 
     # Get the email for our random user object
     random_users_email = random_user.email
@@ -409,10 +409,12 @@ def load_art_show():
         username = random_user.username
         first_name = random_user.first_name
         last_name = random_user.last_name
-        art_collection = random_user.artist_collection
+        art_collection = choice(random_user.artist_collection)
+
 
 
         return render_template('art-display.html',
+                                random_user=random_user,
                                 username=username,
                                 first_name=first_name,
                                 last_name=last_name,
@@ -427,6 +429,7 @@ def load_art_show():
 def show_art_show_profile(user_id):
     """Show the profile of the user from the art show"""
 
+    #all_users = 
     random_user = crud.get_user_by_id(user_id)
 
     # Get the random user's information by querying the user object 
@@ -440,6 +443,7 @@ def show_art_show_profile(user_id):
 
     # Show the user their profile 
     return render_template('user-profile.html',
+                            random_user=random_user,
                             username=username,
                             zipcode=zipcode,
                             instagram=instagram,
