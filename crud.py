@@ -142,6 +142,11 @@ def get_user_by_zipcode(zipcode):
 
     return User.query.filter(User.zipcode == zipcode).first()
 
+# Get all of our users
+def get_all_users():
+    """Get all users in our users table"""
+
+    return User.query.all()
 
 if __name__ == '__main__':
     from server import app

@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request, flash, session,
                 redirect, url_for, jsonify, g)
 from model import connect_to_db, db
 from datetime import datetime
+from random import choice
 import crud
 import cloudinary.uploader
 import os
@@ -347,6 +348,45 @@ def search_by_zipcode():
     else:
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')
+
+
+@app.route("/show_random_profile")
+def show_random_profile():
+    """Show a random artist profile page"""
+
+    # Get the user that is currently logged in
+    user_logged_in = session.get("user_email")
+
+    # Query for a random user from our database and assign them to a variable
+    random_user = choice(crud.get_all_users())
+
+    # Get the email for our random user object
+    random_users_email = random_user.email
+
+    # Make sure that the random user is not the same as the user logged in
+    if user_logged_in != random_users_email:
+        username = random_user.username
+        zipcode = random_user.zipcode
+        instagram = random_user.instagram
+        twitter = random_user.twitter
+        tiktok = random_user.tiktok
+        website = random_user.website
+        art_collection = random_user.artist_collection
+
+
+        return render_template('user-profile.html',
+                                zipcode=zipcode,
+                                username=username,
+                                instagram=instagram,
+                                twitter=twitter,
+                                tiktok=tiktok,
+                                website=website,
+                                art_collection=art_collection)
+        
+    else:
+        flash("Sorry! We can't find anyone random right now. Try again later.")
+        return redirect("/zipcode_input")
+
 
 
 @app.route("/create_post_form")
