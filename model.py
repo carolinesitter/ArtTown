@@ -151,7 +151,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///artists-by-zip", echo=False):
 def example_data():
     """Create example data for the test database"""
 
-    # Create a test user
+    #Create a test user
     test_user = User(first_name="Jane", 
                     last_name="Doe",
                     email="jane@example.com",
@@ -179,8 +179,10 @@ def example_data():
     # Create a test like
     test_like = Like(image_id=1, user_id=1)
 
+    # print("test data")
     # Add the test data to the test database
     db.session.add_all([test_user, test_art_collection, test_image, test_comment, test_like])
+
     db.session.commit()
 
 

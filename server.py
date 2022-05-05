@@ -86,16 +86,27 @@ def user_login():
     # Get our user by querying for their email
     user = crud.get_user_by_email(email)
 
+    users = crud.get_all_users()
+    
+    print("&&&&&&&&&&&&&&&&&&")
+    print("email: ", email)
+    print("password: ", password)
+    print("Jane user???? ", user)
+    print("Visited /log_in POST")
+    print("users: ", users)
+
     # If the email/password != the values saved in the database,
     # tell the user to try again. Otherwise, log them in
     if not user or user.password != password:
         flash("Invalid email or password. Please try again.")
+        print("invalid password")
         return redirect("/")
     else:
         session['user_email'] = user.email
         session['username'] = user.username
 
         flash("Successfully logged in!")
+        print("success!")
         return redirect("/user_profile")
 
 
@@ -425,32 +436,32 @@ def load_art_show():
         return redirect("/zipcode_input")
 
 
-@app.route('/user_profile/user_id')
-def show_art_show_profile(user_id):
-    """Show the profile of the user from the art show"""
+# @app.route('/art_show_user_profile/<user_id>')
+# def show_art_show_profile(user_id):
+#     """Show the profile of the user from the art show"""
 
-    #all_users = 
-    random_user = crud.get_user_by_id(user_id)
+#     #random_user_id = 
+#     random_user = crud.get_user_by_id(user_id)
 
-    # Get the random user's information by querying the user object 
-    username = random_user.username
-    zipcode = random_user.zipcode
-    instagram = random_user.instagram
-    tiktok = random_user.tiktok
-    twitter = random_user.twitter
-    website = random_user.website
-    art_collection = random_user.artist_collection
+#     # Get the random user's information by querying the user object 
+#     username = random_user.username
+#     zipcode = random_user.zipcode
+#     instagram = random_user.instagram
+#     tiktok = random_user.tiktok
+#     twitter = random_user.twitter
+#     website = random_user.website
+#     art_collection = random_user.artist_collection
 
-    # Show the user their profile 
-    return render_template('user-profile.html',
-                            random_user=random_user,
-                            username=username,
-                            zipcode=zipcode,
-                            instagram=instagram,
-                            tiktok=tiktok,
-                            twitter=twitter,
-                            website=website,
-                            art_collection=art_collection)
+#     # Show the user their profile 
+#     return render_template('user-profile.html',
+#                             random_user=random_user,
+#                             username=username,
+#                             zipcode=zipcode,
+#                             instagram=instagram,
+#                             tiktok=tiktok,
+#                             twitter=twitter,
+#                             website=website,
+#                             art_collection=art_collection)
 
 
 @app.route("/create_post_form")
@@ -524,9 +535,11 @@ if __name__ == "__main__":
 
     import sys
     # If the user types in the test code, run the jasmine tests
-    if sys.argv[-1] == "jstest":
-        JS_TESTING_MODE = True
+    if sys.argv[-1] == "selenium_test":
+        connect_to_db(app, "postgresql:///testdb")
+        
 
+    else:
     # DebugToolbarExtension(app)
-    connect_to_db(app)
+        connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
