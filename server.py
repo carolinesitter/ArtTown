@@ -104,7 +104,7 @@ def user_login():
 def user_logout():
     """Log a user out"""
 
-    # When the user logs out, forget their email in sessions
+    # When the user logs out, forget their info in sessions
     session['user_email'] = None
     session['username'] = None
 
@@ -161,22 +161,18 @@ def user_profile():
 def show_image_info(image_id):
     """Show info about an image"""
 
-    # Get the image and user information
+    # Get the image information
     image = crud.get_image_by_id(image_id)
-    user = crud.get_user_by_email(session.get("user_email"))
-    user_id = user.user_id
-    logged_in_email = session.get("user_email")
 
     # Get the likes and comments for a particular image
     like_count = len(crud.get_likes_by_image_id(image_id))
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
     # Check that the user is logged in, if so, show them the image details
-    if logged_in_email is None:
-        flash("Sorry! You need to be logged in before you can add a comment!")
+    if session["user_email"]:
 
-    else:
-        user = crud.get_user_by_email(logged_in_email)
+        user = crud.get_user_by_email(session.get("user_email"))
+
         return render_template('image_details.html',
                                 user=user, 
                                 image=image, 
