@@ -426,32 +426,32 @@ def load_art_show():
         return redirect("/zipcode_input")
 
 
-# @app.route('/art_show_user_profile/<user_id>')
-# def show_art_show_profile(user_id):
-#     """Show the profile of the user from the art show"""
+@app.route('/art_show_user_profile/<user_id>')
+def show_art_show_profile(user_id):
+    """Show the profile of the user from the art show"""
 
-#     #random_user_id = 
-#     random_user = crud.get_user_by_id(user_id)
+    # Get the user from the art show
+    art_show_user = crud.get_user_by_id(user_id)
 
-#     # Get the random user's information by querying the user object 
-#     username = random_user.username
-#     zipcode = random_user.zipcode
-#     instagram = random_user.instagram
-#     tiktok = random_user.tiktok
-#     twitter = random_user.twitter
-#     website = random_user.website
-#     art_collection = random_user.artist_collection
+    # Get the random user's information by querying the user object 
+    username = art_show_user.username
+    zipcode = art_show_user.zipcode
+    instagram = art_show_user.instagram
+    tiktok = art_show_user.tiktok
+    twitter = art_show_user.twitter
+    website = art_show_user.website
+    art_collection = art_show_user.artist_collection
 
-#     # Show the user their profile 
-#     return render_template('user-profile.html',
-#                             random_user=random_user,
-#                             username=username,
-#                             zipcode=zipcode,
-#                             instagram=instagram,
-#                             tiktok=tiktok,
-#                             twitter=twitter,
-#                             website=website,
-#                             art_collection=art_collection)
+    # Show the user their profile 
+    return render_template('user-profile.html',
+                            art_show_user=art_show_user,
+                            username=username,
+                            zipcode=zipcode,
+                            instagram=instagram,
+                            tiktok=tiktok,
+                            twitter=twitter,
+                            website=website,
+                            art_collection=art_collection)
 
 
 @app.route("/create_post_form")
