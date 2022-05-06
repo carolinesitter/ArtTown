@@ -297,7 +297,7 @@ def edit_comment(image_id):
     comment = crud.get_comment_by_id(comment_id)
 
     # Override the previous comment in the database with the new comment
-    if (comment != None) and ("user_email" in session):
+    if comment and session["user_email"]:
 
         comment.comment = comment_text
 
