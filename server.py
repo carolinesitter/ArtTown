@@ -194,7 +194,7 @@ def add_new_comment(image_id):
     image = crud.get_image_by_id(image_id)
 
     # Add a new comment to the image (and the database)
-    if (comment != None) and (image != None) and ("user_email" in session):
+    if comment and image and session["user_email"]:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
