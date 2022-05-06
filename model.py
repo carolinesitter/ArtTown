@@ -28,6 +28,7 @@ class User(db.Model):
     artist_collection = db.relationship('ArtistCollection', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
+    image = db.relationship('Image', back_populates='user')
 
 
     def __repr__(self):
@@ -71,6 +72,7 @@ class Image(db.Model):
 
     image_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     artist_collection_id = db.Column(db.Integer, db.ForeignKey("artist_collections.artist_collection_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     image_title = db.Column(db.String(50), nullable=False)
     image_link = db.Column(db.String, nullable=False)
     date_uploaded = db.Column(db.DateTime, nullable=False)
@@ -79,6 +81,7 @@ class Image(db.Model):
     artist_collection = db.relationship('ArtistCollection', back_populates='image')
     comments = db.relationship('Comment', back_populates='image')
     likes = db.relationship('Like', back_populates='image')
+    user = db.relationship('User', back_populates='image')
 
 
     def __repr__(self):
@@ -119,7 +122,6 @@ class Like(db.Model):
     __tablename__ = "likes"
 
     like_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    like = db.Column(db.Integer) # remove this eventually!! 
     image_id = db.Column(db.Integer, db.ForeignKey("images.image_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 

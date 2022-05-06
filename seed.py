@@ -1,4 +1,4 @@
-"""Script to seed database."""
+"""Script to seed initial sample database."""
 
 import os
 import json

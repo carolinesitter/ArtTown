@@ -393,6 +393,54 @@ def show_random_profile():
         return redirect("/zipcode_input")
 
 
+@app.route('/explore')
+def explore_page():
+    """Show all the latest uploads"""
+
+    images = crud.get_all_images()
+
+    if session["user_email"]:
+    
+        return render_template('explore-page.html',
+                                images=images,
+                                )
+    
+    else:
+        flash("Sorry! You must log in or create an account to view this feature!")
+        return redirect('/')
+
+
+@app.route("/explore/user_profile/<user_id>")
+def get_explore_user_profile(user_id):
+    """Show the profile of a user from the explore page"""
+
+    # Get the user that is currently logged in
+    user_logged_in = session.get("user_email")
+
+    # Get the user that we are currently clicking on
+    explore_user = crud.get_user_by_id(user_id)
+
+    # Get the rest of the users information
+    username = explore_user.username
+    zipcode = explore_user.zipcode
+    instagram = explore_user.instagram
+    twitter = explore_user.twitter
+    tiktok = explore_user.tiktok
+    website = explore_user.website
+    art_collection = explore_user.artist_collection
+
+    # Show the user's profile
+    return render_template('user-profile.html',
+                            username=username,
+                            zipcode=zipcode,
+                            instagram=instagram,
+                            twitter=twitter,
+                            tiktok=tiktok,
+                            website=wesite,
+                            art_collection=art_collection)
+
+
+
 @app.route("/load_art_show")
 def load_art_show():
     """Show a random piece of art posted on the platform"""
@@ -407,7 +455,7 @@ def load_art_show():
     random_users_email = random_user.email
 
     # Make sure that the random user is not the same as the user logged in
-    if user_logged_in != random_users_email and session["user_email"]:
+    if user_logged_in != random_users_email and session["user_email"] and random_users_email:
         username = random_user.username
         first_name = random_user.first_name
         last_name = random_user.last_name
@@ -477,7 +525,7 @@ def create_art_collection():
 
     # Create the new art gallery post
     if gallery_title and gallery_description:
-        
+
         artist_gallery = crud.create_artist_collection(gallery_title, gallery_description, user)
         db.session.add(artist_gallery)
         db.session.commit()
