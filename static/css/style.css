@@ -4,3 +4,45 @@ img {
     /* margin: auto;
     display: block; */
 }
+
+#search-header {
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#search-description {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 32%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#zipcode-search {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#zipcode-label {
+    font-size: 17px;
+}
+
+#randomize-btn {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    display: block;
+}

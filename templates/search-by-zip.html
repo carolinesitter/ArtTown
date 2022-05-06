@@ -2,16 +2,19 @@
 {% block title %} Enter Zip Code {% endblock %}
 
 {% block content %}
-    <h1>Search For Artists in Your Zip Code!</h1>
+    <h1 id="search-header">Search For Artists in Your Zip Code!</h1>
+    <p id="search-description">
+        Search for artists nearby, or randomize your search to find someone new!
+    </p>
 
-    <form action="/search_by_zipcode" method="POST">
-        <label for="search-by-zip">Enter your zip code</label>
-        <input type="text" name="zipcode" id="zipcode-input">
+    <form id="zipcode-search" action="/search_by_zipcode" method="POST">
+        <label id="zipcode-label" for="search-by-zip">Enter your zip code</label>
+        <input id="zipcode-input" type="text" name="zipcode">
 
-        <button type="submit" name="zipcode-search">Search</button>
+        <button id="search-btn" type="submit" class="btn-outline-dark">Search</button>
     </form>
     <form action="/show_random_profile">
-        <button type="submit" name="random-search">Randomize</button>
+        <button id="randomize-btn" type="submit" class="btn-outline-dark">Randomize</button>
     </form>
 
 
