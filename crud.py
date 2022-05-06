@@ -152,7 +152,8 @@ def get_all_users():
 def get_all_not_logged_in_users(user_logged_in):
     """Get all users that aren't logged in"""
 
-    return User.query.filter(User.email != user_logged_in).all()
+    return User.query.filter(User.email != user_logged_in, ).all()
+
 
 
 # Get all of our images from the database

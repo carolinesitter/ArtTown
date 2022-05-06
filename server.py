@@ -448,18 +448,32 @@ def load_art_show():
     # Get the user that is currently logged in
     user_logged_in = session.get("user_email")
 
-    # Query for a random user not logged in from the database
-    random_user = choice(crud.get_all_not_logged_in_users(user_logged_in))
+    # Query for other users in the database
+    users = crud.get_all_not_logged_in_users(user_logged_in)
+
+    random_users = []
+
+    for user in users: # Filter out the empty lists 
+        if user.artist_collection != []:
+            random_users.append(user)
+    
+    random_user = choice(random_users)
 
     # Get the email for our random user object
     random_users_email = random_user.email
+    
+    print(random_user)
 
     # Make sure that the random user is not the same as the user logged in
     if user_logged_in != random_users_email and session["user_email"] and random_users_email:
         username = random_user.username
         first_name = random_user.first_name
         last_name = random_user.last_name
+        
+        print("*"*5)
+        print(random_user.artist_collection)
         art_collection = choice(random_user.artist_collection)
+
 
 
 
