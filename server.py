@@ -313,7 +313,7 @@ def edit_comment(image_id):
 def zipcode_input():
     """Show input box where artists can type in zip code"""
 
-    if session["user_email"] != None:
+    if session["user_email"]:
         
         return render_template('search-by-zip.html')
 
@@ -336,7 +336,7 @@ def search_by_zipcode():
     user_zip = choice(users_with_zip)
 
     # Show the user profile with a matching zip code 
-    if user_zip != None:
+    if user_zip:
         username = user_zip.username
         instagram = user_zip.instagram
         twitter = user_zip.twitter
