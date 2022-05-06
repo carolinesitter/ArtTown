@@ -14,9 +14,11 @@
         <p>Tik Tok: {{tiktok}}</p>
         <p>Website: {{website}}</p>
 
-    <form action="/create_post_form">
-        <button id="create-post" type="submit">Create Post</button>
-    </form>
+    {% if session.get('username') == username %}
+        <form action="/create_post_form">
+            <button id="create-post" type="submit">Create Post</button>
+        </form>
+    {% endif %}
 
     <p> Here are {{username}}'s latest posts: </p>
         <div>

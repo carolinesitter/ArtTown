@@ -97,7 +97,6 @@ def user_login():
         session['username'] = user.username
 
         flash("Successfully logged in!")
-        print("success!")
         return redirect("/user_profile")
 
 
@@ -107,6 +106,7 @@ def user_logout():
 
     # When the user logs out, forget their email in sessions
     session['user_email'] = None
+    session['username'] = None
 
     # Show user back to the homepage
     return redirect("/")
@@ -125,7 +125,7 @@ def user_profile():
     """Show the user's profile"""
 
     # If a user is logged in, show their profile
-    if "user_email" in session:
+    if session["user_email"]:
 
         # Get the user's email from the session
         email = session['user_email']
@@ -152,9 +152,9 @@ def user_profile():
                                 website=website,
                                 art_collection=art_collection)
 
-    # If they are not logged in, send the user to the homepage
+    # If they are not logged in, send the user to the login page
     else:
-        redirect("/")
+        return redirect("/")
 
 
 @app.route("/user_profile/<image_id>", methods=["GET"])
@@ -313,8 +313,13 @@ def edit_comment(image_id):
 def zipcode_input():
     """Show input box where artists can type in zip code"""
 
-    # Show the zipcode search page
-    return render_template('search-by-zip.html')
+    if session["user_email"] != None:
+        
+        return render_template('search-by-zip.html')
+
+    else:
+        
+        return redirect('/')
 
 
 @app.route("/search_by_zipcode", methods=["POST"])
@@ -406,7 +411,7 @@ def load_art_show():
     random_users_email = random_user.email
 
     # Make sure that the random user is not the same as the user logged in
-    if user_logged_in != random_users_email:
+    if user_logged_in != random_users_email and session["user_email"]:
         username = random_user.username
         first_name = random_user.first_name
         last_name = random_user.last_name
@@ -422,8 +427,8 @@ def load_art_show():
                                 art_collection=art_collection)
     
     else:
-        flash("Sorry! We can't find any random art right now. Try again later.")
-        return redirect("/zipcode_input")
+        flash("Sorry! You need to be logged in to access the art show!")
+        return redirect("/")
 
 
 @app.route('/art_show_user_profile/<user_id>')
