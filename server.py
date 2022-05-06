@@ -221,7 +221,7 @@ def like_an_image(image_id):
     image = crud.get_image_by_id(image_id)
 
     # Like an image and add that like to the database
-    if image and "user_email" in session:
+    if image and session["user_email"]:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
@@ -246,7 +246,7 @@ def unlike_an_image(image_id):
 
 
     # Remove the like from the image and the database
-    if image and "user_email" in session:
+    if image and session["user_email"]:
         
         user = crud.get_user_by_email(session.get("user_email"))
         user_id = user.user_id
