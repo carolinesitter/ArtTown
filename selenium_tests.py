@@ -95,5 +95,38 @@ class TestHomePage(unittest.TestCase):
         self.assertEqual(expected_url, actual_url)
 
 
+    def test_like_increase(self):
+        """Test that when a user likes a button, the like count increases"""
+
+        # Get the log in page
+        self.browser.get("http://localhost:5000/")
+
+        # Get the email and password information
+        user_email = self.browser.find_element(By.ID, "email-log-in")
+        user_password = self.browser.find_element(By.ID, "password-log-in")
+
+
+        # Pass in the log in info
+        user_email.send_keys("jane@example.com")
+        user_password.send_keys("password")
+
+
+        # Get the button by its ID and ensure that it is clicked on the browser
+        form = self.browser.find_element(By.ID, "log-in-form")
+        form.submit()
+
+        # Get the image details page
+        self.browser.get("http://localhost:5000/user_profile/1")
+
+        # Get the like button and click it
+        button = self.browser.find_element(By.ID, "like-button")
+        button.click()
+
+        # Get the updated like count
+        new_like_count = self.browser.find_element(By.ID, "like-count")
+
+        # Assert that the like count increased
+        assert new_like_count.text == "1"
+
 if __name__ == "__main__":
     unittest.main()

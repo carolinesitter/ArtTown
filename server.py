@@ -86,15 +86,6 @@ def user_login():
     # Get our user by querying for their email
     user = crud.get_user_by_email(email)
 
-    users = crud.get_all_users()
-    
-    print("&&&&&&&&&&&&&&&&&&")
-    print("email: ", email)
-    print("password: ", password)
-    print("Jane user???? ", user)
-    print("Visited /log_in POST")
-    print("users: ", users)
-
     # If the email/password != the values saved in the database,
     # tell the user to try again. Otherwise, log them in
     if not user or user.password != password:
@@ -237,7 +228,6 @@ def like_an_image(image_id):
 
         like = crud.create_like(image_id, user_id)
 
-        
         db.session.add(like) 
         db.session.commit()
 
