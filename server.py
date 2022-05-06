@@ -476,7 +476,8 @@ def create_art_collection():
     gallery_description = request.form.get("gallery-description")
 
     # Create the new art gallery post
-    if gallery_title != None and gallery_description != None:
+    if gallery_title and gallery_description:
+        
         artist_gallery = crud.create_artist_collection(gallery_title, gallery_description, user)
         db.session.add(artist_gallery)
         db.session.commit()
@@ -511,7 +512,7 @@ def process_upload_data():
     image_link = result['secure_url']
 
     # Create the new image and add it to the user profile (and database)
-    if image_link != None and image_title != None:
+    if image_link and image_title:
 
         new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
         db.session.add(new_image)
