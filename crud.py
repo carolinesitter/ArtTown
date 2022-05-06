@@ -154,6 +154,13 @@ def get_all_not_logged_in_users(user_logged_in):
 
     return User.query.filter(User.email != user_logged_in).all()
 
+
+# Get all of our images from the database
+def get_all_images():
+    """Get all of the images in our images table"""
+
+    return Image.query.all()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
