@@ -4,6 +4,12 @@
 
 {% block content %}
     <h1> {{image.image_title}}</h1>
+
+    <a href="/art_show_user_profile/{{image.user.user_id}}">
+        {{image.user.username}}
+    </a>
+
+
     <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
 
 

@@ -100,7 +100,7 @@ for image in image_data:
 
     date_uploaded = datetime.strptime(image['date_uploaded'], "%Y-%m-%d")
 
-    db_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
+    db_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection, user_id)
 
     images_in_db.append(db_image)
 

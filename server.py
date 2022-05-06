@@ -397,8 +397,10 @@ def show_random_profile():
 def explore_page():
     """Show all the latest uploads"""
 
+    # Get all the images in the database
     images = crud.get_all_images()
 
+    # Show the explore page
     if session["user_email"]:
     
         return render_template('explore-page.html',
@@ -408,37 +410,6 @@ def explore_page():
     else:
         flash("Sorry! You must log in or create an account to view this feature!")
         return redirect('/')
-
-
-@app.route("/explore/user_profile/<user_id>")
-def get_explore_user_profile(user_id):
-    """Show the profile of a user from the explore page"""
-
-    # Get the user that is currently logged in
-    user_logged_in = session.get("user_email")
-
-    # Get the user that we are currently clicking on
-    explore_user = crud.get_user_by_id(user_id)
-
-    # Get the rest of the users information
-    username = explore_user.username
-    zipcode = explore_user.zipcode
-    instagram = explore_user.instagram
-    twitter = explore_user.twitter
-    tiktok = explore_user.tiktok
-    website = explore_user.website
-    art_collection = explore_user.artist_collection
-
-    # Show the user's profile
-    return render_template('user-profile.html',
-                            username=username,
-                            zipcode=zipcode,
-                            instagram=instagram,
-                            twitter=twitter,
-                            tiktok=tiktok,
-                            website=wesite,
-                            art_collection=art_collection)
-
 
 
 @app.route("/load_art_show")
@@ -451,31 +422,28 @@ def load_art_show():
     # Query for other users in the database
     users = crud.get_all_not_logged_in_users(user_logged_in)
 
+    # Get a list of our empty users
     random_users = []
 
-    for user in users: # Filter out the empty lists 
+    # Loop through our users and make sure they have an art collection
+    # Filter out the empty lists 
+    for user in users: 
         if user.artist_collection != []:
             random_users.append(user)
     
+    # Get a random user
     random_user = choice(random_users)
 
     # Get the email for our random user object
     random_users_email = random_user.email
     
-    print(random_user)
 
     # Make sure that the random user is not the same as the user logged in
     if user_logged_in != random_users_email and session["user_email"] and random_users_email:
         username = random_user.username
         first_name = random_user.first_name
         last_name = random_user.last_name
-        
-        print("*"*5)
-        print(random_user.artist_collection)
         art_collection = choice(random_user.artist_collection)
-
-
-
 
         return render_template('art-display.html',
                                 random_user=random_user,
@@ -559,6 +527,7 @@ def process_upload_data():
     # Get the user and art post information
     email = session['user_email']
     user = crud.get_user_by_email(email)
+    user_id = user.user_id
     artist_collection = crud.get_art_collection_by_id(int(request.form.get('gallery-collection')))
     image_title = request.form.get('image-title')
     date_uploaded = datetime.now()
@@ -576,7 +545,7 @@ def process_upload_data():
     # Create the new image and add it to the user profile (and database)
     if image_link and image_title:
 
-        new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection)
+        new_image = crud.create_image(image_title, image_link, date_uploaded, artist_collection, user_id)
         db.session.add(new_image)
         db.session.commit()
 

@@ -36,7 +36,7 @@ def create_artist_collection(gallery_title, gallery_description, user):
     return art_collection
 
 # Create a new image
-def create_image(image_title, image_link, date_uploaded, artist_collection):
+def create_image(image_title, image_link, date_uploaded, artist_collection, user_id):
     """Create and return a new image"""
 
     new_image = Image(
@@ -44,7 +44,8 @@ def create_image(image_title, image_link, date_uploaded, artist_collection):
                 image_link=image_link,
                 date_uploaded=date_uploaded,
                 # artist collection object
-                artist_collection=artist_collection
+                artist_collection=artist_collection,
+                user_id=user_id,
                 )
 
     return new_image
