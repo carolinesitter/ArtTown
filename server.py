@@ -524,12 +524,17 @@ def process_upload_data():
 if __name__ == "__main__":
 
     import sys
-    # If the user types in the test code, run the jasmine tests
+    # Code to run the selenium tests in the terminal 
     if sys.argv[-1] == "selenium_test":
         connect_to_db(app, "postgresql:///testdb")
-        
+    
+    # Code to run the jasmine tests in the terminal 
+    elif sys.argv[-1] == "jstest":
+        #connect_to_db(app, "postgresql://testdb")
+        JS_TESTING_MODE = True 
 
+    # Otherwise, run the server normally 
     else:
-    # DebugToolbarExtension(app)
         connect_to_db(app)
+
     app.run(host="0.0.0.0", debug=True)
