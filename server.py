@@ -271,7 +271,7 @@ def delete_comment(image_id):
     image = crud.get_image_by_id(image_id)
 
     # Delete the comment from the database
-    if image and "user_email" in session:
+    if image and session["user_email"]:
 
         # Query for the comment in the database
         comment = crud.get_comment_by_id(request.json.get("comment_id"))
