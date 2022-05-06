@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1>Welcome to Artist by Zipcode!</h1>
+<h1 id="homepage-title">Welcome to Artist by Zipcode!</h1>
 
 <!-- <img src="http://" -->
 
-    <p>Log In</p>
+    <p id="log-in-title">Log In</p>
 
     <form action="/log_in" method="POST" id="log-in-form">
 
@@ -21,7 +21,7 @@
         <button id="log-in-button" type="submit">Log In</button>
     </form>
 
-    <form action="/create_profile">
+    <form id="create-profile-link" action="/create_profile">
         <p>New Here? Let's get you signed up!</p>
         <button id="start-create-profile" type="submit">Create Profile</button>
 
