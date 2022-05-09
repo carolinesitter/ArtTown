@@ -88,3 +88,19 @@ function cancelDescriptionEdit(evt) {
 // When the cancel button is clicked, hide the editing features
 cancelDescriptionButton.addEventListener('click', cancelDescriptionEdit);
 
+
+// Get the cancel image title edit button and assign it to a variable
+const cancelImageTitleButton = document = document.querySelector('.Cancel-Img-Title');
+
+// Allow users to cancel editing their image title
+function cancelImageTitleEdit(evt) {
+
+    // Get the evt Id and assign it to a variable
+    const cancelButton = evt.target.id
+
+    // Re-hide the editing features
+    evt.target.parentElement.setAttribute("hidden", "");
+}
+
+// When the cancel button is clicked, hide the editing features
+cancelImageTitleButton.addEventListener('click', cancelImageTitleEdit);
