@@ -554,6 +554,28 @@ def process_upload_data():
         return render_template('upload-image.html')
 
 
+@app.route("/user_profile/edit/<artist_collection_id>")
+def show_art_collection_details(artist_collection_id):
+    """Show the user details about their artist collection"""
+
+    # Get the artist collection by its ID
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    # Get the image(s) by Artist Collection ID
+    images = crud.get_images_in_art_collection(artist_collection_id)
+
+    #Ensure to check that the user is logged in
+    if session["user_email"]:
+
+        user = crud.get_user_by_email(session.get("user_email"))
+
+        # Show the user their post details so that they can edit
+        return render_template('art-collection-details.html',
+                                art_collection=art_collection,
+                                images=images,
+                                user=user)
+
+
 if __name__ == "__main__":
 
     import sys

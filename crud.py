@@ -156,12 +156,17 @@ def get_all_not_logged_in_users(user_logged_in):
     return User.query.filter(User.email != user_logged_in, ).all()
 
 
-
 # Get all of our images from the database
 def get_all_images():
     """Get all of the images in our images table"""
 
     return Image.query.all()
+
+# Get all of the images in a post/artist collection
+def get_images_in_art_collection(artist_collection_id):
+    """Get all images in a particular artist collection"""
+
+    return Image.query.filter(Image.artist_collection_id == artist_collection_id).all()
 
 if __name__ == '__main__':
     from server import app

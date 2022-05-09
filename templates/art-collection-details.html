@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {% endblock %}
+
+{% block content %}
+
+<h1> {{art_collection.gallery_title}}</h1>
+
+<p> {{art_collection.gallery_description}}</p>
+
+    {% for image in images %}
+        <p>{{image.image_title}}</p>
+        <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+
+    {% endfor %}
+
+
+
+{% endblock %}
