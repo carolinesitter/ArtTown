@@ -40,11 +40,17 @@
 
     {% for image in images %}
         <div>
-            <p>{{image.image_title}}</p>
+            <p id="image-title">{{image.image_title}}</p>
             <button id="edit-image-title-btn" type="button">Edit</button>
                 <div hidden class="Img-Title">
                     <input value="{{image.image_title}}">
-                    <button class="Save-Img-Title" type="submit">Save</button>
+                    <button 
+                        id="save-img-{{art_collection.artist_collection_id}}"
+                        class="Save-Img-Title" 
+                        type="submit"
+                    >
+                        Save
+                    </button>
                     <button class="Cancel-Img-Title" type="submit">Cancel</button>
                 </div>
             <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">

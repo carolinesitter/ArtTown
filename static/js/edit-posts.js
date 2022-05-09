@@ -172,3 +172,37 @@ function saveEditedDescription(evt){
 
 // When the save button is clicked, save the updated gallery description
 saveDescriptionButton.addEventListener('click', saveEditedDescription);
+
+
+// Get the save edited image title button and assign it to a variable
+const saveImageTitleButton = document.querySelector('.Save-Img-Title');
+
+// Allow users to save their edited image title
+function saveEditedImageTitle(evt) {
+
+    // Parse through the evt target to find the ArtistCollectionId
+    const eventTargetInfo = evt.target.id;
+    const eventTargetArray = eventTargetInfo.split('-');
+    const artistCollectionId = eventTargetArray[2];
+
+    fetch(`/user_profile/edit/${artistCollectionId}/img_title`,{
+        method: 'POST',
+        body: JSON.stringify({
+            image_title_text : evt.target.parentElement.querySelector('input').value,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        if (responseData["status"] === "OK"){
+            evt.target.parentElement.querySelector('input').value = responseData["image_title"];
+            document.querySelector('#image-title').innerHTML = responseData["image_title"];
+            evt.target.parentElement.setAttribute("hidden", "");
+        }
+    })
+}
+
+// When the save button is clicked, save the edited image title
+saveImageTitleButton.addEventListener('click', saveEditedImageTitle);
