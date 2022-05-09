@@ -4,16 +4,39 @@
 
 {% block content %}
 
-<h1> {{art_collection.gallery_title}}</h1>
 
-<p> {{art_collection.gallery_description}}</p>
+    <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
+    <button id="edit-title" type="button">Edit</button>
+        <div hidden class="Title">
+            <button class="Save-Title" type="submit">Save</button>
+            <button class="Cancel-Title" type="submit">Cancel</button>
+        </div>
+
+
+
+    <p id="art-collection-description"> {{art_collection.gallery_description}}</p>
+    <button id="edit-description" type="button">Edit</button>
+        <div hidden class="Description">
+            <button class="Save-Desc" type="submit">Save</button>
+            <button class="Cancel-Desc" type="submit">Cancel</button>
+        </div>
+
 
     {% for image in images %}
-        <p>{{image.image_title}}</p>
-        <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
-
+        <div>
+            <p>{{image.image_title}}</p>
+            <button id="edit-image-title" type="button">Edit</button>
+                <div hidden class="Img-Title">
+                    <button class="Save-Img-Title" type="submit">Save</button>
+                    <button class="Cancel-Img-Title" type="submit">Cancel</button>
+                </div>
+            <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+            <button id="delete-image" type="button">Delete</button>
+        </div>
     {% endfor %}
 
-
+<div>
+<button id="save-edits" type="submit">Save</button><button id="cancel-edits" type="submit">Cancel</button>
+</div>
 
 {% endblock %}
