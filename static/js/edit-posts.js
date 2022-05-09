@@ -53,3 +53,19 @@ function unhideImageTitleEdit(evt) {
 
 // When the edit button is clicked, show the edit features
 editImageTitleButton.addEventListener('click', unhideImageTitleEdit);
+
+
+// Get the cancel post title button and assign it to a variable
+const cancelTitleButton = document.querySelector('.Cancel-Title');
+
+// Allow users to cancel editing the post title 
+function cancelTitleEdit(evt) {
+
+    // Get the evt Id and assign it to a variable
+    const cancelButtonId = evt.target.id
+
+    // Re-hide the editing features
+    evt.target.parentElement.setAttribute('hidden', "");
+}
+
+cancelTitleButton.addEventListener('click', cancelTitleEdit);
