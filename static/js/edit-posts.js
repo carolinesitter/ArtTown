@@ -68,4 +68,23 @@ function cancelTitleEdit(evt) {
     evt.target.parentElement.setAttribute('hidden', "");
 }
 
+// When the cancel button is clicked, hide the editing features
 cancelTitleButton.addEventListener('click', cancelTitleEdit);
+
+
+// Get the cancel description edit button and assign it to a variable
+const cancelDescriptionButton = document.querySelector('.Cancel-Desc');
+
+// Allow users to cancel editing their post description
+function cancelDescriptionEdit(evt) {
+
+    // Get the evt Id and assign it to a variable
+    const cancelButtonId = evt.target.id
+
+    // Re-hide the editing features
+    evt.target.parentElement.setAttribute('hidden', "");
+}
+
+// When the cancel button is clicked, hide the editing features
+cancelDescriptionButton.addEventListener('click', cancelDescriptionEdit);
+
