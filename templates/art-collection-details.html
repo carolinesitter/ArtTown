@@ -6,8 +6,9 @@
 
 
     <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
-    <button id="edit-title" type="button">Edit</button>
-        <div hidden class="Title">
+    <button id="edit-title-btn" type="button">Edit</button>
+        <div id="edit-title-div" hidden class="Title">
+            <input value="{{art_collection.gallery_title}}">
             <button class="Save-Title" type="submit">Save</button>
             <button class="Cancel-Title" type="submit">Cancel</button>
         </div>
@@ -15,8 +16,9 @@
 
 
     <p id="art-collection-description"> {{art_collection.gallery_description}}</p>
-    <button id="edit-description" type="button">Edit</button>
+    <button id="edit-description-btn" type="button">Edit</button>
         <div hidden class="Description">
+            <input value="{{art_collection.gallery_description}}">
             <button class="Save-Desc" type="submit">Save</button>
             <button class="Cancel-Desc" type="submit">Cancel</button>
         </div>
@@ -25,8 +27,9 @@
     {% for image in images %}
         <div>
             <p>{{image.image_title}}</p>
-            <button id="edit-image-title" type="button">Edit</button>
+            <button id="edit-image-title-btn" type="button">Edit</button>
                 <div hidden class="Img-Title">
+                    <input value="{{image.image_title}}">
                     <button class="Save-Img-Title" type="submit">Save</button>
                     <button class="Cancel-Img-Title" type="submit">Cancel</button>
                 </div>
