@@ -576,6 +576,33 @@ def show_art_collection_details(artist_collection_id):
                                 user=user)
 
 
+@app.route("/user_profile/edit/<artist_collection_id>/post_title", methods=["POST"])
+def edit_post_title(artist_collection_id):
+    """Allow the user to edit their post title"""
+
+    # Get the artist collection by its ID
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    # Get the edited/ new title from the browser
+    gallery_title_text = request.json.get("gallery_title_text")
+
+    # Get the old gallery title
+    gallery_title = art_collection.gallery_title
+
+    # Override the previous gallery title in the db with the new title
+    if gallery_title and session["user_email"]:
+
+        gallery_title = gallery_title_text
+
+        db.session.commit()
+
+        return jsonify({"status": "OK", "gallery_title": gallery_title_text})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
+
+
 if __name__ == "__main__":
 
     import sys

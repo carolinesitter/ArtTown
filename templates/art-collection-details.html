@@ -4,12 +4,20 @@
 
 {% block content %}
 
+    <!-- <h1 hidden id="{{art_collection.artist_collection_id}}">Art Collection</h1> -->
 
     <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
     <button id="edit-title-btn" type="button">Edit</button>
         <div id="edit-title-div" hidden class="Title">
             <input value="{{art_collection.gallery_title}}">
-            <button class="Save-Title" type="submit">Save</button>
+            <button 
+                id="save-title-{{art_collection.artist_collection_id}}" 
+                type="button" 
+                class="Save-Title" 
+                type="submit"
+            >   
+                Save
+            </button>
             <button class="Cancel-Title" type="submit">Cancel</button>
         </div>
 

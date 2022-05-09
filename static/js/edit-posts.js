@@ -104,3 +104,37 @@ function cancelImageTitleEdit(evt) {
 
 // When the cancel button is clicked, hide the editing features
 cancelImageTitleButton.addEventListener('click', cancelImageTitleEdit);
+
+
+// Get the save title edit button and assign it to a variable
+const saveTitleButton = document.querySelector('.Save-Title');
+
+
+// Allow users to save their edited post title
+function saveEditedTitle(evt){
+
+    // Parse through the event target to get the artist collection ID
+    const eventTargetInfo = evt.target.id;
+    const eventTargetArray = eventTargetInfo.split('-');
+    const artistCollectionId = eventTargetArray[2];
+
+    fetch(`/user_profile/edit/${artistCollectionId}/post_title`, {
+        method: 'POST',
+        body: JSON.stringify({
+            gallery_title_text : evt.target.parentElement.querySelector('input').value,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then (response => response.json())
+    .then(responseData => {
+        if (responseData["status"] === "OK"){
+            evt.target.parentElement.querySelector('input').value = responseData["gallery_title"];
+            document.querySelector('#art-collection-title').innerHTML = responseData["gallery_title"];
+            evt.target.parentElement.setAttribute("hidden", "");
+        }
+    })
+}
+
+saveTitleButton.addEventListener('click', saveEditedTitle);
