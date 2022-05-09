@@ -27,11 +27,8 @@
             <p>{{art.gallery_description}}</p>
                 {% for image in art.image %}
                 <p>{{image.image_title}}</p>
-                <img src="{{image.image_link}}">
-                <br>
-                </br>
                 <a href="/user_profile/{{image.image_id}}">
-                    View Details
+                    <img src="{{image.image_link}}">
                 </a>
                 {% endfor %}
             {% endfor %}
