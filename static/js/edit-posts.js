@@ -109,7 +109,6 @@ cancelImageTitleButton.addEventListener('click', cancelImageTitleEdit);
 // Get the save title edit button and assign it to a variable
 const saveTitleButton = document.querySelector('.Save-Title');
 
-
 // Allow users to save their edited post title
 function saveEditedTitle(evt){
 
@@ -137,4 +136,39 @@ function saveEditedTitle(evt){
     })
 }
 
+// When the save button is clicked, save the edited post title
 saveTitleButton.addEventListener('click', saveEditedTitle);
+
+
+// Get the save description edit button and assign it to a variable
+const saveDescriptionButton = document.querySelector('.Save-Desc');
+
+// Allow users to save their edited description
+function saveEditedDescription(evt){
+
+    // Parse through evt target to get the artistCollectionId
+    const eventTargetInfo = evt.target.id;
+    const eventTargetArray = eventTargetInfo.split('-');
+    const artistCollectionId = eventTargetArray[2];
+
+    fetch(`/user_profile/edit/${artistCollectionId}/desc`,{
+        method: 'POST',
+        body: JSON.stringify({
+            gallery_description_text : evt.target.parentElement.querySelector('input').value,
+        }),
+        headers: { 
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        if (responseData["status"] === "OK"){
+            evt.target.parentElement.querySelector('input').value = responseData["gallery_description"];
+            document.querySelector('#art-collection-description').innerHTML = responseData["gallery_description"];
+            evt.target.parentElement.setAttribute("hidden", "");
+        }
+    })
+}
+
+// When the save button is clicked, save the updated gallery description
+saveDescriptionButton.addEventListener('click', saveEditedDescription);

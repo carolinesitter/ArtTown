@@ -602,6 +602,58 @@ def edit_post_title(artist_collection_id):
         return jsonify({"status": "FAILED"})
 
 
+@app.route("/user_profile/edit/<artist_collection_id>/desc", methods=["POST"])
+def edit_description(artist_collection_id):
+    """Allow the user to edit their post description"""
+
+    # Get the artist collection by its ID
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    # Get the edited gallery description from the browser
+    gallery_description_text = request.json.get("gallery_description_text")
+
+    # Get the old gallery description
+    gallery_description = art_collection.gallery_description
+
+    # Override the previous gallery title in the db with the new description
+    if gallery_description and session["user_email"]:
+
+        gallery_description = gallery_description_text
+
+        db.session.commit()
+
+        return jsonify({"status": "OK", "gallery_description": gallery_description_text})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
+
+@app.route("/user_profile/edit/<artist_collection_id>/img_title", methods=["POST"])
+def edit_image_title(artist_collection_id):
+    """Allow a user to edit their image title"""
+
+    # Get the artist collection by its ID
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    # Get the edited image title from the browser
+    image_title_text = request.json.get("image_title_text")
+
+    # Get the old image title
+    image_title = art_collection.image_title
+
+    # Override the previous image title in the db with the new image title
+    if image_title and session["user_email"]:
+
+        image_title = image_title_text
+
+        db.session.commit()
+
+        return jsonify({"status": "OK", "image_title": image_title_text})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
+
 
 if __name__ == "__main__":
 

@@ -27,7 +27,13 @@
     <button id="edit-description-btn" type="button">Edit</button>
         <div hidden class="Description">
             <input value="{{art_collection.gallery_description}}">
-            <button class="Save-Desc" type="submit">Save</button>
+            <button 
+                id="save-desc-{{art_collection.artist_collection_id}}"
+                class="Save-Desc" 
+                type="submit"
+            >
+                Save
+            </button>
             <button class="Cancel-Desc" type="submit">Cancel</button>
         </div>
 
