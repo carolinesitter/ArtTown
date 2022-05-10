@@ -40,7 +40,7 @@
 
     {% for image in images %}
         <div>
-            <p id="image-title">{{image.image_title}}</p>
+            <p id="image-title" data-id="{{image.image_id}}">{{image.image_title}}</p>
             <button id="edit-image-title-btn" type="button">Edit</button>
                 <div hidden class="Img-Title">
                     <input value="{{image.image_title}}">

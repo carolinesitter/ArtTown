@@ -188,6 +188,7 @@ function saveEditedImageTitle(evt) {
     fetch(`/user_profile/edit/${artistCollectionId}/img_title`,{
         method: 'POST',
         body: JSON.stringify({
+            image_id: document.querySelector('#image').dataset.id,
             image_title_text : evt.target.parentElement.querySelector('input').value,
         }),
         headers: {
@@ -198,7 +199,9 @@ function saveEditedImageTitle(evt) {
     .then(responseData => {
         if (responseData["status"] === "OK"){
             evt.target.parentElement.querySelector('input').value = responseData["image_title"];
+            console.log(responseData);
             document.querySelector('#image-title').innerHTML = responseData["image_title"];
+            //evt.target.parentElement.parentElement.querySelector('p').innerHTML = responseData["image_title"];
             evt.target.parentElement.setAttribute("hidden", "");
         }
     })

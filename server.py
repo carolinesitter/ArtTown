@@ -635,16 +635,21 @@ def edit_image_title(artist_collection_id):
     # Get the artist collection by its ID
     art_collection = crud.get_art_collection_by_id(artist_collection_id)
 
+    image_id = request.json.get("image_id")
+    print("\n" *5)
+    print("*"*8)
+    print(image_id)
+
+    # Get the image
+    image = crud.get_image_by_id(image_id)
+
     # Get the edited image title from the browser
     image_title_text = request.json.get("image_title_text")
 
-    # Get the old image title
-    image_title = art_collection.image_title
-
     # Override the previous image title in the db with the new image title
-    if image_title and session["user_email"]:
+    if image.image_title and session["user_email"]:
 
-        image_title = image_title_text
+        image.image_title = image_title_text
 
         db.session.commit()
 
