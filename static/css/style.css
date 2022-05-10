@@ -63,6 +63,7 @@ body {
     display: block;
 }
 
+/* LOG IN FORM INPUT BOXES */
 #email-log-in, #password-log-in {
     display: block;
     width: 200px;
@@ -74,6 +75,7 @@ body {
     margin: 10px 0;
 }
 
+/* LOG IN FORM CONTAINER */
 .log-in-form-container {
     margin: 100px auto;
     width: 350px;
@@ -85,6 +87,7 @@ body {
 
 }
 
+/* LOG IN BUTTON */
 #log-in-button {
     display: block;
     width: 75px;
@@ -97,6 +100,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
+/* START PROFILE CREATION BUTTON */
 #start-create-profile {
     display: block;
     width: 150px;
@@ -119,8 +123,61 @@ body {
     display: block;
 }
 
-/* USER PROFILE */
+/* CREATE PROFILE FORM CONTAINER */
+.create-account-form-comtainer {
+    margin: 100px auto;
+    width: 350px;
+    height: 100px;
+    background-color: #ffffff;
+    opacity: 0.5;
+    padding: 60px;
+}
 
+/* CREATE ACCOUNT PAGE TITLE */
+#welcome-create-prof-title {
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+/* CREATE ACCOUNT FORM TITLE */
+#create-account-title{
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+/* CREATE PROFILE FORM */
+#create-profile-form {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+/* CREATE PROFILE FORM INPUTS */
+#first-name, #last-name, #username, #password,
+#verify_password, #zipcode, #email, #instagram,
+#tik-tok, #twitter, #website {
+    display: block;
+    width: 200px;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    margin: -5px 0;
+}
 
 /* SEARCH PAGE DESCRIPTION */
 #search-description {
