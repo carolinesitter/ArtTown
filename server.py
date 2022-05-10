@@ -694,6 +694,34 @@ def delete_image_from_collection(artist_collection_id):
         return jsonify({"status": "FAILED"})
 
 
+@app.route("/user_profile/edit/<artist_collection_id>/del_post", methods=["POST"])
+def delete_artist_collection(artist_collection_id):
+    """Allow a user to delete their entire artist collection/post"""
+
+    #Get the artist collection ID
+    artist_collection_id = request.json.get("artist_collection_id")
+
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    # Get all of the images within that artist collection
+    images_in_collection = crud.get_images_in_art_collection(artist_collection_id)
+
+
+    if art_collection and session["user_email"]:
+
+        for image in images_in_collection:
+            db.session.delete(image)
+
+        db.session.delete(art_collection)
+
+        db.session.commit()
+
+        return jsonify({"status": "OK"})
+
+    else:
+        return jsonify({"status": "FAILED"})
+
+
 
 if __name__ == "__main__":
 

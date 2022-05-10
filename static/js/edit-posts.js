@@ -259,3 +259,35 @@ function deleteImage(evt) {
 for (button of deleteImageButtons){
     button.addEventListener('click', deleteImage);
 }
+
+
+// Get the delete post button and assign it to a variable
+const deletePostButton = document.querySelector('.Delete-Post');
+
+// Allow a user to delete their entire post
+function deletePost(evt) {
+
+    // Parse through the evt target to find the ArtistCollectionId
+    const eventTargetInfo = evt.target.id;
+    const eventTargetArray = eventTargetInfo.split('-');
+    const artistCollectionId = eventTargetArray[2];
+
+    fetch(`/user_profile/edit/${artistCollectionId}/del_post`,{
+        method: 'POST',
+        body: JSON.stringify({
+            artist_collection_id : artistCollectionId,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        if (responseData["status"] === "OK"){                
+            console.log("OK");
+            window.location.replace('/user_profile');
+        }
+});
+}
+
+deletePostButton.addEventListener('click', deletePost)
