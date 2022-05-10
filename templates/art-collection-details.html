@@ -37,6 +37,7 @@
             <button class="Cancel-Desc" type="submit">Cancel</button>
         </div>
 
+    <br>
 
     {% for image in images %}
         <div>
@@ -54,12 +55,11 @@
                     <button class="Cancel-Img-Title" type="submit">Cancel</button>
                 </div>
             <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
-            <button id="delete-image" type="button">Delete</button>
         </div>
     {% endfor %}
 
 <div>
-<button id="save-edits" type="submit">Save</button><button id="cancel-edits" type="submit">Cancel</button>
+<button id="delete-post" type="submit">Delete Post</button>
 </div>
 
 {% endblock %}

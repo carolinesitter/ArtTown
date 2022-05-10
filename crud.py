@@ -168,6 +168,12 @@ def get_images_in_art_collection(artist_collection_id):
 
     return Image.query.filter(Image.artist_collection_id == artist_collection_id).all()
 
+
+def get_all_art_collections_by_user(user_id):
+    """Get all art collections made by a particular user"""
+
+    return ArtistCollection.query.filter(ArtistCollection.user_id == user_id).all()
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

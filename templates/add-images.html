@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Images {% endblock %}
+
+{% block content %}
+
+    <form action="/upload_image" method="POST" enctype="multipart/form-data"></form>
+
+        <form id="art-collection-dropdown">
+            <label for="lang-select">Select the gallery you would like to add to:</label>
+        
+            <select name="gallery" id="gallery-select">
+            {% for collection in art_collections %}
+                <option 
+                    value="{{collection.artist_collection_id}}"
+                >
+                    {{collection.gallery_title}}
+                </option>
+            {% endfor %}
+            </select>
+        </form>
+
+            <label for="image-title">Image Title</label>
+            <input type="text" name="image-title" id="image-title">
+        
+            <input type="file" id="image-upload-button" name="filename">
+        
+            <button type="submit" id="submit-new-post">Create Post</button>
+    </form>
+
+
+{% endblock %}

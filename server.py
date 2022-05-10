@@ -553,6 +553,22 @@ def process_upload_data():
     else:
         return render_template('upload-image.html')
 
+    
+@app.route("/add_images_to_collection")
+def add_images_to_to_collection():
+    """Allow users to add an image to an already existing artist collection"""
+
+    email = session["user_email"]
+    user = crud.get_user_by_email(email)
+    user_id = user.user_id
+    #art_collections = user.artist_collection
+    art_collections = crud.get_all_art_collections_by_user(user_id)
+
+    return render_template('add-images.html',
+                            user=user,
+                            user_id=user_id,
+                            art_collections=art_collections)
+
 
 @app.route("/user_profile/edit/<artist_collection_id>")
 def show_art_collection_details(artist_collection_id):
