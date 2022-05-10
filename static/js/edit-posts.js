@@ -192,7 +192,7 @@ function saveEditedImageTitle(evt) {
     const eventTargetInfo = evt.target.id;
     const eventTargetArray = eventTargetInfo.split('-');
     const artistCollectionId = eventTargetArray[2];
-    const imageId = eventTargetArray[3]
+    const imageId = eventTargetArray[3];
 
 
     fetch(`/user_profile/edit/${artistCollectionId}/img_title`,{
@@ -220,4 +220,42 @@ function saveEditedImageTitle(evt) {
 // When the save button is clicked, save the edited image title
 for (button of saveImageTitleButton){
     button.addEventListener('click', saveEditedImageTitle);
+}
+
+
+// Get the delete image buttons and assign it to a variable
+const deleteImageButtons = document.querySelectorAll('.Delete-Img-Btn');
+
+// Allow users to delete an image from their post
+function deleteImage(evt) {
+
+    //get the artist collection ID as well as the image Id
+    const eventTargetInfo = evt.target.id;
+    const eventTargetArray = eventTargetInfo.split('-');
+    const artistCollectionId = eventTargetArray[3];
+    const imageId = eventTargetArray[4];
+
+    console.log(evt.target.id);
+
+    fetch (`/user_profile/edit/${artistCollectionId}/delete_img`,{
+        method: 'POST',
+        body: JSON.stringify({
+            image_id: imageId
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(responseData => {
+            if (responseData["status"] === "OK"){                
+                evt.target.parentElement.remove()
+                console.log("OK");
+            }
+    });
+}
+
+// When the delete button is clicked, delete the image
+for (button of deleteImageButtons){
+    button.addEventListener('click', deleteImage);
 }

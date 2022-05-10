@@ -652,9 +652,6 @@ def edit_image_title(artist_collection_id):
     art_collection = crud.get_art_collection_by_id(artist_collection_id)
 
     image_id = request.json.get("image_id")
-    print("\n" *5)
-    print("*"*8)
-    print(image_id)
 
     # Get the image
     image = crud.get_image_by_id(image_id)
@@ -671,6 +668,28 @@ def edit_image_title(artist_collection_id):
 
         return jsonify({"status": "OK", "image_title": image_title_text})
 
+    else:
+        return jsonify({"status": "FAILED"})
+
+
+@app.route("/user_profile/edit/<artist_collection_id>/delete_img", methods=["POST"])
+def delete_image_from_collection(artist_collection_id):
+    """Allow the user to delete images from their artist collection"""
+
+    # Get the artist collection by its ID
+    art_collection = crud.get_art_collection_by_id(artist_collection_id)
+
+    if art_collection and session["user_email"]:
+
+        # Get the image object
+        image = crud.get_image_by_id(request.json.get("image_id"))
+
+        # Delete the image from the database
+        db.session.delete(image)
+        db.session.commit()
+
+        return jsonify({"status": "OK"})
+    
     else:
         return jsonify({"status": "FAILED"})
 

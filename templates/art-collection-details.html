@@ -55,6 +55,12 @@
                     <button class="Cancel-Img-Title" type="submit">Cancel</button>
                 </div>
             <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+            <button 
+                class="Delete-Img-Btn" 
+                id="del-img-btn-{{art_collection.artist_collection_id}}-{{image.image_id}}"
+            >
+                Delete Image
+            </button>
         </div>
     {% endfor %}
 
