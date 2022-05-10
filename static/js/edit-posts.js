@@ -37,22 +37,27 @@ editDescriptionButton.addEventListener('click', unhideDescriptionEdit);
 
 
 // Get the edit image title button and assign it to a variable
-const editImageTitleButton = document.querySelector('#edit-image-title-btn');
+const editImageTitleButtons = document.querySelectorAll('.Edit');
 
 // Create a function that unhides the edit image title button
 function unhideImageTitleEdit(evt) {
 
     // Get the button id
-    const buttonId = evt.target.id;
+    const buttonInfo = evt.target.id;
+    const buttonArray = buttonInfo.split('-');
+    const imageId = buttonArray[4];
+
 
     // Show the hidden editing features
-    if (buttonId){
-        document.querySelector('.Img-Title').removeAttribute('hidden');
+    if (imageId){
+        document.querySelector(`#img-title-${imageId}`).removeAttribute('hidden');
     }
 }
 
 // When the edit button is clicked, show the edit features
-editImageTitleButton.addEventListener('click', unhideImageTitleEdit);
+for (button of editImageTitleButtons){
+    button.addEventListener('click', unhideImageTitleEdit);
+}
 
 
 // Get the cancel post title button and assign it to a variable
@@ -90,7 +95,7 @@ cancelDescriptionButton.addEventListener('click', cancelDescriptionEdit);
 
 
 // Get the cancel image title edit button and assign it to a variable
-const cancelImageTitleButton = document = document.querySelector('.Cancel-Img-Title');
+const cancelImageTitleButton = document.querySelectorAll('.Cancel-Img-Title');
 
 // Allow users to cancel editing their image title
 function cancelImageTitleEdit(evt) {
@@ -103,7 +108,10 @@ function cancelImageTitleEdit(evt) {
 }
 
 // When the cancel button is clicked, hide the editing features
-cancelImageTitleButton.addEventListener('click', cancelImageTitleEdit);
+for (button of cancelImageTitleButton){
+    button.addEventListener('click', cancelImageTitleEdit);
+}
+
 
 
 // Get the save title edit button and assign it to a variable
@@ -175,7 +183,7 @@ saveDescriptionButton.addEventListener('click', saveEditedDescription);
 
 
 // Get the save edited image title button and assign it to a variable
-const saveImageTitleButton = document.querySelector('.Save-Img-Title');
+const saveImageTitleButton = document.querySelectorAll('.Save-Img-Title');
 
 // Allow users to save their edited image title
 function saveEditedImageTitle(evt) {
@@ -184,6 +192,8 @@ function saveEditedImageTitle(evt) {
     const eventTargetInfo = evt.target.id;
     const eventTargetArray = eventTargetInfo.split('-');
     const artistCollectionId = eventTargetArray[2];
+    const imageId = eventTargetArray[3]
+
 
     fetch(`/user_profile/edit/${artistCollectionId}/img_title`,{
         method: 'POST',
@@ -200,7 +210,7 @@ function saveEditedImageTitle(evt) {
         if (responseData["status"] === "OK"){
             evt.target.parentElement.querySelector('input').value = responseData["image_title"];
             console.log(responseData);
-            document.querySelector('#image-title').innerHTML = responseData["image_title"];
+            document.querySelector(`#para-img-title-${imageId}`).innerHTML = responseData["image_title"];
             //evt.target.parentElement.parentElement.querySelector('p').innerHTML = responseData["image_title"];
             evt.target.parentElement.setAttribute("hidden", "");
         }
@@ -208,4 +218,6 @@ function saveEditedImageTitle(evt) {
 }
 
 // When the save button is clicked, save the edited image title
-saveImageTitleButton.addEventListener('click', saveEditedImageTitle);
+for (button of saveImageTitleButton){
+    button.addEventListener('click', saveEditedImageTitle);
+}

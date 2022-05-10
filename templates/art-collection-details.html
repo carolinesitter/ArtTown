@@ -7,7 +7,7 @@
     <!-- <h1 hidden id="{{art_collection.artist_collection_id}}">Art Collection</h1> -->
 
     <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
-    <button id="edit-title-btn" type="button">Edit</button>
+    <button class="Edit" id="edit-title-btn" type="button">Edit</button>
         <div id="edit-title-div" hidden class="Title">
             <input value="{{art_collection.gallery_title}}">
             <button 
@@ -24,7 +24,7 @@
 
 
     <p id="art-collection-description"> {{art_collection.gallery_description}}</p>
-    <button id="edit-description-btn" type="button">Edit</button>
+    <button class="Edit" id="edit-description-btn" type="button">Edit</button>
         <div hidden class="Description">
             <input value="{{art_collection.gallery_description}}">
             <button 
@@ -41,12 +41,12 @@
 
     {% for image in images %}
         <div>
-            <p id="image-title" data-id="{{image.image_id}}">{{image.image_title}}</p>
-            <button id="edit-image-title-btn" type="button">Edit</button>
-                <div hidden class="Img-Title">
+            <p id="para-img-title-{{image.image_id}}">{{image.image_title}}</p>
+            <button class="Edit" id="edit-image-title-btn-{{image.image_id}}" type="button">Edit</button>
+                <div hidden class="Img-Title" id="img-title-{{image.image_id}}">
                     <input value="{{image.image_title}}">
                     <button 
-                        id="save-img-{{art_collection.artist_collection_id}}"
+                        id="save-img-{{art_collection.artist_collection_id}}-{{image.image_id}}"
                         class="Save-Img-Title" 
                         type="submit"
                     >
