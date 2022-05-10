@@ -1,9 +1,23 @@
+/* BACKGROUND FOR ALL IMAGES */
+
+
+
 /* SIZE OF ALL IMAGES */
 img {
     width: 400px;
-    height: auto;
+    height: 300px;
     /* margin: auto;
     display: block; */
+}
+
+/* BODY TEXT */
+body {
+    font-family: Garamond;
+}
+
+/* NAV BAR */
+#nav-bar {
+    font-family: Garamond;
 }
 
 /* HOMEPAGE TITLE */
@@ -23,7 +37,7 @@ img {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 35%;
     transform: translate(-50%, -50%);
     display: block;
 }
@@ -44,9 +58,55 @@ img {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 48%;
     transform: translate(-50%, -50%);
     display: block;
+}
+
+#email-log-in, #password-log-in {
+    display: block;
+    width: 200px;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.log-in-form-container {
+    margin: 100px auto;
+    width: 350px;
+    height: 315px;
+    background-color: #ffffff;
+    opacity: 0.5;
+    padding: 60px;
+
+
+}
+
+#log-in-button {
+    display: block;
+    width: 75px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    position: absolute;
+    left: 50%;
+    top: 115%;
+    transform: translate(-50%, -50%);
+}
+
+#start-create-profile {
+    display: block;
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    position: absolute;
+    left: 50%;
+    top: 125%;
+    transform: translate(-50%, -50%);
 }
 
 /* LINK TO CREATE PROFILE */
@@ -54,10 +114,13 @@ img {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 68%;
     transform: translate(-50%, -50%);
     display: block;
 }
+
+/* USER PROFILE */
+
 
 /* SEARCH PAGE DESCRIPTION */
 #search-description {
@@ -93,4 +156,35 @@ img {
     top: 65%;
     transform: translate(-50%, -50%);
     display: block;
+}
+
+/* EXPLORE PAGE LAYOUT */
+.explore-image-grid {
+    --gap: 16px;
+    --num-cols: 3;
+    --row-height: 300px;
+
+    box-sizing: border-box;
+    padding: var(--gap);
+
+
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    grid-auto-rows: var(--row-height);
+    gap: var(--gap);
+}
+
+/* TARGET EACH IMAGE IN EXPLORE PAGE */
+.explore-image-grid > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* SET UP MEDIA QUERY */
+@media screen and (max-width: 1024px) {
+    .image-grid{
+        --num-cols: 2;
+        --row-height: 200px;
+    }
 }

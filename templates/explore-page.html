@@ -3,11 +3,12 @@
 {% block title %} Explore {% endblock %}
 
 {% block content %}
-
-    {% for image in images %}
-        <a href="/user_profile/{{image.image_id}}">
-            <img src="{{image.image_link}}">
-        </a>
-    {% endfor %}
+    <div class="explore-image-grid">
+        {% for image in images %}
+            <a href="/user_profile/{{image.image_id}}">
+                <img src="{{image.image_link}}">
+            </a>
+        {% endfor %}
+    </div>
 
 {% endblock %}

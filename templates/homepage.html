@@ -3,27 +3,28 @@
 {% block title %} Welcome {% endblock %}
 
 {% block content %}
-
+<body style = "background: url(/static/img/homepage.jpeg); background-size: 100%;">
 <h1 id="homepage-title">Welcome to Artist by Zipcode!</h1>
 
 <!-- <img src="http://" -->
 
-    <p id="log-in-title">Log In</p>
+    <div class="log-in-form-container"></div>
+        <p id="log-in-title">Log In</p>
 
-    <form action="/log_in" method="POST" id="log-in-form">
+        <form action="/log_in" method="POST" id="log-in-form">
 
-        <label id="email-label" for="email">Email:</label>
-        <input id="email-log-in" type="text" name="email">
+            <input id="email-log-in" type="text" placeholder="Email" name="email">
 
-        <label id="password-label" for="password-log-in">Password:</label>
-        <input id="password-log-in" type="password" name="password">
+            <input id="password-log-in" type="password" placeholder="Password" name="password">
 
-        <button id="log-in-button" type="submit">Log In</button>
-    </form>
+            <button id="log-in-button" type="submit">Log In</button>
+        </form>
+    </div>
 
     <form id="create-profile-link" action="/create_profile">
         <p>New Here? Let's get you signed up!</p>
         <button id="start-create-profile" type="submit">Create Profile</button>
-
+    </form>
+</body>
 
 {% endblock %}
