@@ -316,7 +316,7 @@ body {
 }
 
 #create-post-title {
-    color: #6C757D;
+    color: #768088;
     text-shadow: 2px 2px 6px black;
     position: absolute;
     left: 50%;
@@ -334,19 +334,63 @@ body {
     display: block;
 }
 
-#create-post-form {
+/* #create-post-form {
     position: absolute;
     left: 50%;
     top: 58%;
     transform: translate(-50%, -50%);
     display: block;
-}
+} */
 
 #gallery-title {
     margin: 4px;
+    display: block;
+    width: 200px;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    margin: -5px 0;
 }
 
-#gallery-desc {
+#gallery-description {
     margin: 4px;
+    display: block;
+    width: 200px;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    margin: -5px 0;
+}
+
+#gallery-title-div{
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#gallery-desc-div {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#artist-collection-button {
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587; 
+    position: absolute;
+    left: 50%;
+    top: 69%;
+    transform: translate(-50%, -50%);
+    display: block;
 }
 
