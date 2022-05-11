@@ -10,61 +10,73 @@
 
     <br>
     </br>
-    <div class="create-account-form-container">
+
+    <div class="create-account-form-container"></div>
+
         <h2 id="create-account-title">Create an Account</h2>
 
-        <div class="create-account">
-
             <form id="create-profile-form" action="/register_profile" method="POST">
+                <div class="row">
+                    <div class="col-1">
 
-                <input type="text" name="first_name" placeholder="First Name" id="first-name">
+                        <input type="text" name="first_name" placeholder="First Name" id="first-name">
 
-                <br>
+                        <br>
 
-                <input type="text" name="last_name" placeholder="Last Name"id="last-name">
+                        <input type="text" name="last_name" placeholder="Last Name"id="last-name">
 
-                <br>
+                        <br>
 
-                <input type="text" name="username" placeholder="Username"id="username">
+                        <input type="text" name="username" placeholder="Username"id="username">
 
-                <br>
+                        <br>
 
-                <input type="password" name="password" placeholder="Password "id="password">
+                        <input type="password" name="password" placeholder="Password "id="password">
 
-                <br>
+                        <br>
 
-                <input type="password" name="verify_password" placeholder="Verify Password" id="verify_password">
+                        <input type="password" name="verify_password" placeholder="Verify Password" id="verify_password">
 
-                <br>
+                        <br>
 
-                <input type="text" name="zipcode" placeholder="Zipcode" id="zipcode">
+                        <input type="text" name="zipcode" placeholder="Zipcode" id="zipcode">
+                        <br>
+                    </div>
 
-                <br>
 
-                <input type="text" name="email" placeholder="Email" id="email">
 
-                <br>
+                    <div class="col-2">
 
-                <input type="text" name="instagram" placeholder="Instagram" id="instagram">
+                        <br>
 
-                <br>
+                        <input type="text" name="email" placeholder="Email" id="email">
 
-                <input type="text" name="tik_tok" placeholder="Tik Tok" id="tik-tok">
+                        <br>
 
-                <br>
+                        <input type="text" name="instagram" placeholder="Instagram" id="instagram">
 
-                <input type="text" name="twitter" placeholder="Twitter" id="twitter">
+                        <br>
 
-                <br>
+                        <input type="text" name="tik_tok" placeholder="Tik Tok" id="tik-tok">
 
-                <input type="text" name="website" placeholder="Website" id="website">
+                        <br>
 
-                <br>
+                        <input type="text" name="twitter" placeholder="Twitter" id="twitter">
 
-                <button id="create-profile-button" type="submit">Create Profile</button>
+                        <br>
+
+                        <input type="text" name="website" placeholder="Website" id="website">
+
+                        <br>
+
+                        <button id="create-profile-button" type="submit">Create Profile</button>
+                        <br>
+                    </div>
+                </div>
+
+                <!-- <button id="create-profile-button" type="submit">Create Profile</button> -->
             </form>
-        </div>
-    </div>
+
 </body>
 
 {% endblock %}

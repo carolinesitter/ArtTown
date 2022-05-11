@@ -124,10 +124,10 @@ body {
 }
 
 /* CREATE PROFILE FORM CONTAINER */
-.create-account-form-comtainer {
+.create-account-form-container {
     margin: 100px auto;
-    width: 350px;
-    height: 100px;
+    width: 600px;
+    height: 380px;
     background-color: #ffffff;
     opacity: 0.5;
     padding: 60px;
@@ -138,8 +138,9 @@ body {
     font-size: 30px;
     text-align: center;
     position: absolute;
+    color: black;
     left: 50%;
-    top: 20%;
+    top: 24%;
     transform: translate(-50%, -50%);
     display: block;
 }
@@ -150,7 +151,7 @@ body {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 35%;
+    top: 40%;
     transform: translate(-50%, -50%);
     display: block;
 }
@@ -163,6 +164,28 @@ body {
     top: 85%;
     transform: translate(-50%, -50%);
     display: block;
+}
+
+/* SPLIT CREATE PROFILE FORMS INTO COLUMS */
+.row{
+    padding: 10px;
+}
+
+.col-1{
+    float:left;
+    width: 50%;
+
+}
+.col-2{
+    float:right;
+    width: 50%;
+}
+
+#create-profile-button {
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
 }
 
 /* CREATE PROFILE FORM INPUTS */
@@ -179,15 +202,39 @@ body {
     margin: -5px 0;
 }
 
+/* SEARCH PAGE TITLE */
+#search-header {
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    color: black;
+    text-shadow: 2px 2px 8px #ccd5ae;
+    left: 50%;
+    top: 18%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+
 /* SEARCH PAGE DESCRIPTION */
 #search-description {
     font-size: 20px;
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 32%;
+    top: 39%;
     transform: translate(-50%, -50%);
     display: block;
+}
+
+/* SEARCH FORM CONTAINER */
+.search-form-container {
+    margin: 100px auto;
+    width: 500px;
+    height: 300px;
+    background-color: #ffffff;
+    opacity: 0.5;
+    padding: 60px;
 }
 
 /* ZIPCODE SEARCH FORM */
@@ -195,14 +242,27 @@ body {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 53%;
     transform: translate(-50%, -50%);
     display: block;
 }
 
-/* ZIPCODE SEARCH FORM LABEL */
-#zipcode-label {
-    font-size: 17px;
+#zipcode-input {
+    display: block;
+    width: 200px;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    margin: -5px 0;
+}
+
+#search-btn {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
 }
 
 /* RANDOMIZE SEARCH BUTTON */
@@ -210,9 +270,13 @@ body {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 65%;
+    top: 68%;
     transform: translate(-50%, -50%);
     display: block;
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
 }
 
 /* EXPLORE PAGE LAYOUT */
