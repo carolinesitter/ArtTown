@@ -7,7 +7,7 @@ describe('Like/Unlike Increase/Decrease', () => {
     let likeCount = document.querySelector('#like-count');
 
     it ('should test if the like button toggles to "unlike" when clicked', () => {
-        button.innerText = 'Log In';
+        button.innerText = 'Like';
         button.click();
         
         // When clicked, expect the button to say "Unlike",
@@ -17,7 +17,7 @@ describe('Like/Unlike Increase/Decrease', () => {
     });
         
     it('should test if the unlike button toggles to "like" when clicked again', () => {
-        button.innerText = 'Log Out';
+        button.innerText = 'Unlike';
         button.click();
         
         // When clicked again, expect the button to say "Like",

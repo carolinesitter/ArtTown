@@ -2,20 +2,24 @@
 {%block title %} New Post {%endblock %}
 
 {% block content %}
+    <body style = "background: url(/static/img/addimage3.jpeg); background-size: 100%;">
+        <h1 id="create-post-title">Create a New Post</h1>
 
-    <h1>Create a New Post</h1>
+        <div class="form-group-container"></div>
 
-    <p>First, lets get your gallery set up! Then we can add your images.</p>
+        <p id="create-post-desc">First, lets get your gallery set up! Then we can add your images.</p>
 
-    <form action="/create_art_collection" method="POST">
-        <label for="gallery-title">Gallery Title</label>
-        <input type="text" name="gallery-title" id="gallery-title">
+        <form id="create-post-form" action="/create_art_collection" method="POST">
+            <div id="gallery-title">
+                <input type="text" name="gallery-title" id="gallery-title" placeholder="Gallery Title">
+            </div>
 
-        <label for="gallery-description">Gallery Description</label>
-        <input type="text" name="gallery-description" id="gallery-description">
+            <div id="gallery-desc">
+                <input type="text" name="gallery-description" id="gallery-description" placeholder="Gallery Description">
+            </div>
 
-        <button type="submit" id="artist-collection-button">Create Gallery</button>
-    </form>
+            <button type="submit" id="artist-collection-button">Create Gallery</button>
+        </form>
 
-
+    </body>
 {% endblock %}
