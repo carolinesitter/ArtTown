@@ -404,11 +404,11 @@ body {
 }
 
 #upload-image-title {
-    color: #6C757D;
+    color: #768088;
     text-shadow: 4px 4px 8px black;
     position: absolute;
     left: 50%;
-    top: 18%;
+    top: 20%;
     transform: translate(-50%, -50%);
     display: block;
 }

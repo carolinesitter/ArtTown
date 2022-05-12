@@ -4,28 +4,31 @@
 
 {% block content %}
 
-    <body style = "background: url(/static/img/uploadimage5.jpeg); background-size: 100%;">
+    <body style = "background: url(/static/img/uploadimage10.jpeg); background-size: 100%;">
 
-        <h1 id="upload-image-title">Create a New Post</h1>
+        <div clas="upload-container">
+            <h1 id="upload-image-title">Create a New Post</h1>
 
-        <div class="upload-image-container"></div>
+            <div class="upload-image-container"></div>
 
-        <p id="upload-image-desc">Perfect! Now you can add your image below.</p>
+            <p id="upload-image-desc">Perfect! Now you can add your image below.</p>
 
-        <form action="/upload_image" method="POST" enctype="multipart/form-data">
+            <form action="/upload_image" method="POST" enctype="multipart/form-data">
 
-            <div id="image-title-div">
-                <input id="image-title" type="text" name="image-title" id="image-title" placeholder="Image Title">
-                <input type="text" value="{{artist_gallery.artist_collection_id}}" name="gallery-collection" hidden="true">
-            </div>
-            
-            <div id="image-upload-div">
-                <input type="file" id="image-upload-button" name="filename">
-            </div>
-            <!-- may need AJAX or something to prompt the user to upload an image? -->
+                <div id="image-title-div">
+                    <input id="image-title" type="text" name="image-title" id="image-title" placeholder="Image Title">
+                    <input type="text" value="{{artist_gallery.artist_collection_id}}" name="gallery-collection" hidden="true">
+                </div>
+                
+                <div id="image-upload-div">
+                    <input type="file" id="image-upload-button" name="filename">
+                </div>
+                <!-- may need AJAX or something to prompt the user to upload an image? -->
 
-            <button type="submit" id="submit-new-post">Create Post</button>
-        </form>
+                <button type="submit" id="submit-new-post">Create Post</button>
+            </form>
+
+        </div>
 
     </body>
 
