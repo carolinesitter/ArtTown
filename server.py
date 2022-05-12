@@ -139,6 +139,7 @@ def user_profile():
 
         # Show the user their profile 
         return render_template('user-profile.html',
+                                user=user,
                                 username=username,
                                 zipcode=zipcode,
                                 instagram=instagram,
@@ -337,6 +338,7 @@ def search_by_zipcode():
 
 
         return render_template('user-profile.html',
+                                user=user_zip,
                                 zipcode=zipcode,
                                 user_zip=user_zip,
                                 username=username,
@@ -375,6 +377,7 @@ def show_random_profile():
 
 
         return render_template('user-profile.html',
+                                user = random_user,
                                 zipcode=zipcode,
                                 username=username,
                                 instagram=instagram,
@@ -470,7 +473,7 @@ def show_art_show_profile(user_id):
 
     # Show the user their profile 
     return render_template('user-profile.html',
-                            art_show_user=art_show_user,
+                            user=art_show_user,
                             username=username,
                             zipcode=zipcode,
                             instagram=instagram,
