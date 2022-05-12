@@ -19,11 +19,6 @@ CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME = "dgvuwdtnb"
 
-JS_TESTING_MODE = False
-@app.before_request
-def add_tests():
-    g.jasmine_tests = JS_TESTING_MODE
-
 
 @app.route("/")
 def homepage():
@@ -729,11 +724,6 @@ if __name__ == "__main__":
     # Code to run the selenium tests in the terminal 
     if sys.argv[-1] == "selenium_test":
         connect_to_db(app, "postgresql:///testdb")
-    
-    # Code to run the jasmine tests in the terminal 
-    elif sys.argv[-1] == "jstest":
-        #connect_to_db(app, "postgresql://testdb")
-        JS_TESTING_MODE = True 
 
     # Otherwise, run the server normally 
     else:
