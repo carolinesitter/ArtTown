@@ -576,3 +576,83 @@ body {
     display: block;
 }
 
+#user-profile-first-last-name {
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#user-profile-username {
+    position: absolute;
+    left: 50%;
+    top: 24%;
+    transform: translate(-50%, -50%);
+    display: block;
+    font-style: italic;
+    font-size: 18px;
+}
+
+#user-profile-zipcode {
+    position: absolute;
+    left: 50%;
+    top: 28%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.user-socials-info-background {
+    margin: 100px auto;
+    width: 310px;
+    height: 180px;
+    background-color: #ABB1B6;
+    opacity: 0.5;
+    padding: 60px;
+    position: absolute;
+    left: 50%;
+    top: 30.5%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#user-profile-socials {
+    position: absolute;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+#create-post {
+    position: absolute;
+    left: 50%;
+    top: 68.5%;
+    transform: translate(-50%, -50%);
+    display: block; 
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+}
+
+#user-prof-gallery-title {
+    font-size: 20px;
+    /* position: absolute;
+    left: 50%;
+    top: 78%;
+    transform: translate(-50%, -50%); */
+}
+
+#user-profile-gallery-desc {
+    font-style: italic;
+    position: absolute;
+    /* left: 50%;
+    top: 84%;
+    transform: translate(-50%, -50%); */
+}
+
+/* .art-collection-grid {
+    display: grid;
+    grid-template-columns: 
+} */

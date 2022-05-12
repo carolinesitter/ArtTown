@@ -4,17 +4,19 @@
 
 {% block content %}
 
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <h1 id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
 
-    <p>{{username}}</p> 
+    <p id="user-profile-username">{{username}}</p> 
 
-    <p> {{zipcode}} </p>
+    <p id="user-profile-zipcode"> {{zipcode}} </p>
     
-    <p> These are my socials:</p>
+    <div class="user-socials-info-background"></div>
+    <div id="user-profile-socials">
+        <p>{{website}}</p>
         <p>Instagram: {{instagram}}</p>
         <p>Twitter: {{twitter}}</p>
         <p>Tik Tok: {{tiktok}}</p>
-        <p>Website: {{website}}</p>
+    </div>
 
     {% if session.get('username') == username %}
         <form action="/create_post_form">
@@ -22,13 +24,13 @@
         </form>
     {% endif %}
 
-    <p> Here are {{username}}'s latest posts: </p>
-        <div>
+        <div class="art-collection-grid">
             {% for art in art_collection %}
 
-            <p>{{art.gallery_title}}</p>
-            <p>{{art.gallery_description}}</p>
-
+            <div id="user-prof-gallery-info-container">
+                <p id="user-prof-gallery-title">{{art.gallery_title}}</p>
+                <p id="user-profile-gallery-desc">{{art.gallery_description}}</p>
+            </div>  
             {% for image in art.image %}
 
                 <a href="/user_profile/{{image.image_id}}">
@@ -38,10 +40,10 @@
 
                 {% if session.get('username') == username %}
                     <form action="/user_profile/edit/{{art.artist_collection_id}}">
-                        <button id="edit-post" type="submit" class="btn-outline-dark">Edit</button>
+                        <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
                     </form>
                     <form action="/add_images_to_collection">
-                        <button id="add-image" type="submit" class="btn-outline-success">Add Image</button>
+                        <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
                     </form>
                 {%endif %}
 
