@@ -177,6 +177,7 @@ body {
     width: 50%;
 }
 
+/* CREATE PROFILE BUTTON DESIGN */
 #create-profile-button {
     width: 200px;
     height: 33px;
@@ -243,6 +244,7 @@ body {
     display: block;
 }
 
+/* ZIPCODE INPUT FORM  */
 #zipcode-input {
     display: block;
     width: 200px;
@@ -254,6 +256,7 @@ body {
     margin: -5px 0;
 }
 
+/* SEARCH BUTTON */
 #search-btn {
     width: 100px;
     height: 33px;
@@ -306,6 +309,7 @@ body {
     }
 }
 
+/* CREATE GALLERY FORM CONTAINER  */
 .form-group-container {
     margin: 100px auto;
     width: 500px;
@@ -315,6 +319,7 @@ body {
     padding: 60px;
 }
 
+/* CREATE GALLERY TITLE  */
 #create-post-title {
     color: #768088;
     text-shadow: 2px 2px 6px black;
@@ -325,6 +330,7 @@ body {
     display: block;
 }
 
+/* CREATE GALLERY DESCRIPTION */
 #create-post-desc{
     position: absolute;
     color: black;
@@ -334,14 +340,7 @@ body {
     display: block;
 }
 
-/* #create-post-form {
-    position: absolute;
-    left: 50%;
-    top: 58%;
-    transform: translate(-50%, -50%);
-    display: block;
-} */
-
+/* GALLERY TITLE INPUT */
 #gallery-title {
     margin: 4px;
     display: block;
@@ -354,6 +353,7 @@ body {
     margin: -5px 0;
 }
 
+/* GALLERY DESCRIPTION INPUT  */
 #gallery-description {
     margin: 4px;
     display: block;
@@ -366,6 +366,7 @@ body {
     margin: -5px 0;
 }
 
+/* GALLERY TITLE DIV */
 #gallery-title-div{
     position: absolute;
     left: 50%;
@@ -374,6 +375,7 @@ body {
     display: block;
 }
 
+/* GALLERY DESCRIPTION DIV */
 #gallery-desc-div {
     position: absolute;
     left: 50%;
@@ -382,6 +384,7 @@ body {
     display: block;
 }
 
+/* CREATE GALLERY BUTTON */
 #artist-collection-button {
     width: 200px;
     height: 33px;
@@ -394,6 +397,7 @@ body {
     display: block;
 }
 
+/* UPLOAD IMAGE CONTAINER DIV  */
 .upload-image-container {
     margin: 100px auto;
     width: 500px;
@@ -403,6 +407,7 @@ body {
     padding: 60px;
 }
 
+/* UPLOAD IMAGE TITLE  */
 #upload-image-title {
     color: #768088;
     text-shadow: 4px 4px 8px black;
@@ -413,6 +418,7 @@ body {
     display: block;
 }
 
+/* UPLOAD IMAGE DESCRIPTION */
 #upload-image-desc {
     position: absolute;
     color: black;
@@ -422,6 +428,7 @@ body {
     display: block;
 }
 
+/* IMAGE TITLE FORM INPUT */
 #image-title {
     margin: 4px;
     display: block;
@@ -434,6 +441,7 @@ body {
     margin: -5px 0;
 }
 
+/* IMAGE TITLE INPUT PARENT DIV  */
 #image-title-div {
     position: absolute;
     left: 50%;
@@ -442,13 +450,7 @@ body {
     display: block;
 }
 
-/* #image-upload-button {
-    width: 200px;
-    height: 33px;
-    border-radius: 30px;
-    border: 1px solid #baa587;
-} */
-
+/* IMAGE UPLOAD PARENT DIV */
 #image-upload-div {
     position: absolute;
     left: 53%;
@@ -457,6 +459,7 @@ body {
     display: block;
 }
 
+/* SUBMIT NEW POST BUTTON  */
 #submit-new-post {
     width: 200px;
     height: 33px;

@@ -27,12 +27,12 @@
             <p>{{art.gallery_title}}</p>
             <p>{{art.gallery_description}}</p>
 
-                {% for image in art.image %}
-                <p>{{image.image_title}}</p>
+            {% for image in art.image %}
+
                 <a href="/user_profile/{{image.image_id}}">
                     <img src="{{image.image_link}}">
                 </a>
-                {% endfor %}
+            {% endfor %}
 
                 {% if session.get('username') == username %}
                     <form action="/user_profile/edit/{{art.artist_collection_id}}">
