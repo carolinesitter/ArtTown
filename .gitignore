@@ -3,4 +3,4 @@ env
 secrets.sh
 sampledata.sql
 __pycache__
-__pycache__/
+*__pycache__/* 
