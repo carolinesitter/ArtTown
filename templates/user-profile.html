@@ -16,7 +16,7 @@
 
     {% if session.get('username') == username %}
         <form action="/create_post_form">
-            <button id="create-post" type="submit">Create Post</button>
+            <button id="create-post" type="submit" class="btn-outline-dark">Create Post</button>
         </form>
     {% endif %}
 
@@ -36,10 +36,10 @@
 
                 {% if session.get('username') == username %}
                     <form action="/user_profile/edit/{{art.artist_collection_id}}">
-                        <button id="edit-post" type="submit">Edit</button>
+                        <button id="edit-post" type="submit" class="btn-outline-dark">Edit</button>
                     </form>
                     <form action="/add_images_to_collection">
-                        <button id="add-image" type="submit">Add Image</button>
+                        <button id="add-image" type="submit" class="btn-outline-success">Add Image</button>
                     </form>
                 {%endif %}
 

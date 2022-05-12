@@ -7,7 +7,7 @@
     <!-- <h1 hidden id="{{art_collection.artist_collection_id}}">Art Collection</h1> -->
 
     <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
-    <button class="Edit" id="edit-title-btn" type="button">Edit</button>
+    <button class="Edit" id="edit-title-btn" type="button">Edit Gallery Title</button>
         <div id="edit-title-div" hidden class="Title">
             <input value="{{art_collection.gallery_title}}">
             <button 
@@ -24,7 +24,7 @@
 
 
     <p id="art-collection-description"> {{art_collection.gallery_description}}</p>
-    <button class="Edit" id="edit-description-btn" type="button">Edit</button>
+    <button class="Edit" id="edit-description-btn" type="button">Edit Gallery Description</button>
         <div hidden class="Description">
             <input value="{{art_collection.gallery_description}}">
             <button 
@@ -40,9 +40,15 @@
     <br>
 
     {% for image in images %}
-        <div>
+        <div id="edit-image-information">
             <p id="para-img-title-{{image.image_id}}">{{image.image_title}}</p>
-            <button class="Edit" id="edit-image-title-btn-{{image.image_id}}" type="button">Edit</button>
+            <button 
+                class="Edit" 
+                id="edit-image-title-btn-{{image.image_id}}" 
+                type="button" 
+            >
+                Edit Image Title
+            </button>
                 <div hidden class="Img-Title" id="img-title-{{image.image_id}}">
                     <input value="{{image.image_title}}">
                     <button 
@@ -63,9 +69,11 @@
             </button>
         </div>
     {% endfor %}
-
+<form action="/user_profile">
+    <button id="save-post-edits-btn" type="submit">Return to Profile</button>
+</form>
 <div>
-<button class="Delete-Post" id="delete-post-{{art_collection.artist_collection_id}}" type="submit">Delete Post</button>
+    <button class="Delete-Post" id="delete-post-{{art_collection.artist_collection_id}}" type="submit">Delete Post</button>
 </div>
 
 {% endblock %}
