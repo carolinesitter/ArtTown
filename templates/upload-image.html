@@ -4,19 +4,24 @@
 
 {% block content %}
 
-    <body style = "background: url(/static/img/addimage8.jpeg); background-size: 100%;">
+    <body style = "background: url(/static/img/uploadimage5.jpeg); background-size: 100%;">
 
-        <h1>Create a New Post</h1>
+        <h1 id="upload-image-title">Create a New Post</h1>
 
-        <p>Perfect! Now you can add your image below.</p>
+        <div class="upload-image-container"></div>
+
+        <p id="upload-image-desc">Perfect! Now you can add your image below.</p>
 
         <form action="/upload_image" method="POST" enctype="multipart/form-data">
 
-            <label for="image-title">Image Title</label>
-            <input type="text" name="image-title" id="image-title">
-            <input type="text" value="{{artist_gallery.artist_collection_id}}" name="gallery-collection" hidden="true">
-
-            <input type="file" id="image-upload-button" name="filename">
+            <div id="image-title-div">
+                <input id="image-title" type="text" name="image-title" id="image-title" placeholder="Image Title">
+                <input type="text" value="{{artist_gallery.artist_collection_id}}" name="gallery-collection" hidden="true">
+            </div>
+            
+            <div id="image-upload-div">
+                <input type="file" id="image-upload-button" name="filename">
+            </div>
             <!-- may need AJAX or something to prompt the user to upload an image? -->
 
             <button type="submit" id="submit-new-post">Create Post</button>

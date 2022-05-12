@@ -290,4 +290,5 @@ function deletePost(evt) {
 });
 }
 
+// When the delete button is clicked, delete the post entirely
 deletePostButton.addEventListener('click', deletePost)

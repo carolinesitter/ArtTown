@@ -553,10 +553,10 @@ def process_upload_data():
 def add_images_to_to_collection():
     """Allow users to add an image to an already existing artist collection"""
 
+    # Get the user and art collection information 
     email = session["user_email"]
     user = crud.get_user_by_email(email)
     user_id = user.user_id
-    #art_collections = user.artist_collection
     art_collections = crud.get_all_art_collections_by_user(user_id)
 
     return render_template('add-images.html',
