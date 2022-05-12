@@ -4,27 +4,45 @@
 
 {% block content %}
 
-    <form action="/upload_image" method="POST" enctype="multipart/form-data">
+    <body style="background: url(/static/img/addimagetogal9.jpeg); background-size: 100%;">
 
-            <label for="gallery-select">Select the gallery you would like to add to:</label>
-        
-            <select name="gallery-collection" id="gallery-select">
-            {% for collection in art_collections %}
-                <option 
-                    value="{{collection.artist_collection_id}}"
-                >
-                    {{collection.gallery_title}}
-                </option>
-            {% endfor %}
-            </select>
+        <div id="add-new-image-title">
+            <h1 id="add-new-image-page-title">Add Another Image to Your Gallery</h1>
+        </div>
 
-            <label for="image-title">Image Title</label>
-            <input type="text" name="image-title" id="image-title">
-        
-            <input type="file" id="image-upload-button" name="filename">
-        
-            <button type="submit" id="submit-new-post">Add Image</button>
-    </form>
+        <div class="add-new-image-container"></div>
 
+        <form action="/upload_image" method="POST" enctype="multipart/form-data">
+
+                <div id="add-new-image-desc">
+                    <label for="gallery-select">Select the gallery you would like to add to:</label>
+                </div>
+            
+                <div id="gallery-select-dropdown">
+                    <select name="gallery-collection" id="gallery-select" placeholder="Select Gallery">
+                    {% for collection in art_collections %}
+                        <option 
+                            value="{{collection.artist_collection_id}}"
+                        >
+                            {{collection.gallery_title}}
+                        </option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div id="add-image-title-input">
+                    <input type="text" name="image-title" id="image-title" placeholder="Image Title">
+                </div>
+            
+                <div id="upload-another-image-btn">
+                    <input type="file" id="image-upload-button" name="filename">
+                </div>
+
+                <div id="submit-add-image-button">
+                    <button type="submit" id="submit-new-post">Add Image</button>
+                </div>
+        </form>
+        
+    </body>
 
 {% endblock %}
