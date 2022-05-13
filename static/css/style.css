@@ -632,15 +632,18 @@ body {
     margin: 10px;
 }
 
+/* IMAGE DETAILS IMAGE CONTAINER DIV */
 #image-details-image-container-div > img {
     width: 50%;
     height: 50%;
 }
 
+/* LIKE BUTTON CONTAINER */
 #like-button-container {
     text-align: center;
 }
 
+/* LIKE BUTTON */
 #like-button {
     width: 100px;
     height: 35px;
@@ -648,19 +651,10 @@ body {
     border: 1px solid #baa587;
 }
 
+/* ADD COMMENT FORM */
 #add-comment-form {
     text-align: center;
 }
-
-
-
-
-
-
-/* USER PROFILE STYLING */
-
-
-
 
 
 /* PARENT CONTAINER FOR USER PROFILE */
@@ -694,17 +688,6 @@ body {
 #user-profile-zipcode {
     text-align: center;
 }
-
-/* PROFILE USER SOCIALS BACKGROUND */
-/* #user-socials-info-background {
-    margin: 100px auto;
-    width: 310px;
-    height: 180px;
-    background-color: #ABB1B6;
-    opacity: 0.5;
-    padding: 60px;
-    display: block;
-} */
 
 
 /* PROFILE USER SOCIALS DISPLAY */
@@ -752,12 +735,11 @@ body {
 
 }
 
-
+/* ART GALLERY CONTAINER */
 #art-collection-grid-container {
     padding-left: 10%;
     padding-right: 10%;
     display:grid;
-    /* grid-template-columns: minmax(100 px,auto ); */
     text-align: center;
 
     grid-template-columns: repeat(1, 1fr);
@@ -766,12 +748,12 @@ body {
     grid-row-gap: 0px;
 }
 
+/* USER IMAGES GRID */
 .user-images-grid {
     padding-left: 25%;
     padding-right: 25%;
     padding-bottom: 2%;
     display:grid;
-    /* grid-template-columns: minmax(100 px,auto ); */
     text-align: center;
 
     grid-template-columns: 1, 1fr;
@@ -780,6 +762,7 @@ body {
     grid-row-gap: 10px;
 }
 
+/* USER ART GALLERY EDIT BUTTONS CONTAINER */
 .user-profile-edit-btns {
     text-align: inherit;
     display: inherit;
@@ -788,6 +771,7 @@ body {
     padding-bottom: 5%;
 }
 
+/* EDIT POST BUTTONS */
 #edit-post-btn {
     width: 150px;
     height: 33px;
@@ -796,6 +780,7 @@ body {
     margin: 3px;
 }
 
+/* ADD IMAGE TO GALLERY/POST BUTTON */
 #add-image-btn {
     color: black;
     width: 150px;
