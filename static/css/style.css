@@ -120,7 +120,7 @@ body {
 }
 
 /* CREATE PROFILE FORM CONTAINER */
-.create-account-form-container {
+.create-account-form-background {
     margin: 100px auto;
     width: 600px;
     height: 380px;
@@ -157,7 +157,7 @@ body {
     text-align: center;
     position: absolute;
     left: 50%;
-    top: 85%;
+    top: 72%;
     transform: translate(-50%, -50%);
     display: block;
 }
@@ -170,12 +170,13 @@ body {
 .col-1{
     float:left;
     width: 50%;
+    padding: 30px;
 
 }
-.col-2{
+/* .col-2{
     float:right;
     width: 50%;
-}
+} */
 
 /* CREATE PROFILE BUTTON DESIGN */
 #create-profile-button {
