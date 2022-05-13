@@ -163,9 +163,9 @@ body {
 }
 
 /* SPLIT CREATE PROFILE FORMS INTO COLUMS */
-.row{
+/* .row{
     padding: 10px;
-}
+} */
 
 .col-1{
     float:left;
@@ -576,59 +576,52 @@ body {
     display: block;
 }
 
+
+
+
+
+
+
+
+
+/* USER PROFILE STYLING */
+
+
+/* PROFILE NAME DISPLAY */
 #user-profile-first-last-name {
-    position: absolute;
-    left: 50%;
-    top: 18%;
-    transform: translate(-50%, -50%);
-    display: block;
+    text-align: center;
 }
 
+/* PROFILE USERNAME DISPLAY */ 
 #user-profile-username {
-    position: absolute;
-    left: 50%;
-    top: 24%;
-    transform: translate(-50%, -50%);
-    display: block;
-    font-style: italic;
-    font-size: 18px;
+    text-align: center;
 }
 
+/* PROFILE ZIPCODE DISPLAY */
 #user-profile-zipcode {
-    position: absolute;
-    left: 50%;
-    top: 28%;
-    transform: translate(-50%, -50%);
-    display: block;
+    text-align: center;
 }
 
-.user-socials-info-background {
+/* PROFILE USER SOCIALS BACKGROUND */
+/* #user-socials-info-background {
     margin: 100px auto;
     width: 310px;
     height: 180px;
     background-color: #ABB1B6;
     opacity: 0.5;
     padding: 60px;
-    position: absolute;
-    left: 50%;
-    top: 30.5%;
-    transform: translate(-50%, -50%);
     display: block;
-}
+} */
 
+
+/* PROFILE USER SOCIALS DISPLAY */
 #user-profile-socials {
-    position: absolute;
-    left: 50%;
-    top: 49%;
-    transform: translate(-50%, -50%);
-    display: block;
+    text-align: center;
 }
 
+/* CREATE POST PROFILE BUTTON */
 #create-post {
-    position: absolute;
-    left: 50%;
-    top: 68.5%;
-    transform: translate(-50%, -50%);
+    text-align: center;
     display: block; 
     width: 150px;
     height: 33px;
@@ -636,23 +629,33 @@ body {
     border: 1px solid #baa587;
 }
 
+/* GALLERY TITLE DISPLAY */
 #user-prof-gallery-title {
     font-size: 20px;
-    /* position: absolute;
-    left: 50%;
-    top: 78%;
-    transform: translate(-50%, -50%); */
 }
 
+/* GALLERY DESCRIPTION DISPLAY */
 #user-profile-gallery-desc {
     font-style: italic;
     position: absolute;
-    /* left: 50%;
-    top: 84%;
-    transform: translate(-50%, -50%); */
+
 }
 
-/* .art-collection-grid {
+/* ART GALLERY GRID CONTAINER */
+#art-collection-grid {
     display: grid;
-    grid-template-columns: 
-} */
+    position: absolute;
+    left: 50%;
+    top: 120%;
+    /* transform: translate(-50%, -50%); */
+}
+
+.row {
+    text-align: center;
+}
+
+.carousel-item.active.row {
+    text-align: center;
+    width: 400px;
+    height: 300px;
+}

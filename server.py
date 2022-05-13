@@ -137,6 +137,20 @@ def user_profile():
         website = user.website
         art_collection = user.artist_collection
 
+        print(art_collection)
+
+        # print(art_collection)
+        # grouped_art = {}
+        # for c in art_collection:
+        #     # print(image)
+        #     print("*"*20)
+        #     print(type(image))
+
+        #     grouped_art[image["artist_collection_id"]] = grouped_art.get(image["artist_collection_id"], []).append(image)
+
+        # print(grouped_art)
+
+
         # Show the user their profile 
         return render_template('user-profile.html',
                                 user=user,
@@ -146,7 +160,7 @@ def user_profile():
                                 tiktok=tiktok,
                                 twitter=twitter,
                                 website=website,
-                                art_collection=art_collection)
+                                art_collections=art_collection)
 
     # If they are not logged in, send the user to the login page
     else:
@@ -346,7 +360,7 @@ def search_by_zipcode():
                                 twitter=twitter,
                                 tiktok=tiktok,
                                 website=website,
-                                art_collection=art_collection)
+                                art_collections=art_collection)
     else:
         flash("Sorry! No results match the Zip Code you entered. Please try again!")
         return redirect('/zipcode_input')
@@ -384,7 +398,7 @@ def show_random_profile():
                                 twitter=twitter,
                                 tiktok=tiktok,
                                 website=website,
-                                art_collection=art_collection)
+                                art_collections=art_collection)
         
     else:
         flash("Sorry! We can't find anyone random right now. Try again later.")
@@ -480,7 +494,7 @@ def show_art_show_profile(user_id):
                             tiktok=tiktok,
                             twitter=twitter,
                             website=website,
-                            art_collection=art_collection)
+                            art_collections=art_collection)
 
 
 @app.route("/create_post_form")

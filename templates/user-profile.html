@@ -4,14 +4,17 @@
 
 {% block content %}
 
-    <h1 id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
+<div class="container">
 
-    <p id="user-profile-username">{{username}}</p> 
+    <h1 class="row" id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
 
-    <p id="user-profile-zipcode"> {{zipcode}} </p>
-    
-    <div class="user-socials-info-background"></div>
-    <div id="user-profile-socials">
+    <p class="row" id="user-profile-username">{{username}}</p>
+
+    <p class="row" id="user-profile-zipcode"> {{zipcode}} </p>
+
+    <div class="row user-socials-info-background"></div>
+
+    <div class="row" id="user-profile-socials">
         <p>{{website}}</p>
         <p>Instagram: {{instagram}}</p>
         <p>Twitter: {{twitter}}</p>
@@ -19,35 +22,54 @@
     </div>
 
     {% if session.get('username') == username %}
-        <form action="/create_post_form">
-            <button id="create-post" type="submit" class="btn-outline-dark">Create Post</button>
-        </form>
+    <form class="row" action="/create_post_form">
+        <button id="create-post" type="submit" class="btn-outline-dark">Create Post</button>
+    </form>
     {% endif %}
 
-        <div class="art-collection-grid">
-            {% for art in art_collection %}
+    <div class="art-collection-grid row">
 
-            <div id="user-prof-gallery-info-container">
-                <p id="user-prof-gallery-title">{{art.gallery_title}}</p>
-                <p id="user-profile-gallery-desc">{{art.gallery_description}}</p>
-            </div>  
-            {% for image in art.image %}
+        {% for collection in art_collections%}
+        <div id="carouselControls-{{collection.artist_collection_id}}" class="carousel slide" data-ride="carousel">
+            <div class="row" id="user-prof-gallery-info-container-{{collection.artist_collection_id}}">
+                <p id="user-prof-gallery-title-{{collection.artist_collection_id}}">{{collection.gallery_title}}</p>
+                <p id="user-profile-gallery-desc-{{collection.artist_collection_id}}">{{collection.gallery_description}}</p>
+            </div>
+            <!-- <div id="images-in-collection-{{collection.artist_collection_id}}"> -->
+            <div class="carousel-inner">
 
-                <a href="/user_profile/{{image.image_id}}">
-                    <img src="{{image.image_link}}">
+
+                <div class="carousel-item active row">
+                    <a href="/user_profile/{{collection.image[0].image_id}}">
+                        <img class="d-block w-100" src="{{collection.image[0].image_link}}" alt="slide">
+                    </a>
+                </div>
+
+                <!-- </div> -->
+
+                <a class="carousel-control-prev" href="#carouselControls-{{collection.artist_collection_id}}"
+                    role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
                 </a>
-            {% endfor %}
-
-                {% if session.get('username') == username %}
-                    <form action="/user_profile/edit/{{art.artist_collection_id}}">
-                        <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
-                    </form>
-                    <form action="/add_images_to_collection">
-                        <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
-                    </form>
+                <a class="carousel-control-next" href="#carouselControls-{{collection.artist_collection_id}}"
+                    role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {% if session.get('username') == username %}
+                    <div id="art-collection-user-actions-{{collection.artist_collection_id}}">
+                        <form action="/user_profile/edit/{{collection.artist_collection_id}}">
+                            <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
+                        </form>
+                        <form action="/add_images_to_collection">
+                            <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
+                        </form>
+                    </div>
                 {%endif %}
-
-            {% endfor %}
         </div>
+        {% endfor %}
 
-{% endblock %} 
+    </div>
+    {% endblock %}
