@@ -718,7 +718,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     
 }
 
@@ -752,12 +752,6 @@ body {
 
 }
 
-/* CAROUSEL ITEMS WITH IMAGES? */
-.carousel-item.active.row {
-    text-align: center;
-    /* width: 400px;
-    height: 300px; */
-}
 
 #art-collection-grid-container {
     padding-left: 10%;
@@ -770,4 +764,43 @@ body {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+}
+
+.user-images-grid {
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-bottom: 2%;
+    display:grid;
+    /* grid-template-columns: minmax(100 px,auto ); */
+    text-align: center;
+
+    grid-template-columns: 1, 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.user-profile-edit-btns {
+    text-align: inherit;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    padding-bottom: 5%;
+}
+
+#edit-post-btn {
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+#add-image-btn {
+    color: black;
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
 }
