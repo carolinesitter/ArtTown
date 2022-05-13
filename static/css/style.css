@@ -652,16 +652,27 @@ body {
 
 
 
-
-
-
-
-
-
-
-
 /* USER PROFILE STYLING */
 
+
+
+
+
+/* PARENT CONTAINER FOR USER PROFILE */
+.container {
+    text-align: center;
+    display: grid;
+}
+
+/* ROW CLASS FOR USER PROFILE */
+.row {
+    text-align: center;
+}
+
+/* USER PROFILE USER INFO CONTAINER DIV */
+#user-profile-user-info {
+    text-align: center;
+}
 
 /* PROFILE NAME DISPLAY */
 #user-profile-first-last-name {
@@ -675,10 +686,6 @@ body {
 
 /* PROFILE ZIPCODE DISPLAY */
 #user-profile-zipcode {
-    text-align: center;
-}
-
-#user-profile-user-info {
     text-align: center;
 }
 
@@ -721,25 +728,9 @@ body {
 
 }
 
-/* ART GALLERY GRID CONTAINER */
-/* #art-collection-grid {
-    display: grid;
-    position: absolute;
-    left: 50%;
-    top: 120%;
-} */
-
-.row {
-    text-align: center;
-}
-
+/* CAROUSEL ITEMS WITH IMAGES? */
 .carousel-item.active.row {
     text-align: center;
     width: 400px;
     height: 300px;
-}
-
-.container {
-    text-align: center;
-    display: grid;
 }
