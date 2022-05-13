@@ -1,7 +1,7 @@
 /* SIZE OF ALL IMAGES */
 img {
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     /* margin: auto;
     display: block; */
 }
@@ -632,6 +632,11 @@ body {
     margin: 10px;
 }
 
+#image-details-image-container-div > img {
+    width: 50%;
+    height: 50%;
+}
+
 #like-button-container {
     text-align: center;
 }
@@ -682,6 +687,7 @@ body {
 /* PROFILE USERNAME DISPLAY */ 
 #user-profile-username {
     text-align: center;
+    font-style: italic;
 }
 
 /* PROFILE ZIPCODE DISPLAY */
@@ -704,6 +710,24 @@ body {
 /* PROFILE USER SOCIALS DISPLAY */
 #user-profile-socials {
     text-align: center;
+}
+
+/* USER PROFILE CREATE POST CONTAINER */
+#user-profile-create-post-form-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    
+}
+
+/* USER PROFILE CREATE POST FORM */
+#user-profile-create-post-form {
+    text-align: inherit;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
 }
 
 /* CREATE POST PROFILE BUTTON */
@@ -731,6 +755,10 @@ body {
 /* CAROUSEL ITEMS WITH IMAGES? */
 .carousel-item.active.row {
     text-align: center;
-    width: 400px;
-    height: 300px;
+    /* width: 400px;
+    height: 300px; */
+}
+
+#art-collection-grid-container {
+    text-align: center;
 }

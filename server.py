@@ -137,22 +137,6 @@ def user_profile():
         website = user.website
         art_collection = user.artist_collection
 
-        print(art_collection)
-
-        # print(art_collection)
-        # grouped_art = {}
-        # for c in art_collection:
-        #     for image in c:
-        #     # print(image)
-        #     print("*"*20)
-        #     print(c)
-        #     print(image)
-
-        #     grouped_art[image["artist_collection_id"]] = grouped_art.get(image["artist_collection_id"], []).append(image)
-
-        # print(grouped_art)
-
-
         # Show the user their profile 
         return render_template('user-profile.html',
                                 user=user,
