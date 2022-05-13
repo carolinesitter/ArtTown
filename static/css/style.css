@@ -678,6 +678,10 @@ body {
     text-align: center;
 }
 
+#user-profile-user-info {
+    text-align: center;
+}
+
 /* PROFILE USER SOCIALS BACKGROUND */
 /* #user-socials-info-background {
     margin: 100px auto;
@@ -696,7 +700,7 @@ body {
 }
 
 /* CREATE POST PROFILE BUTTON */
-#create-post {
+#user-profile-create-post-button {
     text-align: center;
     display: block; 
     width: 150px;
@@ -718,13 +722,12 @@ body {
 }
 
 /* ART GALLERY GRID CONTAINER */
-#art-collection-grid {
+/* #art-collection-grid {
     display: grid;
     position: absolute;
     left: 50%;
     top: 120%;
-    /* transform: translate(-50%, -50%); */
-}
+} */
 
 .row {
     text-align: center;
@@ -734,4 +737,9 @@ body {
     text-align: center;
     width: 400px;
     height: 300px;
+}
+
+.container {
+    text-align: center;
+    display: grid;
 }

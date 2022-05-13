@@ -142,9 +142,11 @@ def user_profile():
         # print(art_collection)
         # grouped_art = {}
         # for c in art_collection:
+        #     for image in c:
         #     # print(image)
         #     print("*"*20)
-        #     print(type(image))
+        #     print(c)
+        #     print(image)
 
         #     grouped_art[image["artist_collection_id"]] = grouped_art.get(image["artist_collection_id"], []).append(image)
 

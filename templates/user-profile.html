@@ -6,11 +6,13 @@
 
 <div class="container">
 
-    <h1 class="row" id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
+    <div id="user-profile-user-info">
+        <h1 class="row" id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
 
-    <p class="row" id="user-profile-username">{{username}}</p>
+        <p class="row" id="user-profile-username">{{username}}</p>
 
-    <p class="row" id="user-profile-zipcode"> {{zipcode}} </p>
+        <p class="row" id="user-profile-zipcode"> {{zipcode}} </p>
+    </div>
 
     <div class="row user-socials-info-background"></div>
 
@@ -23,7 +25,7 @@
 
     {% if session.get('username') == username %}
     <form class="row" action="/create_post_form">
-        <button id="create-post" type="submit" class="btn-outline-dark">Create Post</button>
+        <button id="user-profile-create-post-button" type="submit" class="btn-outline-dark">Create Post</button>
     </form>
     {% endif %}
 
@@ -37,7 +39,6 @@
             </div>
             <!-- <div id="images-in-collection-{{collection.artist_collection_id}}"> -->
             <div class="carousel-inner">
-
 
                 <div class="carousel-item active row">
                     <a href="/user_profile/{{collection.image[0].image_id}}">
