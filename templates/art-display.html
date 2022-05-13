@@ -3,23 +3,27 @@
 {% block title %} Art Show {% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Art Show</h1>
-    <p>Here is a piece we think you might like!</p>
+    <h1 id="art-show-title">Welcome to the Art Show</h1>
+    <p id="art-show-desc">Here is a piece we think you might like!</p>
 
-    <p>{{first_name}} {{last_name}}</p>
-    <a href="/art_show_user_profile/{{random_user.user_id}}">
+
+    <p id="artist-name">{{first_name}} {{last_name}}</p>
+    <a id="artist-username" href="/art_show_user_profile/{{random_user.user_id}}">
         {{username}}
     </a>
 
-    <div>
-        <p>{{art_collection.gallery_title}}</p>
-        <p>{{art_collection.gallery_description}}</p>
 
-            {% for image in art_collection.image %}
-                <a href="/user_profile/{{image.image_id}}">
-                    <img src="{{image.image_link}}">
-                </a>
-            {% endfor %}
+    <div>
+        <p id="art-show-gallery-title">{{art_collection.gallery_title}}</p>
+        <p id="art-show-gallery-desc">{{art_collection.gallery_description}}</p>
+
+            <div id="art-show-images-gallery">
+                {% for image in art_collection.image %}
+                    <a id="art-show-images" href="/user_profile/{{image.image_id}}">
+                        <img src="{{image.image_link}}">
+                    </a>
+                {% endfor %}
+            </div>
     </div>
 
 

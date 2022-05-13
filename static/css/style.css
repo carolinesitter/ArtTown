@@ -576,6 +576,42 @@ body {
     display: block;
 }
 
+/* ART SHOW TITLE */
+#art-show-title {
+    text-align: center;
+}
+
+/* ART SHOW DESCRIPTION */
+#art-show-desc {
+    text-align: center;
+}
+
+/* ART SHOW USER'S NAME */
+#artist-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ART SHOW USER'S USERNAME */
+#artist-username {
+    text-align: center;
+    font-style: italic;
+}
+
+/* ART SHOW GALLERY TITLE */
+#art-show-gallery-title {
+    text-align: center;
+}
+
+/* ART SHOW GALLERY DESCRIPTION */
+#art-show-gallery-desc {
+    text-align: center;
+    font-style: italic;
+}
+
+
+
+
 
 
 
