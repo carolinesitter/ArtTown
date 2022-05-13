@@ -609,6 +609,45 @@ body {
     font-style: italic;
 }
 
+/* IMAGE DETAILS IMAGE TITLE */
+#image-details-image-title {
+    text-align: center;
+}
+
+#image-details-username-container {
+    text-align: center;
+}
+
+/* IMAGE DETAILS USERNAME LINK */
+#image-details-username-link {
+    text-align: center;
+    font-style: italic;
+    color: #6B7D7C;
+}
+
+/* IMAGE DETAILS IMAGE */
+#image-details-image-container-div {
+    text-align: center;
+    margin: 10px;
+}
+
+#like-button-container {
+    text-align: center;
+}
+
+#like-button {
+    width: 100px;
+    height: 35px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+}
+
+#add-comment-form {
+    text-align: center;
+}
+
+
+
 
 
 

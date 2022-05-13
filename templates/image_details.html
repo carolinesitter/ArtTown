@@ -3,29 +3,34 @@
 {% block title %} Image Details {% endblock %}
 
 {% block content %}
-    <h1> {{image.image_title}}</h1>
+    <h1 id="image-details-image-title"> {{image.image_title}}</h1>
 
-    <a href="/art_show_user_profile/{{image.user.user_id}}">
-        {{image.user.username}}
-    </a>
+    <div id="image-details-username-container">
+        <a id="image-details-username-link" href="/art_show_user_profile/{{image.user.user_id}}">
+            {{image.user.username}}
+        </a>
+    </div>
 
-
-    <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+    <div id="image-details-image-container-div">
+        <img class="image-details-image" src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+    </div>
 
 
     {% if session.get('user_email') %}
-    <h1>Leave a comment!</h1>
 
-    <button id="like-button">Like</button>
-    <p id="like-count"> {{ like_count }} </p>
+    <div id="like-button-container">
+        <button id="like-button" class="btn btn-outline-danger">Like</button>
+        <p id="like-count"> {{ like_count }} </p>
+    </div>
 
     <form id="add-comment-form">
-        <label for="comment">Comments:</label>
-        <input type="text" name="comment" >
-        <button type="submit" >Post</button>
+        <input id="comment-input" type="text" name="comment" placeholder="Leave A Comment">
+        <button id="post-comment-button" type="submit" class="btn-outline-dark">Post</button>
     </form>
 
     {% endif %}
+
+    <p id="comments-title">Comments:</p>
 
     <div id="added-comments">
 
@@ -41,7 +46,7 @@
                         <button id="save-id-{{comment.comment_id}}" class="Save" type="button">Save</button>
                         <button id="cancel-id-{{comment.comment_id}}" class="Cancel" type="button">Cancel</button>
                     </div>
-                    <button class="Delete" type="button">Delete</button>
+                    <button id="delete-id-{{comment.comment_id}}" class="Delete"" type="button">Delete</button>
                 </div>
             {% endif %}
         {% endfor %}
