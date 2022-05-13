@@ -760,5 +760,14 @@ body {
 }
 
 #art-collection-grid-container {
+    padding-left: 10%;
+    padding-right: 10%;
+    display:grid;
+    /* grid-template-columns: minmax(100 px,auto ); */
     text-align: center;
+
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }

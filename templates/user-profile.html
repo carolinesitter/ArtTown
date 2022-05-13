@@ -30,37 +30,37 @@
         </form>
     </div>
     {% endif %}
+</div>
+<div class="art-collection-images-grid" id="art-collection-grid-container">
 
-    <div class="row" id="art-collection-grid-container">
-
-        {% for collection in art_collections%}
-            <div class="row" id="user-prof-gallery-info-container-{{collection.artist_collection_id}}">
-                <p id="user-prof-gallery-title-{{collection.artist_collection_id}}">{{collection.gallery_title}}</p>
-                <p id="user-profile-gallery-desc-{{collection.artist_collection_id}}">{{collection.gallery_description}}
-                </p>
-            </div>
+    {% for collection in art_collections%}
+    <div id="user-prof-gallery-info-container-{{collection.artist_collection_id}}">
+        <p id="user-prof-gallery-title-{{collection.artist_collection_id}}">{{collection.gallery_title}}</p>
+        <p id="user-profile-gallery-desc-{{collection.artist_collection_id}}">{{collection.gallery_description}}</p>
 
 
-                <div class="row" id="artist-collection-images-{{collection.artist_collection_id}}">
-                    {% for image in collection.image %}
-                        <a href="/user_profile/{{image.image_id}}">
-                            <img class="" src="{{image.image_link}}" alt="slide">
-                        </a>
-                    {% endfor%}
-                </div>
-
-            {% if session.get('username') == username %}
-                <div id="art-collection-user-actions-{{collection.artist_collection_id}}">
-                    <form action="/user_profile/edit/{{collection.artist_collection_id}}">
-                        <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
-                    </form>
-                    <form action="/add_images_to_collection">
-                        <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
-                    </form>
-                </div>
-            {%endif %}
+        <div id="artist-collection-images-{{collection.artist_collection_id}}">
+            {% for image in collection.image %}
+            <a href="/user_profile/{{image.image_id}}">
+                <img class="" src="{{image.image_link}}" alt="slide">
+            </a>
+            {% endfor%}
         </div>
-        {% endfor %}
 
+        {% if session.get('username') == username %}
+        <div id="art-collection-user-actions-{{collection.artist_collection_id}}">
+            <form action="/user_profile/edit/{{collection.artist_collection_id}}">
+                <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
+            </form>
+            <form action="/add_images_to_collection">
+                <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
+            </form>
+        </div>
+        {%endif %}
     </div>
-    {% endblock %}
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
