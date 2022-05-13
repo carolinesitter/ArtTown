@@ -7,43 +7,48 @@
     <!-- <h1 hidden id="{{art_collection.artist_collection_id}}">Art Collection</h1> -->
 
     <h1 id="art-collection-title"> {{art_collection.gallery_title}}</h1>
-    <button class="Edit" id="edit-title-btn" type="button">Edit Gallery Title</button>
-        <div id="edit-title-div" hidden class="Title">
-            <input value="{{art_collection.gallery_title}}">
-            <button 
-                id="save-title-{{art_collection.artist_collection_id}}" 
-                type="button" 
-                class="Save-Title" 
-                type="submit"
-            >   
-                Save
-            </button>
-            <button class="Cancel-Title" type="submit">Cancel</button>
-        </div>
+    <div class="edit-title-btn-container">
+        <button class="Edit btn-outline-dark" id="edit-title-btn" type="button">Edit Gallery Title</button>
+            <div id="edit-title-div" hidden class="Title">
+                <input value="{{art_collection.gallery_title}}">
+                <button 
+                    id="save-title-{{art_collection.artist_collection_id}}" 
+                    type="button" 
+                    class="Save-Title btn-outline-success" 
+                    type="submit"
+                >   
+                    Save
+                </button>
+                <button class="Cancel-Title btn-outline-danger" type="submit">Cancel</button>
+            </div>
+    </div>
 
 
 
     <p id="art-collection-description"> {{art_collection.gallery_description}}</p>
-    <button class="Edit" id="edit-description-btn" type="button">Edit Gallery Description</button>
-        <div hidden class="Description">
-            <input value="{{art_collection.gallery_description}}">
-            <button 
-                id="save-desc-{{art_collection.artist_collection_id}}"
-                class="Save-Desc" 
-                type="submit"
-            >
-                Save
-            </button>
-            <button class="Cancel-Desc" type="submit">Cancel</button>
-        </div>
+    <div class="edit-desc-btn-container">
+        <button class="Edit btn-outline-dark" id="edit-description-btn" type="button">Edit Gallery Description</button>
+            <div hidden class="Description">
+                <input value="{{art_collection.gallery_description}}">
+                <button 
+                    id="save-desc-{{art_collection.artist_collection_id}}"
+                    class="Save-Desc btn-outline-success" 
+                    type="submit"
+                >
+                    Save
+                </button>
+                <button class="Cancel-Desc btn-outline-danger" type="submit">Cancel</button>
+            </div>
+    </div>
 
     <br>
 
     {% for image in images %}
         <div id="edit-image-information">
-            <p id="para-img-title-{{image.image_id}}">{{image.image_title}}</p>
+            <p class="Edit-Img-Title" id="para-img-title-{{image.image_id}}">{{image.image_title}}</p>
+            <div class="Edit-Img-Title-Container">
             <button 
-                class="Edit" 
+                class="Edit btn-outline-dark" 
                 id="edit-image-title-btn-{{image.image_id}}" 
                 type="button" 
             >
@@ -53,27 +58,35 @@
                     <input value="{{image.image_title}}">
                     <button 
                         id="save-img-{{art_collection.artist_collection_id}}-{{image.image_id}}"
-                        class="Save-Img-Title" 
+                        class="Save-Img-Title btn-outline-success" 
                         type="submit"
                     >
                         Save
                     </button>
-                    <button class="Cancel-Img-Title" type="submit">Cancel</button>
+                    <button class="Cancel-Img-Title btn-outline-danger" type="submit">Cancel</button>
                 </div>
-            <img src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+            </div>
+            <div class="Edit-Img-Container">
+            <img class="Img-Edit" src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
+            </div>
+            <div class="Delete-Img-Btn-Container">
             <button 
-                class="Delete-Img-Btn" 
+                class="Delete-Img-Btn btn-outline-danger" 
                 id="del-img-btn-{{art_collection.artist_collection_id}}-{{image.image_id}}"
             >
                 Delete Image
             </button>
+            </div>
         </div>
     {% endfor %}
-<form action="/user_profile">
-    <button id="save-post-edits-btn" type="submit">Return to Profile</button>
-</form>
-<div>
-    <button class="Delete-Post" id="delete-post-{{art_collection.artist_collection_id}}" type="submit">Delete Post</button>
+<div id="exit-edit-post">
+    <form action="/user_profile">
+        <button class="btn-outline-dark" id="save-post-edits-btn" type="submit">Return to Profile</button>
+    </form>
+</div>
+
+<div id="del-post-route">
+    <button class="Delete-Post btn-outline-danger" id="delete-post-{{art_collection.artist_collection_id}}" type="submit">Delete Post</button>
 </div>
 
 {% endblock %}

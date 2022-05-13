@@ -789,3 +789,167 @@ body {
     border: 1px solid #baa587;
     margin: 3px;
 }
+
+/* EDIT ART COLLECTION TITLE */
+#art-collection-title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* EDIT TITLE BUTTON */
+#edit-title-btn {
+    text-align: center;
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* EDIT TITLE BUTTON */
+.edit-title-btn-container {
+    text-align: center;
+}
+
+/* SAVE TITLE BUTTON */
+.Save-Title {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* CANCEL TITLE EDIT */
+.Cancel-Title {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* POST DESCRIPTION */
+#art-collection-description {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.edit-desc-btn-container {
+    text-align: center;
+}
+
+#edit-description-btn {
+    text-align: center;
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* SAVE DESCRIPTION BUTTON */
+.Save-Desc {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* CANCEL DESCRIPTION EDIT */
+.Cancel-Desc {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+.Edit-Img-Title {
+    text-align: center;
+}
+
+.Edit {
+    text-align: center;
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+.Edit-Img-Title-Container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* SAVE IMAGE TITLE BUTTON */
+.Save-Img-Title {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+/* CANCEL IMAGE TITLE EDIT */
+.Cancel-Img-Title {
+    width: 100px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+.Edit-Img-Container {
+    text-align: center;
+    margin: 10px;
+}
+
+.Img-Edit {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+}
+
+.Delete-Img-Btn-Container {
+    text-align: center;
+}
+
+.Delete-Img-Btn {
+    text-align: center;
+    width: 150px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+    margin-bottom: 25px;
+}
+
+#exit-edit-post {
+    text-align: center;
+}
+
+#del-post-route {
+    text-align: center;
+}
+
+#save-post-edits-btn {
+    text-align: center;
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
+
+.Delete-Post {
+    text-align: center;
+    width: 200px;
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 3px;
+}
