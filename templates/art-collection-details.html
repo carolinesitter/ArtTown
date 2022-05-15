@@ -46,7 +46,6 @@
     {% for image in images %}
         <div id="edit-image-information">
             <p class="Edit-Img-Title" id="para-img-title-{{image.image_id}}">{{image.image_title}}</p>
-            <div class="Edit-Img-Title-Container">
             <button 
                 class="Edit btn-outline-dark" 
                 id="edit-image-title-btn-{{image.image_id}}" 
@@ -54,6 +53,7 @@
             >
                 Edit Image Title
             </button>
+            <br>
                 <div hidden class="Img-Title" id="img-title-{{image.image_id}}">
                     <input value="{{image.image_title}}">
                     <button 
@@ -65,18 +65,14 @@
                     </button>
                     <button class="Cancel-Img-Title btn-outline-danger" type="submit">Cancel</button>
                 </div>
-            </div>
-            <div class="Edit-Img-Container">
-            <img class="Img-Edit" src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
-            </div>
-            <div class="Delete-Img-Btn-Container">
-            <button 
-                class="Delete-Img-Btn btn-outline-danger" 
-                id="del-img-btn-{{art_collection.artist_collection_id}}-{{image.image_id}}"
-            >
-                Delete Image
-            </button>
-            </div>
+                <img class="Img-Edit" src="{{image.image_link}}" id="image" data-id="{{image.image_id}}">
+                <br>
+                <button 
+                    class="Delete-Img-Btn btn-outline-danger" 
+                    id="del-img-btn-{{art_collection.artist_collection_id}}-{{image.image_id}}"
+                >
+                    Delete Image
+                </button>
         </div>
     {% endfor %}
 <div id="exit-edit-post">
