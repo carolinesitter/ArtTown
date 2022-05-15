@@ -8,16 +8,18 @@
 
 
     <p id="artist-name">{{first_name}} {{last_name}}</p>
-    <a id="artist-username" href="/art_show_user_profile/{{random_user.user_id}}">
-        {{username}}
-    </a>
+    <div id="art-show-username-container">
+        <a id="artist-username" href="/art_show_user_profile/{{random_user.user_id}}">
+            {{username}}
+        </a>
+    </div>
 
 
     <div>
         <p id="art-show-gallery-title">{{art_collection.gallery_title}}</p>
         <p id="art-show-gallery-desc">{{art_collection.gallery_description}}</p>
 
-            <div id="art-show-images-gallery">
+            <div id="art-show-images-gallery-grid">
                 {% for image in art_collection.image %}
                     <a id="art-show-images" href="/user_profile/{{image.image_id}}">
                         <img src="{{image.image_link}}">

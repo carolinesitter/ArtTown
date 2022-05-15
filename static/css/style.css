@@ -2,8 +2,6 @@
 img {
     width: 100%;
     height: 100%;
-    /* margin: auto;
-    display: block; */
 }
 
 /* BODY TEXT */
@@ -162,21 +160,12 @@ body {
     display: block;
 }
 
-/* SPLIT CREATE PROFILE FORMS INTO COLUMS */
-/* .row{
-    padding: 10px;
-} */
-
 .col-1{
     float:left;
     width: 50%;
     padding: 30px;
 
 }
-/* .col-2{
-    float:right;
-    width: 50%;
-} */
 
 /* CREATE PROFILE BUTTON DESIGN */
 #create-profile-button {
@@ -213,7 +202,6 @@ body {
     display: block;
 }
 
-
 /* SEARCH PAGE DESCRIPTION */
 #search-description {
     font-size: 20px;
@@ -234,16 +222,6 @@ body {
     opacity: 0.5;
     padding: 60px;
 }
-
-/* ZIPCODE SEARCH FORM
-#zipcode-search {
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 53%;
-    transform: translate(-50%, -50%);
-    display: block;
-} */
 
 /* ZIPCODE INPUT FORM  */
 #zipcode-input {
@@ -585,23 +563,54 @@ body {
 /* ART SHOW DESCRIPTION */
 #art-show-desc {
     text-align: center;
+    margin-bottom: 18px;
 }
 
 /* ART SHOW USER'S NAME */
 #artist-name {
     text-align: center;
     font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+/* ART SHOW USERNAME CONTAINER */
+#art-show-username-container {
+    text-align: center;
+    margin: 15px;
 }
 
 /* ART SHOW USER'S USERNAME */
 #artist-username {
     text-align: center;
     font-style: italic;
+    color: #6B7D7C;
 }
 
 /* ART SHOW GALLERY TITLE */
 #art-show-gallery-title {
     text-align: center;
+    margin-top: 30px;
+}
+
+/* ART SHOW GALLERY GRID */
+#art-show-images-gallery-grid {
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-bottom: 2%;
+    display:grid;
+    text-align: center;
+
+    grid-template-columns: 1, 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+/* TARGET ALL IMAGES IN THE ART SHOW AND RESIZE THEM */
+#art-show-images-gallery-grid > img {
+    width: 35%;
+    height: 35%;
 }
 
 /* ART SHOW GALLERY DESCRIPTION */
@@ -615,6 +624,7 @@ body {
     text-align: center;
 }
 
+/* IMAGE DETAILS USERNAME CONTAINER */
 #image-details-username-container {
     text-align: center;
 }
@@ -922,10 +932,12 @@ body {
     margin: 3px;
 }
 
+/* EDIT IMAGE TITLE */
 .Edit-Img-Title {
     text-align: center;
 }
 
+/* EDIT BUTTON */
 .Edit {
     text-align: center;
     width: 200px;
@@ -935,6 +947,7 @@ body {
     margin: 3px;
 }
 
+/* EDIT IMAGE TITLE CONTAINER */
 .Edit-Img-Title-Container {
     text-align: center;
     margin-bottom: 10px;
@@ -958,21 +971,25 @@ body {
     margin: 3px;
 }
 
+/* EDIT IMAGE TITLE CONTAINER */
 .Edit-Img-Container {
     text-align: center;
     margin: 10px;
 }
 
+/* EDIT IMAGE */
 .Img-Edit {
     width: 50%;
     height: 50%;
     text-align: center;
 }
 
+/* DELETE IMAGE BUTTON CONTAINER */
 .Delete-Img-Btn-Container {
     text-align: center;
 }
 
+/* DELETE IMAGE BUTTON */
 .Delete-Img-Btn {
     text-align: center;
     width: 150px;
@@ -983,14 +1000,17 @@ body {
     margin-bottom: 25px;
 }
 
+/* EXIT EDIT POST BUTTON */
 #exit-edit-post {
     text-align: center;
 }
 
+/* DELETE POST ROUTE */
 #del-post-route {
     text-align: center;
 }
 
+/* SAVE POST EDIT BUTTON */
 #save-post-edits-btn {
     text-align: center;
     width: 200px;
@@ -1000,6 +1020,7 @@ body {
     margin: 3px;
 }
 
+/* DELETE ENITRE POST BUTTON */
 .Delete-Post {
     text-align: center;
     width: 200px;
@@ -1008,4 +1029,3 @@ body {
     border: 1px solid #baa587;
     margin: 3px;
 }
-
