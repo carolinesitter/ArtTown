@@ -42,13 +42,13 @@
             {% if session.get('username') == comment.user.username %}
                 <div class="Comment" data-comment-id="{{comment.comment_id}}">
                     {{comment.user.username}}: <p id="para-comment-{{comment.comment_id}}">{{comment.comment}}</p>
-                    <button id="button-id-{{comment.comment_id}}" class="Hidden" type="button">Edit</button>
+                    <button id="button-id-{{comment.comment_id}}" class="Hidden btn-outline-dark" type="button">Edit</button>
                     <div id="hidden-comment-{{comment.comment_id}}" hidden>
-                        <input value = "{{comment.comment}}" >
-                        <button id="save-id-{{comment.comment_id}}" class="Save" type="button">Save</button>
-                        <button id="cancel-id-{{comment.comment_id}}" class="Cancel" type="button">Cancel</button>
+                        <input class="Edited-Comment-Input" value="{{comment.comment}}">
+                        <button id="save-id-{{comment.comment_id}}" class="Save btn-outline-success" type="button">Save</button>
+                        <button id="cancel-id-{{comment.comment_id}}" class="Cancel btn-outline-dark" type="button">Cancel</button>
                     </div>
-                    <button id="delete-id-{{comment.comment_id}}" class="Delete"" type="button">Delete</button>
+                    <button id="delete-id-{{comment.comment_id}}" class="Delete btn-outline-danger" type="button">Delete</button>
                 </div>
             {% endif %}
         {% endfor %}
@@ -57,7 +57,15 @@
         {% for comment in comments %}
 
             {% if session.get('username') != comment.user.username %}
-                <div>{{comment.user.username}}: {{ comment.comment }}</div>
+                <div>
+                    <a 
+                        id="comment-user-profile-link" 
+                        href="/art_show_user_profile/{{comment.user.user_id}}"
+                    >
+                        {{comment.user.username}}
+                    </a>: 
+                    {{ comment.comment }}
+                </div>
             {% endif %}
         {% endfor %}
     </div>

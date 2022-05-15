@@ -686,17 +686,31 @@ body {
     text-decoration: underline;
 }
 
+/* ADDED COMMENTS SECTION */
 #added-comments {
     text-align: center;
     margin: 10px;
 }
 
+/* LOGGED IN USERS COMMENTS */
 #user-comments {
     text-align: center;
     margin: 10px;
 }
 
+/* EDIT COMMENT BUTTON STYLING */
+.Hidden, .Delete, .Save, .Cancel {
+    width: 100px;
+    height: 35px;
+    border-radius: 30px;
+    border: 1px solid #baa587;
+    margin: 8px; 
+}
 
+/* COMMENTING USERS LINK TO THEIR PROFILE */
+#comment-user-profile-link {
+    color: #6B7D7C;
+}
 
 /* PARENT CONTAINER FOR USER PROFILE */
 .container {
