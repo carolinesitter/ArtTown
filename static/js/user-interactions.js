@@ -118,6 +118,7 @@ function createComment (evt) {
                             
     });
 };
+
 // When the post button is clicked, create a comment
 addCommentButton.addEventListener('submit', createComment);
 
