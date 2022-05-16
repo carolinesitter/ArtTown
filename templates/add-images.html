@@ -19,7 +19,8 @@
                 </div>
             
                 <div id="gallery-select-dropdown">
-                    <select name="gallery-collection" id="gallery-select" placeholder="Select Gallery">
+                    <select name="gallery-collection" id="gallery-select">
+                        <option value="" disabled selected>Select Gallery</option>
                     {% for collection in art_collections %}
                         <option 
                             value="{{collection.artist_collection_id}}"

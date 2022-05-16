@@ -517,18 +517,18 @@ body {
     display: block;
 }
 
+
+
 /* GALLERY SELECT DROPDOWN */
-/* #gallery-select {
-    margin: 4px;
-    display: block;
+#gallery-select {
+    text-align: center;
     width: 200px;
-    height: 10px;
+    height: 30px;
     border-radius: 30px;
     border: 1px solid #baa587;
     background: rgba(255, 255, 255, 0.5);
-    padding: 15px;
-    margin: -5px 0;
-} */
+    color: #6C757D;
+}
 
 /* ADD IMAGE TITLE DIV */
 #add-image-title-input {
