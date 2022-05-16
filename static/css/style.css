@@ -668,8 +668,6 @@ body {
     text-align: center;
 }
 
-                                                        /* ADD COMMENT STUFF */
-
 /* COMMENT INPUT */
 #comment-input {
     width: 300px;
@@ -721,9 +719,26 @@ body {
     margin: 8px; 
 }
 
-/* COMMENTING USERS LINK TO THEIR PROFILE */
-#comment-user-profile-link {
+/* COMMENT SECTION FOR OTHER USERS */
+.Not-User-Comment-Container {
+    text-align: center;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+/* COMMENTING USER'S LINK TO THEIR PROFILE */
+.Not-User-Comment-Username {
     color: #6B7D7C;
+    text-align: center;
+}
+
+/* COMMENTING USER'S LINK TO THEIR PROFILE */
+.Not-User-Comment {
+    text-align: center;
 }
 
 /* PARENT CONTAINER FOR USER PROFILE */
