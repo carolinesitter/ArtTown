@@ -57,13 +57,13 @@
         {% for comment in comments %}
 
             {% if session.get('username') != comment.user.username %}
-                <div>
+                <div class=".Not-User-Comments">
                     <a 
                         id="comment-user-profile-link" 
                         href="/art_show_user_profile/{{comment.user.user_id}}"
                     >
-                        {{comment.user.username}}
-                    </a>: 
+                        {{comment.user.username}}:
+                    </a> 
                     {{ comment.comment }}
                 </div>
             {% endif %}

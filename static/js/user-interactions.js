@@ -27,7 +27,7 @@ function createComment (evt) {
             const newCommentDiv = document.createElement('div');
             newCommentDiv.setAttribute("data-comment-id", `${responseData.comment_id}`);
             newCommentDiv.setAttribute("class", "Comment");
-            newCommentDiv.innerHTML = `${responseData.username}`;
+            newCommentDiv.innerHTML = `${responseData.username}:`;
             
             // Create the paragraph div in our HTML that holds the new comment
             const commentParagraph = document.createElement('p');
@@ -51,7 +51,8 @@ function createComment (evt) {
             
             // Create a save button in our HTML
             const saveButton = document.createElement('button');
-            saveButton.setAttribute("class", "Save");
+            saveButton.classList.add("Save");
+            saveButton.classList.add("btn-outline-success");
             saveButton.setAttribute("type", "button");
             saveButton.setAttribute("id", `save-id-${responseData.comment_id}`);
             saveButton.innerHTML = 'Save';
@@ -64,7 +65,8 @@ function createComment (evt) {
 
             // Create a cancel edits button in our HTML
             const cancelButton = document.createElement('button');
-            cancelButton.setAttribute("class", "Cancel");
+            cancelButton.classList.add("Cancel"); 
+            cancelButton.classList.add("btn-outline-dark");
             cancelButton.setAttribute("type", "button");
             cancelButton.setAttribute("id", `cancel-id-${responseData.comment_id}`);
             cancelButton.innerHTML = 'Cancel';
@@ -79,7 +81,8 @@ function createComment (evt) {
             // Create a delete button and set its attributes to delete the 
             // comment on the browser
             const deleteButton = document.createElement('button');
-            deleteButton.setAttribute("class", "Delete");
+            deleteButton.classList.add("Delete");
+            deleteButton.classList.add("btn-outline-danger");
             deleteButton.setAttribute("type","button");
             deleteButton.innerHTML = "Delete";
 
@@ -89,7 +92,8 @@ function createComment (evt) {
             // Create an edit button and set its attributes to edit
             // the comment on the browser
             const editButton = document.createElement('button');
-            editButton.setAttribute("class", "Hidden");
+            editButton.classList.add("Hidden");
+            editButton.classList.add("btn-outline-dark");
             editButton.setAttribute("type", "button");
             editButton.setAttribute("id", `button-id-${responseData.comment_id}`);
             editButton.innerHTML = "Edit";
@@ -110,7 +114,7 @@ function createComment (evt) {
 
 
             // Add the value of the new div to the user comments section 
-            document.querySelector('#user-comments').insertAdjacentElement('beforeend', newCommentDiv)
+            document.querySelector('#user-comments').insertAdjacentElement('afterbegin', newCommentDiv);
                             
     });
 };
