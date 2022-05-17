@@ -2,6 +2,5 @@ env
 *.pyc
 secrets.sh
 sampledata.sql
-demodata.sql
 __pycache__
 *__pycache__/* 

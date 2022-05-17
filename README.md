@@ -61,3 +61,72 @@ Lastly, users can log out and delete their session by simply clicking the "Sign 
 * Follow/Unfollow: users would be able to have a list of artists that they would like to follow and keep up with.
 * A Post Feed: users can exclusively keep up with the latest posts from the artists they follow.
 * Password Hashing: passwords will be hashed before they are saved to the database.
+
+## Installation
+
+### To run **ArtTown**:
+
+1.) Install PostgreSQL (Mac OSX).
+
+2.) Fork this repository.
+
+3.) Then, clone this repo in your terminal.
+
+```
+git clone https://github.com/carolinesitter/ArtTown.git
+```
+
+4.) Create and activate a virtual environment inside of your **ArtTown** directory.
+
+```
+virtualenv env
+source env/bin/activate
+```
+
+5.) Install the dependencies.
+
+```
+pip install -r requirements.txt
+```
+
+6.) Sign up to use the [Cloudinary API](https://cloudinary.com/).
+
+7.) Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
+
+```
+export CLOUDINARY_KEY="YOUR_SECRET_KEY"
+export CLOUDINARY_SECRET="YOUR_SECRET_KEY"
+
+```
+
+8.) You can also save a secret key and add it to <kbd>secrets.sh</kbd>:
+
+```
+export SECRET_KEY="YOUR_SECRET_KEY"
+```
+
+9.) Source your keys from your <kbd>secrets.sh</kbd> file into your virtual environment.
+
+```
+source secrets.sh
+```
+
+10.) Set up the database:
+
+```
+createdb artists-by-zip
+python -i model.py
+>>> db.create_all()
+psql artists-by-zip < demodata.sql
+```
+
+Run the app:
+
+```
+python3 server.py
+```
+
+You can now navigate to "localhost:5000/" to access **ArtTown**.
+
+## Testing with flask
+
