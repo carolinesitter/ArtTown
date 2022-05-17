@@ -126,3 +126,43 @@ python3 server.py
 ```
 
 You can now navigate to "localhost:5000/" to access **ArtTown**.
+
+## Testing with Flask
+
+1.) After completing the installation requirements for **ArtTown**, navigate to your terminal window.
+
+2.) You can run the tests with Flask by typing:
+
+```
+python3 tests.py
+```
+
+3.) You can also run the tests in verbose mode by typing:
+
+```
+python3 tests.py -v
+```
+
+## Testing with Selenium
+
+1.) Before testing **ArtTown** with Selenium, check your terminal windows to ensure that you are **not** actively running the regular **ArtTown** server.
+
+2.) Ensure that you have at least two terminal windows open, in the **ArtTown** directory, and running the virtual environment.
+
+3.) In one terminal, type the following command to run the **ArtTown** server with Selenium:
+
+```
+python3 server.py selenium_test
+```
+
+4.) In the other terminal, type the following command to run the Selenium tests.
+
+```
+python3 selenium_tests.py
+```
+
+5.) Similar to testing with Flask, you can also run the Selenium tests in verbose mode by typing:
+
+```
+python3 selenium_tests.py -v
+```
