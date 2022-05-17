@@ -36,7 +36,7 @@ Here, users can upload Artist Collections where they can upload images of their 
 If a user would like to add, remove, or edit their original post, they are able to do so by clicking the “Edit” and “Add Image” buttons below each of their collections. 
 
 
-The next feature that the user can navigate to is the Search tab. Here, users are presented with two options: Search by Zip Code, or Randomize. When an artist chooses to search by zipcode, they are then shown a random profile of a user with the matching zipcode. Likewise, when a user decides to randomize their search entirely, they are shown a new profile of a user regardless of their zipcode.
+The next feature that the user can navigate to is the Search tab. Here, users are presented with two options: "Search by Zipcode" or "Randomize". When an artist chooses to search by zipcode, they are then shown a random profile of a user with the matching zipcode. Likewise, when a user decides to randomize their search entirely, they are shown a new profile of a user regardless of their zipcode.
 
 
 When an artist navigates to the explore tab, they are presented with a grid of clickable images that they can interact with. Users are able to like, comment, and visit the profile pages of others who have left comments on said post. Users are also able to like/unlike, as well as edit, delete, and save their comments on the image in question. 
