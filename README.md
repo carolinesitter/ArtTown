@@ -6,7 +6,7 @@
 
 
 ## About the Developer
-**ArtTown** was created by Caroline Sitter. Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/caroline-sitter-385a11219/).
+**ArtTown** was created by Caroline Sitter. Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/carolinesitter/).
 
 
 ## Technologies
