@@ -35,9 +35,7 @@ Once a user has created their account (or logged in to their existing account) t
 
 ![](static/img/GIFS/2.GIF)
 
-Here, users can upload Artist Collections where they can upload images of their work and explain the concepts behind their artistic visions. Users can also click on their images to check up on the engagement other users have with their content. 
-
-If a user would like to add, remove, or edit their original post, they are able to do so by clicking the “Edit” and “Add Image” buttons below each of their collections. 
+Here, users can upload Artist Collections where they can upload images of their work and explain the concepts behind their artistic visions. Users can also click on their images to check up on the engagement other users have with their content. If a user would like to add, remove, or edit their original post, they are able to do so by clicking the “Edit” and “Add Image” buttons below each of their collections. 
 
 ![](static/img/GIFS/3.GIF)
 
