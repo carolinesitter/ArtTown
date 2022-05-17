@@ -4,8 +4,12 @@
 
 **ArtTown** is a practical and versatile app designed to offer users the ability to search for fellow artists within their area. With Art Town, users can create an account, upload content, and interact with the artwork provided by their neighboring creatives.
 
+---
+
 ## About the Developer
 **ArtTown** was created by Caroline Sitter. Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/caroline-sitter-385a11219/).
+
+---
 
 ## Technologies
 ### Tech Stack:
@@ -22,6 +26,8 @@
 * Cloudinary API
 
 **ArtTown** is an app built on a Flask server with a PostgreSQL database, with SQLAlchemy as the ORM. The front-end templating uses Jinja2, the HTML was built using Bootstrap, and the Javascript uses AJAX to interact with the backend. The images are uploaded and rendered through the use of the Cloudinary API. Server routes are tested using the Python unittest module. Likewise, the overall site functionality is tested with Selenium.
+
+---
 
 ## Features
 Upon reaching **ArtTown**, users are able to create an account (while existing users can log in). New users are asked to input information such as their desired username and password, as well as contact information such as their email and zip code. Other inputs, such as social media tags or website URL’s are optional.
@@ -51,6 +57,8 @@ When an artist navigates to the explore tab, they are presented with a grid of c
 The Art Show is a feature which allows users to view a random Art Gallery from another user on the site. Here, the user is able to view the gallery and also navigate to the artist’s profile page to collect their contact information. 
 
 ![](static/img/GIFS/7.GIF)
+
+---
 
 ## For Version 2.0
 
