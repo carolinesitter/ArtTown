@@ -119,13 +119,13 @@ python -i model.py
 psql artists-by-zip < demodata.sql
 ```
 
-Run the app:
+11.) Run the app:
 
 ```
 python3 server.py
 ```
 
-You can now navigate to "localhost:5000/" to access **ArtTown**.
+12.) You can now navigate to "localhost:5000/" to access **ArtTown**.
 
 ## Testing with Flask
 
