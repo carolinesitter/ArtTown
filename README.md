@@ -31,7 +31,7 @@ Upon reaching **ArtTown**, users are able to create an account (while existing u
 
 ![](static/img/GIFS/1.GIF)
 
-Once a user has created their account (or logged in to their existing account) they will be directed to their profile page. Once signed in, users are granted several options in the navigation bar: Home, Search, Art Show, Explore, and Sign Out. The Home route is where the user can edit and update their user profile.
+Once a user has created their account (or logged in to their existing account) they will be directed to their profile page. Once signed in, users are granted several options in the navigation bar: Home, Search, Explore, Art Show, and Sign Out. The Home route is where the user can edit and update their user profile.
 
 ![](static/img/GIFS/2.GIF)
 
