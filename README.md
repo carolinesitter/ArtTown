@@ -2,7 +2,7 @@
 
 ## Summary
 
-**ArtTown** is a practical and versatile app designed to offer users the ability to search for fellow artists within their area. With Art Town, users can create an account, upload content, and interact with the artwork provided by their neighboring creatives.
+**ArtTown** is an app that focuses on the immersion and inclusivity of artists within local and global communities. It is a practical and versatile app designed to offer users the ability to search for fellow artists within their area. With **ArtTown**, users can create an account, upload content, and interact with the artwork provided by their neighboring creatives.
 
 
 ## About the Developer
