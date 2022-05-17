@@ -96,7 +96,6 @@ pip install -r requirements.txt
 ```
 export CLOUDINARY_KEY="YOUR_SECRET_KEY"
 export CLOUDINARY_SECRET="YOUR_SECRET_KEY"
-
 ```
 
 8.) You can also save a secret key and add it to <kbd>secrets.sh</kbd>:
