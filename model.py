@@ -173,7 +173,9 @@ def example_data():
     # Create a test image
     test_image = Image(image_title="Image Title",
                         image_link="static/img/color2.jpeg",
-                        date_uploaded="2022-5-2")
+                        date_uploaded="2022-5-2",
+                        user_id=1,
+                        artist_collection_id=1)
     
     # Create a test comment
     test_comment = Comment(comment="Great job!", image_id=1, user_id=1)

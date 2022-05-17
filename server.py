@@ -165,7 +165,7 @@ def show_image_info(image_id):
     comments = crud.get_comment_by_image_id(image_id = image.image_id)
 
     # Check that the user is logged in, if so, show them the image details
-    if session["user_email"]:
+    if session["user_email"] and image:
 
         user = crud.get_user_by_email(session.get("user_email"))
 
