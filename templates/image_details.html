@@ -3,61 +3,107 @@
 {% block title %} Image Details {% endblock %}
 
 {% block content %}
+
+    <!-- Image Details Image Title -->
     <h1 id="image-details-image-title"> {{image.image_title}}</h1>
 
+    <!-- Image Details Username Container -->
     <div id="image-details-username-container">
+
+        <!-- Username Link -->
         <a id="image-details-username-link" href="/art_show_user_profile/{{image.user.user_id}}">
             {{image.user.username}}
         </a>
     </div>
 
+    <!-- Image Container Div  -->
     <div id="image-details-image-container-div">
+
+        <!-- Image -->
         <img class="image-details-image" src="{{image.image_link}}" id="image" data-id = "{{image.image_id}}">
     </div>
 
-
+    <!-- If the User is in Session, Allow them to Like and Comment -->
     {% if session.get('user_email') %}
 
+    <!-- Like Button Container -->
     <div id="like-button-container">
+
+        <!-- Like Button -->
         <button id="like-button" class="btn btn-outline-danger">Like</button>
+
+        <!-- Like Count -->
         <p id="like-count"> {{ like_count }} </p>
     </div>
 
+    <!-- Add Comment Form -->
     <form id="add-comment-form">
+
+        <!-- Comment Input Field -->
         <input id="comment-input" type="text" name="comment" placeholder="Leave A Comment">
+
+        <!-- Post Comment Button Container -->
         <div id="comment-btn">
+
+            <!-- Post Comment Button -->
             <button id="post-comment-button" type="submit" class="btn-outline-dark">Post</button>
         </div>
     </form>
 
     {% endif %}
 
+    <!-- Comment Section Title -->
     <p id="comments-title">Comments:</p>
 
+    <!-- Comment Section Container -->
     <div id="added-comments">
 
+        <!-- User Comments Container -->
         <div id="user-comments">
+
+        <!-- Check if the Comment is Made by the User Logged in -->
         {% for comment in comments %}
 
+            <!-- If so, Allow the User to Edit their Comment(s) -->
             {% if session.get('username') == comment.user.username %}
+
+                <!-- User's Comment Container -->
                 <div class="Comment" data-comment-id="{{comment.comment_id}}">
                     {{comment.user.username}}: <p id="para-comment-{{comment.comment_id}}">{{comment.comment}}</p>
+
+                    <!-- Edit Comment Button -->
                     <button id="button-id-{{comment.comment_id}}" class="Hidden btn-outline-dark" type="button">Edit</button>
+
+                    <!-- Hidden Comment Editing Div -->
                     <div id="hidden-comment-{{comment.comment_id}}" hidden>
+
+                        <!-- Edited Comment Form Input Field -->
                         <input class="Edited-Comment-Input" value="{{comment.comment}}">
+
+                        <!-- Save Edited Comment Button -->
                         <button id="save-id-{{comment.comment_id}}" class="Save btn-outline-success" type="button">Save</button>
+
+                        <!-- Cancel Edited Comment Button -->
                         <button id="cancel-id-{{comment.comment_id}}" class="Cancel btn-outline-dark" type="button">Cancel</button>
                     </div>
+
+                    <!-- Delete Comment Button -->
                     <button id="delete-id-{{comment.comment_id}}" class="Delete btn-outline-danger" type="button">Delete</button>
                 </div>
             {% endif %}
         {% endfor %}
         </div>
 
+        <!-- Check the Rest of the Comments -->
         {% for comment in comments %}
 
+            <!-- If they aren't made by the User in Session, Display them Below -->
             {% if session.get('username') != comment.user.username %}
+
+                <!-- Comment Container Div -->
                 <div class="Not-User-Comment-Container">
+
+                    <!-- Comment Username/Link -->
                     <a 
                         class="Not-User-Comment-Username"
                         id="comment-user-profile-link" 
@@ -65,6 +111,8 @@
                     >
                         {{comment.user.username}}:
                     </a>
+
+                    <!-- Comment -->
                     <p class="Not-User-Comment">
                         {{ comment.comment }}
                     </p>
