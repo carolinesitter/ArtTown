@@ -4,76 +4,95 @@
 
 {% block content %}
 
+<!-- Background Image -->
 <body style = "background: url(/static/img/create-prof.jpeg) no-repeat center center; background-size: 100%;">
 
+    <!-- Create Profile Page Title -->
     <h1 id="welcome-create-prof-title">Welcome to Art Town!</h1>
 
     <br>
     </br>
 
+    <!-- Create Profile Background Container/Square -->
     <div class="create-account-form-background"></div>
 
+        <!-- Create an Account Title -->
         <h2 id="create-account-title">Create an Account</h2>
 
+            <!-- Create Profile/Account Form -->
             <form id="create-profile-form" action="/register_profile" method="POST">
+
+                <!-- Create Profile Container -->
                 <div class="create-prof-container">
+
+                    <!-- Create Profile First Column -->
                     <div class="col-1">
 
+                        <!-- First Name Form Input Field -->
                         <input type="text" name="first_name" placeholder="First Name" id="first-name">
 
                         <br>
 
+                        <!-- Last Name Form Input Field -->
                         <input type="text" name="last_name" placeholder="Last Name"id="last-name">
 
                         <br>
 
+                        <!-- Username Form Input Field -->
                         <input type="text" name="username" placeholder="Username"id="username">
 
                         <br>
 
+                        <!-- Password Form Input Field -->
                         <input type="password" name="password" placeholder="Password "id="password">
 
                         <br>
 
+                        <!-- Verify Password Form Input Field -->
                         <input type="password" name="verify_password" placeholder="Verify Password" id="verify_password">
 
                         <br>
 
+                        <!-- Zipcode Form Input Field -->
                         <input type="text" name="zipcode" placeholder="Zipcode" id="zipcode">
                         <br>
                     </div>
 
 
-
+                    <!-- Create Profile Container 2 -->
                     <div class="col-1">
 
-
+                        <!-- Email Form Input Field -->
                         <input type="text" name="email" placeholder="Email" id="email">
 
                         <br>
 
+                        <!-- Instagram Form Input Field -->
                         <input type="text" name="instagram" placeholder="Instagram" id="instagram">
 
                         <br>
 
+                        <!-- Tik Tok Form Input Field -->
                         <input type="text" name="tik_tok" placeholder="Tik Tok" id="tik-tok">
 
                         <br>
 
+                        <!-- Twitter Form Input Field -->
                         <input type="text" name="twitter" placeholder="Twitter" id="twitter">
 
                         <br>
 
+                        <!-- Website Form Input Field -->
                         <input type="text" name="website" placeholder="Website" id="website">
 
                         <br>
 
+                        <!-- Create Profile Button -->
                         <button id="create-profile-button" type="submit" class="btn-outline-dark">Create Profile</button>
                         <br>
                     </div>
                 </div>
 
-                <!-- <button id="create-profile-button" type="submit">Create Profile</button> -->
             </form>
 
 </body>
