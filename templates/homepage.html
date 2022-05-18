@@ -3,26 +3,39 @@
 {% block title %} Welcome {% endblock %}
 
 {% block content %}
+
+<!-- Background Image -->
 <body style = "background: url(/static/img/homepage.jpeg); background-size: 100%;">
-<h1 id="homepage-title">Welcome to Art Town!</h1>
 
-<!-- <img src="http://" -->
+    <!-- Homepage/Login Page Title -->
+    <h1 id="homepage-title">Welcome to Art Town!</h1>
 
+    <!-- Login Form Background Container/Square -->
     <div class="log-in-form-container"></div>
+
+        <!-- Login Title -->
         <p id="log-in-title">Log In</p>
 
+        <!-- Login Form -->
         <form action="/log_in" method="POST" id="log-in-form">
 
+            <!-- Email Input Field -->
             <input id="email-log-in" type="text" placeholder="Email" name="email">
 
+            <!-- Password Input Field -->
             <input id="password-log-in" type="password" placeholder="Password" name="password">
 
+            <!-- Login Button -->
             <button id="log-in-button" type="submit" class="btn-outline-dark">Log In</button>
         </form>
     
-
+    <!-- Create Profile Form Container -->
     <form id="create-profile-link" action="/create_profile">
+
+        <!-- Create Profile Button Description -->
         <p>New Here? Let's get you signed up!</p>
+
+        <!-- Create Profile Button/Link -->
         <button id="start-create-profile" type="submit" class="btn-outline-dark">Create Profile</button>
     </form>
 </body>
