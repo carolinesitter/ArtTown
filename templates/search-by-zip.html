@@ -3,22 +3,42 @@
 
 {% block content %}
 
+    <!-- Background Image -->
     <body style = "background: url(/static/img/search9.jpeg); background-size: 100%;">
+
+        <!-- Search Form Background Container/Square -->
         <div class="search-form-container"></div>
+
+        <!-- Search Page Title -->
         <h1 id="search-header">Search For Artists in Your Zip Code!</h1>
+
+        <!-- Search Page Description -->
         <p id="search-description">
             Search for artists nearby, <br> or randomize your search to find someone new!
         </p>
 
+        <!-- Search Form -->
         <form id="zipcode-search" action="/search_by_zipcode" method="POST">
+
+            <!-- Zipcode Input Container Div -->
             <div id="zip-input-div">
+
+                <!-- Zipcode Input Field -->
                 <input id="zipcode-input" type="text" placeholder="Zipcode"name="zipcode">
             </div>
+
+            <!-- Zipcode Search Button Container -->
             <div id="search-btn-div">
+
+                <!-- Zipcode Search Button -->
                 <button id="search-btn" type="submit" class="btn-outline-dark">Search</button>
             </div>
         </form>
+
+        <!-- Show Random Profile Search Form -->
         <form action="/show_random_profile">
+
+            <!-- Randomize Search Button -->
             <button id="randomize-btn" type="submit" class="btn-outline-dark">Randomize</button>
         </form>
     </body>
