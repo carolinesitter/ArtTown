@@ -2,11 +2,17 @@
 {%block title %} New Post {%endblock %}
 
 {% block content %}
+
+    <!-- Background Image -->
     <body style = "background: url(/static/img/addimage3.jpeg); background-size: 100%;">
+
+        <!-- Create a New Post Page Title -->
         <h1 id="create-post-title">Create a New Post</h1>
 
+        <!-- Form Background Container/Square -->
         <div class="form-group-container"></div>
 
+        <!-- Create Post Page Description -->
         <p 
             id="create-post-desc"
         >
@@ -14,15 +20,24 @@
             Then we can add your images.
         </p>
 
+        <!-- Create Post Form  -->
         <form id="create-post-form" action="/create_art_collection" method="POST">
+
+            <!-- Gallery Title Container Div -->
             <div id="gallery-title-div">
+
+                <!-- Gallery Title Form Input Field -->
                 <input type="text" name="gallery-title" id="gallery-title" placeholder="Gallery Title">
             </div>
 
+            <!-- Gallery Description Container Div -->
             <div id="gallery-desc-div">
+
+                <!-- Gallery Description Form Input Field -->
                 <input type="text" name="gallery-description" id="gallery-description" placeholder="Gallery Description">
             </div>
 
+            <!-- Create Gallery Button -->
             <button type="submit" id="artist-collection-button" class="btn-outline-dark">Create Gallery</button>
         </form>
 
