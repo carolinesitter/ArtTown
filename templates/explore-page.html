@@ -3,8 +3,14 @@
 {% block title %} Explore {% endblock %}
 
 {% block content %}
+
+    <!-- Explore Page Images Grid -->
     <div class="explore-image-grid">
+
+        <!-- Loop Through All Images in the Database and Display Them -->
         {% for image in images %}
+
+            <!-- Clickable Image -->
             <a href="/user_profile/{{image.image_id}}">
                 <img src="{{image.image_link}}">
             </a>
