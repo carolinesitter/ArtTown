@@ -4,20 +4,26 @@
 
 {% block content %}
 
+    <!-- Background Image -->
     <body style="background: url(/static/img/addimagetogal9.jpeg); background-size: 100%;">
 
+        <!-- Add New Image to Gallery Page Title -->
         <div id="add-new-image-title">
             <h1 id="add-new-image-page-title">Add Another Image to Your Gallery</h1>
         </div>
 
+        <!-- Add New Image Container -->
         <div class="add-new-image-container"></div>
 
+        <!-- Upload Image Form  -->
         <form action="/upload_image" method="POST" enctype="multipart/form-data">
 
+                <!-- Gallery Selection Label  -->
                 <div id="add-new-image-desc">
                     <label for="gallery-select">Select the gallery you would like to add to:</label>
                 </div>
             
+                <!-- Gallery Select Dropdown Menu -->
                 <div id="gallery-select-dropdown">
                     <select name="gallery-collection" id="gallery-select">
                         <option value="" disabled selected>Select Gallery</option>
@@ -31,14 +37,17 @@
                     </select>
                 </div>
 
+                <!-- Image Title Input  -->
                 <div id="add-image-title-input">
                     <input type="text" name="image-title" id="image-title" placeholder="Image Title">
                 </div>
             
+                <!-- Upload Image Button  -->
                 <div id="upload-another-image-btn">
                     <input type="file" id="image-upload-button" name="filename">
                 </div>
 
+                <!-- Submit Added Image Button  -->
                 <div id="submit-add-image-button">
                     <button type="submit" id="submit-new-post" class="btn-outline-dark">Add Image</button>
                 </div>
