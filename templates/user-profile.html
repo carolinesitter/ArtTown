@@ -4,55 +4,99 @@
 
 {% block content %}
 
+<!-- User Profile Container -->
 <div class="container">
 
+    <!-- User Info Container -->
     <div class="row" id="user-profile-user-info">
+
+        <!-- User's First and Last Name -->
         <h1 id="user-profile-first-last-name">{{user.first_name}} {{user.last_name}}</h1>
 
+        <!-- User's username -->
         <p id="user-profile-username"> {{username}} </p>
 
+        <!-- User's Zipcode -->
         <p id="user-profile-zipcode"> {{zipcode}} </p>
     </div>
 
-    <div class="row" id="user-socials-info-background"></div>
-
+    <!-- User's Socials Container -->
     <div class="row" id="user-profile-socials">
+
+        <!-- User's Website -->
         <p>{{website}}</p>
+
+        <!-- User's Instagram -->
         <p>Instagram: {{instagram}}</p>
+
+        <!-- User's Twitter -->
         <p>Twitter: {{twitter}}</p>
+
+        <!-- User's Tik Tok -->
         <p>Tik Tok: {{tiktok}}</p>
     </div>
 
+    <!-- If User is in Session, Show the Create Post Button -->
     {% if session.get('username') == username %}
+
+    <!-- Create Post Button Container -->
     <div class="row" id="user-profile-create-post-form-container">
+
+        <!-- Create Post Form -->
         <form class="row" id="user-profile-create-post-form" action="/create_post_form">
+
+            <!-- Create Post Button -->
             <button id="user-profile-create-post-button" type="submit" class="btn-outline-dark">Create Post</button>
         </form>
     </div>
     {% endif %}
 </div>
+
+<!-- Art Collection/Gallery Grid -->
 <div class="art-collection-images-grid" id="art-collection-grid-container">
 
+    <!-- Get Each Art Collection/Gallery and Display it in the Grid -->
     {% for collection in art_collections%}
+
+    <!-- Art Collection/Gallery Container -->
     <div id="user-prof-gallery-info-container-{{collection.artist_collection_id}}">
+
+        <!-- Art Collection/Gallery Title -->
         <p id="user-prof-gallery-title-{{collection.artist_collection_id}}">{{collection.gallery_title}}</p>
+
+        <!-- Art Collection/Gallery Description -->
         <p id="user-profile-gallery-desc-{{collection.artist_collection_id}}">{{collection.gallery_description}}</p>
 
-
+        <!-- Art Collection/Gallery Image Grid Container -->
         <div class="user-images-grid" id="artist-collection-images-{{collection.artist_collection_id}}">
+
+            <!-- Get Each Image in the Art Collection/Gallery and Display it -->
             {% for image in collection.image %}
+
+            <!-- Clickable Image -->
             <a href="/user_profile/{{image.image_id}}">
                 <img class="" src="{{image.image_link}}" alt="slide">
             </a>
             {% endfor%}
         </div>
 
+        <!-- If the User who Made the Art Collection/Gallery, Allow them to Edit/Add Images -->
         {% if session.get('username') == username %}
+
+        <!-- Edit/Delete Button Container -->
         <div class="user-profile-edit-btns" id="art-collection-user-actions-{{collection.artist_collection_id}}">
+
+            <!-- Edit Art Collection/Gallery Form -->
             <form action="/user_profile/edit/{{collection.artist_collection_id}}">
+
+                <!-- Edit Art Collection/Gallery Button -->
                 <button id="edit-post-btn" type="submit" class="btn-outline-dark">Edit</button>
             </form>
+
+            <!-- Add Image to Art Collection/Gallery Form -->
             <form action="/add_images_to_collection">
+
+                <!-- Add Image to Art Collection/Gallery Button -->
                 <button id="add-image-btn" type="submit" class="btn-outline-success">Add Image</button>
             </form>
         </div>
