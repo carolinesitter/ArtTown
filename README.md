@@ -4,9 +4,14 @@
 
 **ArtTown** is an app that focuses on the immersion and inclusivity of artists within local and global communities. It is a practical and versatile app designed to offer users the ability to search for fellow artists within their area. With **ArtTown**, users can create an account, upload content, and interact with the artwork provided by their neighboring creatives. View the full demo [here](https://www.youtube.com/watch?v=B3x7fIMJ4mw).
 
-
-## About the Developer
-**ArtTown** was created by Caroline Sitter. Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/carolinesitter/).
+## Contents
+* [Tech Stack](#technologies)
+* [Features](#features)
+* [For Version 2.0](#for-version-20)
+* [Installation](#installation)
+* [Testing with Flask](#testing-with-flask)
+* [Testing with Selenium](#testing-with-selenium)
+* [About the Developer](#about-the-developer)
 
 
 ## Technologies
@@ -16,8 +21,8 @@
 * SQL Alchemy
 * Javascript
 * AJAX
-* Python Unittest with Flask
-* Selenium End to End Testing
+* Python Unittest
+* Selenium
 * Jinja2
 * HTML5
 * CSS
@@ -166,3 +171,6 @@ python3 selenium_tests.py
 ```
 python3 selenium_tests.py -v
 ```
+
+## About the Developer
+**ArtTown** was created by Caroline Sitter. Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/carolinesitter/).
